@@ -1,0 +1,12 @@
+# Data and configuration files
+templates/
+expert/
+
+# Test and temporary files
+test*
+ref.md
+*.tmp
+*.bak
+
+# Example files
+example

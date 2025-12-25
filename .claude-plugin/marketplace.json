@@ -1,0 +1,22 @@
+{
+    "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+    "name": "cc_plugins",
+    "version": "0.1.0",
+    "description": "他山团队 (Tashan) Claude Code 插件集合，提供结构化研究想法生成工作流",
+    "metadata": {
+        "description": "他山团队 (Tashan) Claude Code 研究插件集合，基于 Scispark 方法的结构化研究想法生成工作流",
+        "summary": "他山团队专业研究工作流插件，助力学术研究和想法生成"
+    },
+    "owner": {
+        "name": "gqy20",
+        "email": "qingyuge@foxmail.com"
+    },
+    "plugins": [
+        {
+            "name": "scispark",
+            "description": "Scispark 结构化研究想法生成工作流，通过7阶段流程将关键词转化为高质量、可验证的研究想法，包含 Review 评审机制和专家系统整合。",
+            "source": "./plugins/scispark",
+            "category": "workflow"
+        }
+    ]
+}

@@ -1,0 +1,305 @@
+name: Enhanced Plugin Validation
+
+on:
+    push:
+        branches: [main, develop]
+        paths:
+            - ".claude-plugin/**"
+            - "plugins/**"
+            - ".github/workflows/plugin-validation.yml"
+    pull_request:
+        branches: [main]
+        paths:
+            - ".claude-plugin/**"
+            - "plugins/**"
+    workflow_dispatch:
+
+jobs:
+    validate:
+        name: Comprehensive Plugin Validation
+        runs-on: ubuntu-latest
+
+        strategy:
+            fail-fast: false
+            matrix:
+                plugin:
+                    [
+                        evolutionary-biology-expert,
+                        hybrid-speciation-expert,
+                        crop-breeding-expert,
+                        evolutionary-ecology-expert,
+                    ]
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "18"
+
+            - name: Install dependencies
+              run: |
+                  sudo apt-get update
+                  sudo apt-get install -y python3 python3-pip jq
+                  pip3 install jsonschema
+
+            - name: Validate marketplace.json
+              id: marketplace-validation
+              run: |
+                  echo "🔍 Validating marketplace.json..."
+
+                  if [ -f ".claude-plugin/marketplace.json" ]; then
+                    if jq empty .claude-plugin/marketplace.json; then
+                      echo "✅ marketplace.json is valid JSON"
+
+                      # 检查基本结构
+                      if jq -e '.name' .claude-plugin/marketplace.json > /dev/null && \
+                         jq -e '.plugins' .claude-plugin/marketplace.json > /dev/null; then
+                        echo "✅ marketplace.json has required fields"
+                        echo "marketplace_valid=true" >> $GITHUB_OUTPUT
+                      else
+                        echo "❌ marketplace.json missing required fields"
+                        echo "marketplace_valid=false" >> $GITHUB_OUTPUT
+                        exit 1
+                      fi
+                    else
+                      echo "❌ marketplace.json is invalid JSON"
+                      echo "marketplace_valid=false" >> $GITHUB_OUTPUT
+                      exit 1
+                    fi
+                  else
+                    echo "❌ marketplace.json not found"
+                    echo "marketplace_valid=false" >> $GITHUB_OUTPUT
+                    exit 1
+                  fi
+
+            - name: Validate Plugin Structure
+              id: structure-validation
+              run: |
+                  echo "🔍 Validating plugin structure: ${{ matrix.plugin }}..."
+
+                  plugin_dir="plugins/${{ matrix.plugin }}"
+
+                  if [ -d "$plugin_dir" ]; then
+                    echo "✅ Plugin directory exists: $plugin_dir"
+
+                    # 检查必需文件
+                    required_files=("plugin.json" "README.md")
+                    required_dirs=("agents" "skills")
+
+                    all_valid=true
+
+                    for file in "${required_files[@]}"; do
+                      if [ -f "$plugin_dir/$file" ]; then
+                        echo "✅ Required file exists: $file"
+                      else
+                        echo "❌ Required file missing: $file"
+                        all_valid=false
+                      fi
+                    done
+
+                    for dir in "${required_dirs[@]}"; do
+                      if [ -d "$plugin_dir/$dir" ]; then
+                        echo "✅ Required directory exists: $dir"
+                        if [ "$(ls -A $plugin_dir/$dir)" ]; then
+                          echo "✅ Directory $dir is not empty"
+                        else
+                          echo "❌ Directory $dir is empty"
+                          all_valid=false
+                        fi
+                      else
+                        echo "❌ Required directory missing: $dir"
+                        all_valid=false
+                      fi
+                    done
+
+                    if [ "$all_valid" = true ]; then
+                      echo "✅ Plugin structure validation passed"
+                      echo "structure_valid=true" >> $GITHUB_OUTPUT
+                    else
+                      echo "❌ Plugin structure validation failed"
+                      echo "structure_valid=false" >> $GITHUB_OUTPUT
+                      exit 1
+                    fi
+                  else
+                    echo "❌ Plugin directory not found: $plugin_dir"
+                    echo "structure_valid=false" >> $GITHUB_OUTPUT
+                    exit 1
+                  fi
+
+            - name: Validate Plugin Configuration
+              id: config-validation
+              run: |
+                  echo "🔍 Validating plugin configuration: ${{ matrix.plugin }}..."
+
+                  plugin_json="plugins/${{ matrix.plugin }}/plugin.json"
+
+                  if [ -f "$plugin_json" ]; then
+                    if jq empty "$plugin_json"; then
+                      echo "✅ plugin.json is valid JSON"
+
+                      # 检查必需字段
+                      required_fields=("name" "version" "description" "category" "author")
+
+                      all_valid=true
+                      for field in "${required_fields[@]}"; do
+                        if jq -e ".$field" "$plugin_json" > /dev/null; then
+                          echo "✅ Field exists: $field"
+                        else
+                          echo "❌ Required field missing: $field"
+                          all_valid=false
+                        fi
+                      done
+
+                      # 检查版本格式
+                      version=$(jq -r '.version' "$plugin_json")
+                      if [[ $version =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9]+)?$ ]]; then
+                        echo "✅ Version format is valid: $version"
+                      else
+                        echo "⚠️ Version may not follow semantic versioning: $version"
+                      fi
+
+                      if [ "$all_valid" = true ]; then
+                        echo "✅ Plugin configuration validation passed"
+                        echo "config_valid=true" >> $GITHUB_OUTPUT
+                      else
+                        echo "❌ Plugin configuration validation failed"
+                        echo "config_valid=false" >> $GITHUB_OUTPUT
+                        exit 1
+                      fi
+                    else
+                      echo "❌ plugin.json is invalid JSON"
+                      echo "config_valid=false" >> $GITHUB_OUTPUT
+                      exit 1
+                    fi
+                  else
+                    echo "❌ plugin.json not found"
+                    echo "config_valid=false" >> $GITHUB_OUTPUT
+                    exit 1
+                  fi
+
+            - name: Run Validation Scripts
+              id: script-validation
+              run: |
+                  echo "🔍 Running comprehensive validation scripts..."
+
+                  # 确保脚本可执行
+                  chmod +x .github/scripts/*.py
+
+                  # 运行引用检查
+                  echo "Running file reference check..."
+                  if python3 .github/scripts/check_references.py; then
+                    echo "✅ File reference check passed"
+                    references_valid=true
+                  else
+                    echo "❌ File reference check failed"
+                    references_valid=false
+                  fi
+
+                  # 运行MCP依赖检查
+                  echo "Running MCP dependency check..."
+                  if python3 .github/scripts/check_mcp_dependencies.py; then
+                    echo "✅ MCP dependency check passed"
+                    mcp_valid=true
+                  else
+                    echo "❌ MCP dependency check failed"
+                    mcp_valid=false
+                  fi
+
+                  # 运行内容质量检查（作为警告，不阻塞）
+                  echo "Running content quality check..."
+                  if python3 .github/scripts/validate_content.py plugins/${{ matrix.plugin }}; then
+                    echo "✅ Content quality check passed"
+                  else
+                    echo "⚠️ Content quality check found issues (non-blocking)"
+                  fi
+
+                  if [ "$references_valid" = true ] && [ "$mcp_valid" = true ]; then
+                    echo "✅ All script validations passed"
+                    echo "scripts_valid=true" >> $GITHUB_OUTPUT
+                  else
+                    echo "❌ Script validations failed"
+                    echo "scripts_valid=false" >> $GITHUB_OUTPUT
+                    exit 1
+                  fi
+
+            - name: Generate Validation Report
+              if: always()
+              run: |
+                  echo "# 📊 Plugin Validation Report for ${{ matrix.plugin }}" >> $GITHUB_STEP_SUMMARY
+                  echo "" >> $GITHUB_STEP_SUMMARY
+                  echo "## Validation Results" >> $GITHUB_STEP_SUMMARY
+                  echo "- 📋 Marketplace: ${{ steps.marketplace-validation.outputs.marketplace_valid }}" >> $GITHUB_STEP_SUMMARY
+                  echo "- 🏗️ Structure: ${{ steps.structure-validation.outputs.structure_valid }}" >> $GITHUB_STEP_SUMMARY
+                  echo "- ⚙️ Configuration: ${{ steps.config-validation.outputs.config_valid }}" >> $GITHUB_STEP_SUMMARY
+                  echo "- 🔗 Scripts: ${{ steps.script-validation.outputs.scripts_valid }}" >> $GITHUB_STEP_SUMMARY
+                  echo "" >> $GITHUB_STEP_SUMMARY
+
+                  if [[ "${{ steps.marketplace-validation.outputs.marketplace_valid }}" == "true" &&
+                        "${{ steps.structure-validation.outputs.structure_valid }}" == "true" &&
+                        "${{ steps.config-validation.outputs.config_valid }}" == "true" &&
+                        "${{ steps.script-validation.outputs.scripts_valid }}" == "true" ]]; then
+                    echo "## ✅ Validation Status: PASSED" >> $GITHUB_STEP_SUMMARY
+                    echo "Plugin ${{ matrix.plugin }} has passed all validation checks successfully." >> $GITHUB_STEP_SUMMARY
+                  else
+                    echo "## ❌ Validation Status: FAILED" >> $GITHUB_STEP_SUMMARY
+                    echo "Plugin ${{ matrix.plugin }} has failed one or more validation checks." >> $GITHUB_STEP_SUMMARY
+                    exit 1
+                  fi
+
+    integration-validation:
+        name: Integration Validation
+        runs-on: ubuntu-latest
+        needs: validate
+        if: success()
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "18"
+
+            - name: Install dependencies
+              run: |
+                  sudo apt-get update
+                  sudo apt-get install -y python3 python3-pip jq
+                  pip3 install jsonschema
+
+            - name: Run Complete Validation Suite
+              run: |
+                  echo "🔍 Running complete validation suite..."
+
+                  # 确保脚本可执行
+                  chmod +x .github/scripts/*.py
+
+                  # 运行所有验证脚本
+                  echo "Running file reference check..."
+                  python3 .github/scripts/check_references.py
+
+                  echo "Running MCP dependency check..."
+                  python3 .github/scripts/check_mcp_dependencies.py
+
+                  echo "Running content quality check for all plugins..."
+                  python3 .github/scripts/validate_content.py plugins/evolutionary-biology-expert || echo "Content quality warnings found"
+                  python3 .github/scripts/validate_content.py plugins/hybrid-speciation-expert || echo "Content quality warnings found"
+                  python3 .github/scripts/validate_content.py plugins/crop-breeding-expert || echo "Content quality warnings found"
+                  python3 .github/scripts/validate_content.py plugins/evolutionary-ecology-expert || echo "Content quality warnings found"
+
+                  echo "✅ All validation checks completed successfully!"
+
+            - name: Generate Final Summary
+              run: |
+                  echo "# 🏁 Complete Validation Summary" >> $GITHUB_STEP_SUMMARY
+                  echo "" >> $GITHUB_STEP_SUMMARY
+                  echo "## Workflow Status: ✅ SUCCESS" >> $GITHUB_STEP_SUMMARY
+                  echo "" >> $GITHUB_STEP_SUMMARY
+                  echo "### Job Results" >> $GITHUB_STEP_SUMMARY
+                  echo "- 📊 Individual Validation: ✅ PASSED" >> $GITHUB_STEP_SUMMARY
+                  echo "- 🔗 Integration Validation: ✅ PASSED" >> $GITHUB_STEP_SUMMARY
+                  echo "" >> $GITHUB_STEP_SUMMARY
+                  echo "## 🎉 All validations passed! Plugin collection is ready for deployment." >> $GITHUB_STEP_SUMMARY

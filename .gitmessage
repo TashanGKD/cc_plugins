@@ -1,0 +1,128 @@
+# Git 提交信息格式规范
+
+## 提交信息格式
+
+使用 Conventional Commits 格式，确保提交信息清晰、一致、易于追踪。
+
+### 格式结构
+```
+<type>(<scope>): <subject>
+
+## Summary
+<brief description of what was done>
+
+## Changes Made
+
+### <Component> Updates
+<specific changes made>
+
+### <Another Component> Updates
+<specific changes made>
+
+## Impact
+<explanation of the impact and importance>
+
+Co-authored-by: Claude <noreply@anthropic.com>
+```
+
+### 类型 (Type)
+- `feat`: 新功能
+- `fix`: 修复bug
+- `docs`: 文档更新
+- `style`: 格式调整（不影响功能）
+- `refactor`: 重构代码
+- `test`: 添加或修改测试
+- `chore`: 构建过程或辅助工具的变动
+
+### 作用域 (Scope)
+- `agent`: Agent文件更新
+- `skill`: 技能模块更新
+- `command`: 命令模块更新
+- `template`: 模板文件更新
+- `config`: 配置文件更新
+- `docs`: 文档更新
+
+## 示例
+
+### 功能添加
+```
+feat(agent): Add advanced search capabilities to evolutionary biology analyst
+
+## Summary
+Enhanced the agent with advanced search syntax and multi-source data integration.
+
+## Changes Made
+
+### Agent Updates
+- Added advanced search syntax examples (Boolean operators, field limits)
+- Implemented multi-round retrieval strategy (5 phases, 30+ articles)
+- Enhanced background information collection with web search integration
+- Strengthened rejection criteria with quantitative thresholds
+
+### Skill Updates
+- Updated academic-literature-analysis skill with PubMed URL generation
+- Added reference-formatting skill for Nature citation standard compliance
+
+## Impact
+This enhancement provides more comprehensive and accurate expert analysis by ensuring sufficient evidence base and standardized citation formatting.
+
+Co-authored-by: Claude <noreply@anthropic.com>
+```
+
+### Bug修复
+```
+fix(config): Resolve plugin validation errors in marketplace.json
+
+## Summary
+Fixed schema validation issues that prevented plugin from loading properly.
+
+## Changes Made
+
+### Configuration Updates
+- Removed unsupported fields: dependencies, features, installation, output
+- Fixed author field format from string to object
+- Fixed repository field format from object to string
+- Set strict: true to resolve manifest conflicts
+
+## Impact
+Resolves plugin loading failures and ensures compatibility with Claude Code plugin system.
+
+Co-authored-by: Claude <noreply@anthropic.com>
+```
+
+### 文档更新
+```
+docs: Update README with installation instructions and usage examples
+
+## Summary
+Added comprehensive documentation for plugin installation, configuration, and usage.
+
+## Changes Made
+
+### Documentation Updates
+- Added installation guide for MCP servers
+- Included usage examples for common scenarios
+- Added troubleshooting section
+- Updated API documentation for all skills
+
+## Impact
+Improves user experience and reduces learning curve for new users.
+
+Co-authored-by: Claude <noreply@anthropic.com>
+```
+
+## 提交信息要求
+
+1. **subject**: 简洁描述，使用现在时，首字母小写
+2. **body**: 详细描述做了什么、为什么这么做、产生了什么影响
+3. **格式**: 使用 Markdown 格式，包含必要的章节标题
+4. **语言**: 使用中文，保持专业和准确
+5. **签名**: 始终包含 Claude 的共同作者信息
+
+## 最佳实践
+
+1. **原子提交**: 每个提交只做一个相关的改动
+2. **清晰描述**: 让其他开发者能够理解改动的内容和原因
+3. **测试验证**: 确保改动不会破坏现有功能
+4. **文档同步**: 相关文档要同步更新
+5. **版本一致**: 保持版本号和实际功能的一致性

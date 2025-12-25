@@ -1,0 +1,62 @@
+# Pre-commit 配置
+# 安装: pip install pre-commit && pre-commit install
+
+default_language_version:
+  python: python3
+
+repos:
+  # 提交信息规范检查
+  - repo: https://github.com/compilerla/conventional-pre-commit
+    rev: v3.2.0
+    hooks:
+      - id: conventional-pre-commit
+        stages: [commit-msg]
+        types: [text]
+        # 支持的类型和简单格式
+        args: [
+          feat, fix, docs, style, refactor, test, chore  # 允许的 type
+        ]
+
+  # 本地 hooks
+  - repo: local
+    hooks:
+      # 验证插件配置（仅在 marketplace.json 变更时）
+      - id: validate-plugin
+        name: Validate Plugin Config
+        entry: bash -c '
+          echo "🔍 验证插件配置..."
+
+          # 检查 Claude CLI
+          if ! command -v claude &> /dev/null; then
+            echo "❌ Claude CLI 未安装"
+            exit 1
+          fi
+
+          # 运行验证
+          if ! claude plugin validate .claude-plugin/marketplace.json; then
+            echo "❌ marketplace.json 验证失败"
+            exit 1
+          fi
+
+          echo "✅ 配置验证通过"
+        '
+        language: system
+        files: '\.claude-plugin/marketplace\.json'
+        pass_filenames: false
+
+  # 通用检查
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      # 检查 JSON 格式
+      - id: check-json
+        files: '(\.claude-plugin/.*\.json|plugins/.*/\.mcp\.json)'
+      # 检查 YAML 格式
+      - id: check-yaml
+      # 检查大文件
+      - id: check-added-large-files
+        args: ['--maxkb=100']
+      # 检查行尾空白
+      - id: trailing-whitespace
+      # 检查结尾换行
+      - id: end-of-file-fixer

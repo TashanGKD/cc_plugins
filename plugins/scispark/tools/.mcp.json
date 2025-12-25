@@ -1,0 +1,66 @@
+{
+  "mcpServers": {
+    "article-mcp": {
+      "command": "uvx",
+      "args": ["article-mcp", "server"],
+      "description": "学术文献检索 - 多源数据库搜索"
+    },
+    "sequentialthinking": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking@latest"],
+      "description": "结构化思考 - 逻辑推理分析"
+    }
+  },
+  "optional": {
+    "mediawiki-mcp-server": {
+      "command": "npx",
+      "args": ["@professional-wiki/mediawiki-mcp-server@latest"],
+      "description": "维基百科信息 - 背景知识获取",
+      "install": "claude mcp add mediawiki-mcp-server npx @professional-wiki/mediawiki-mcp-server@latest"
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["@playwright/mcp@latest", "--browser", "chrome", "--headless"],
+      "description": "网页自动化 - Google Scholar 分析",
+      "install": "claude mcp add playwright npx @playwright/mcp@latest --browser chrome --headless"
+    }
+  },
+  "localTools": {
+    "pdfget": {
+      "description": "文献批量下载",
+      "config": "COURSE_ROOT environment variable"
+    },
+    "literature-watcher": {
+      "description": "自动监控 PDF 转换",
+      "path": "scripts/literature_watcher.py"
+    },
+    "literature-summarizer": {
+      "description": "生成文献结构化总结",
+      "path": "scripts/literature_summarizer.py"
+    },
+    "tashan-index": {
+      "description": "本地文献库索引",
+      "path": ".tashan/index.json"
+    }
+  },
+  "environmentVariables": {
+    "COURSE_ROOT": {
+      "description": "项目根目录（本地文献库位置）",
+      "example": "/home/qy113/workspace/project/2512/course"
+    },
+    "EASYSCHOLAR_SECRET_KEY": {
+      "description": "期刊质量评估 API 密钥（可选）",
+      "required": false
+    }
+  },
+  "installation": {
+    "required": [
+      "article-mcp",
+      "sequentialthinking"
+    ],
+    "commands": [
+      "claude mcp add article-mcp uvx article-mcp server",
+      "claude mcp add sequentialthinking npx -y @modelcontextprotocol/server-sequential-thinking@latest"
+    ]
+  }
+}
