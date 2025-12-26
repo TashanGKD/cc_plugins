@@ -15,20 +15,44 @@ on:
     workflow_dispatch:
 
 jobs:
-    validate:
-        name: Comprehensive Plugin Validation
+    # 准备步骤：读取插件列表
+    prepare:
+        name: Discover Plugins
         runs-on: ubuntu-latest
+        outputs:
+            plugins: ${{ steps.discover.outputs.plugins }}
+            plugin_count: ${{ steps.discover.outputs.plugin_count }}
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Discover plugins from marketplace.json
+              id: discover
+              run: |
+                # 读取 marketplace.json 并提取插件名称列表
+                if [ -f ".claude-plugin/marketplace.json" ]; then
+                  # 使用 jq 提取插件名称，转换为 JSON 数组
+                  plugins=$(jq -r '[.plugins[].name] | @json' .claude-plugin/marketplace.json)
+                  plugin_count=$(jq '[.plugins[].name] | length' .claude-plugin/marketplace.json)
+
+                  echo "Discovered $plugin_count plugins"
+                  echo "plugins=$plugins" >> $GITHUB_OUTPUT
+                  echo "plugin_count=$plugin_count" >> $GITHUB_OUTPUT
+                else
+                  echo "❌ marketplace.json not found"
+                  echo "plugins=[]"
+                  exit 1
+                fi
+
+    validate:
+        name: Validate ${{ matrix.plugin }}
+        runs-on: ubuntu-latest
+        needs: prepare
 
         strategy:
             fail-fast: false
             matrix:
-                plugin:
-                    [
-                        evolutionary-biology-expert,
-                        hybrid-speciation-expert,
-                        crop-breeding-expert,
-                        evolutionary-ecology-expert,
-                    ]
+                plugin: ${{ fromJson(needs.prepare.outputs.plugins) }}
 
         steps:
             - name: Checkout repository
@@ -252,7 +276,7 @@ jobs:
     integration-validation:
         name: Integration Validation
         runs-on: ubuntu-latest
-        needs: validate
+        needs: [prepare, validate]
         if: success()
 
         steps:
@@ -273,6 +297,7 @@ jobs:
             - name: Run Complete Validation Suite
               run: |
                   echo "🔍 Running complete validation suite..."
+                  echo "Plugin count: ${{ needs.prepare.outputs.plugin_count }}"
 
                   # 确保脚本可执行
                   chmod +x .github/scripts/*.py
@@ -285,10 +310,14 @@ jobs:
                   python3 .github/scripts/check_mcp_dependencies.py
 
                   echo "Running content quality check for all plugins..."
-                  python3 .github/scripts/validate_content.py plugins/evolutionary-biology-expert || echo "Content quality warnings found"
-                  python3 .github/scripts/validate_content.py plugins/hybrid-speciation-expert || echo "Content quality warnings found"
-                  python3 .github/scripts/validate_content.py plugins/crop-breeding-expert || echo "Content quality warnings found"
-                  python3 .github/scripts/validate_content.py plugins/evolutionary-ecology-expert || echo "Content quality warnings found"
+                  # 动态读取所有插件进行内容质量检查
+                  for plugin_dir in plugins/*/; do
+                    if [ -d "$plugin_dir" ]; then
+                      plugin_name=$(basename "$plugin_dir")
+                      echo "Checking content quality for: $plugin_name"
+                      python3 .github/scripts/validate_content.py "$plugin_dir" || echo "⚠️ Content quality warnings found for $plugin_name"
+                    fi
+                  done
 
                   echo "✅ All validation checks completed successfully!"
 
@@ -297,6 +326,9 @@ jobs:
                   echo "# 🏁 Complete Validation Summary" >> $GITHUB_STEP_SUMMARY
                   echo "" >> $GITHUB_STEP_SUMMARY
                   echo "## Workflow Status: ✅ SUCCESS" >> $GITHUB_STEP_SUMMARY
+                  echo "" >> $GITHUB_STEP_SUMMARY
+                  echo "### Validated Plugins" >> $GITHUB_STEP_SUMMARY
+                  echo "- Total Plugins: ${{ needs.prepare.outputs.plugin_count }}" >> $GITHUB_STEP_SUMMARY
                   echo "" >> $GITHUB_STEP_SUMMARY
                   echo "### Job Results" >> $GITHUB_STEP_SUMMARY
                   echo "- 📊 Individual Validation: ✅ PASSED" >> $GITHUB_STEP_SUMMARY
