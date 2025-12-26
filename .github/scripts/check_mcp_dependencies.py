@@ -37,6 +37,10 @@ def validate_mcp_config_structure(
         issues.append(f"{plugin_name}: MCP配置必须是一个对象")
         return False, issues
 
+    # 空配置是有效的（表示不需要MCP服务器）
+    if len(config) == 0:
+        return True, issues
+
     # 检查是否有mcpServers字段
     if "mcpServers" not in config:
         issues.append(f"{plugin_name}: 缺少mcpServers字段")
