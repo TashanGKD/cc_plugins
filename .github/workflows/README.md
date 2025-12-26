@@ -222,7 +222,7 @@ plugins/
    ```bash
    # 运行测试脚本
    ./.github/scripts/test_workflow.sh
-   
+
    # 检查 JSON 格式
    jq empty .claude-plugin/marketplace.json
    jq empty plugins/plugin-name/plugin.json
@@ -275,6 +275,6 @@ plugins/
 
 ---
 
-**最后更新**: 2025-10-30  
-**版本**: v2.0  
+**最后更新**: 2025-10-30
+**版本**: v2.0
 **维护者**: qingyu_ge

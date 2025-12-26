@@ -1,5 +1,6 @@
-# Pre-commit 配置
-# 安装: pip install pre-commit && pre-commit install
+# Pre-commit hooks configuration for Claude Code Plugins
+# See https://pre-commit.com for more information
+# Usage: pip install pre-commit && pre-commit install
 
 default_language_version:
   python: python3
@@ -17,13 +18,48 @@ repos:
   # 本地 hooks
   - repo: local
     hooks:
-      # 验证插件配置（仅在 marketplace.json 变更时）
-      - id: validate-plugin
-        name: Validate Plugin Config
-        entry: 'bash -c ''if ! command -v claude &> /dev/null; then echo "❌ Claude CLI 未安装"; exit 1; fi; if ! claude plugin validate .claude-plugin/marketplace.json; then echo "❌ marketplace.json 验证失败"; exit 1; fi; echo "✅ 配置验证通过"'''
+      # 验证 marketplace.json
+      - id: validate-marketplace
+        name: Validate marketplace.json
+        entry: bash -c 'if ! command -v claude &> /dev/null; then echo "❌ Claude CLI 未安装" && exit 1; fi; if ! claude plugin validate .claude-plugin/marketplace.json; then echo "❌ marketplace.json 验证失败" && exit 1; fi; echo "✅ marketplace.json 验证通过"'
         language: system
-        files: '\.claude-plugin/marketplace\.json'
+        files: 'marketplace\.json$'
         pass_filenames: false
+
+      # 验证各个插件的 plugin.json 格式
+      - id: validate-plugin-json
+        name: Validate plugin.json format
+        entry: >-
+          bash -c '
+          file="$1";
+          echo "验证 $file";
+
+          author_type=$(jq -r ".author | type" "$file" 2>/dev/null || echo "null");
+          if [ "$author_type" != "object" ]; then
+            echo "❌ author 必须是对象类型 {\"name\": \"...\", \"email\": \"...\"}";
+            exit 1;
+          fi;
+
+          author_name=$(jq -r ".author.name" "$file" 2>/dev/null || echo "");
+          if [ "$author_name" = "" ] || [ "$author_name" = "null" ]; then
+            echo "❌ author.name 不能为空";
+            exit 1;
+          fi;
+
+          if jq -e ".category" "$file" >/dev/null 2>&1; then
+            echo "❌ 不应有 category 字段";
+            exit 1;
+          fi;
+
+          if jq -e ".entry_points" "$file" >/dev/null 2>&1; then
+            echo "❌ 不应有 entry_points 字段，应直接使用 agents/skills/commands";
+            exit 1;
+          fi;
+
+          echo "✅ $file 格式正确";
+          ' bash
+        language: system
+        files: '^plugins/[^/]*/plugin\.json$'
 
   # 通用检查
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -31,7 +67,7 @@ repos:
     hooks:
       # 检查 JSON 格式
       - id: check-json
-        files: '(\.claude-plugin/.*\.json|plugins/.*/\.mcp\.json)'
+        files: '(\\.claude-plugin/.*\\.json|plugins/.*/\\.mcp\\.json|plugins/.*/plugin\\.json)'
       # 检查 YAML 格式
       - id: check-yaml
       # 检查大文件

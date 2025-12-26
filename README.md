@@ -7,6 +7,7 @@
 | 插件名称 | 版本 | 类别 | 描述 |
 |---------|------|------|------|
 | [scispark](./plugins/scispark/) | 0.1.0 | workflow | 结构化研究想法生成工作流 |
+| [manim-creator](./plugins/manim-creator/) | 0.1.0 | visualization | Manim 数学动画创建插件 |
 
 ## ✨ 插件特性
 
@@ -17,6 +18,12 @@
 - **🧠 专家系统整合** - 4次专家调用支持各阶段
 - **📊 分级文献阈值** - 理想(≥50)/标准(≥30)/最低(≥15)自适应
 - **📝 学术规范** - Nature 格式引用，严格的学术标准检查
+
+### Manim Creator
+
+- **🎬 一键动画生成** - 自然语言描述 → 1080p 高清视频
+- **🛠️ 三大技能模块** - 代码生成、工具函数库、编译渲染
+- **📦 结构化输出** - 带时间戳的输出目录，包含源码、配置、日志
 
 ## 🚀 快速开始
 
@@ -38,6 +45,9 @@ claude mcp add sequentialthinking npx -y @modelcontextprotocol/server-sequential
 # 可选依赖
 claude mcp add mediawiki-mcp-server npx @professional-wiki/mediawiki-mcp-server@latest
 claude mcp add playwright npx @playwright/mcp@latest --browser chrome --headless
+
+# Manim 编译渲染（使用 manim-creator 插件时需要）
+pip install manim
 ```
 
 ### 3. 配置环境变量 (可选)
@@ -59,7 +69,7 @@ claude plugin validate .claude-plugin/marketplace.json
 
 ## 📖 使用方法
 
-### 基础用法
+### Scispark 研究工作流
 
 ```
 /scispark "杂交物种形成"
@@ -67,13 +77,30 @@ claude plugin validate .claude-plugin/marketplace.json
 /scispark "climate adaptation" "hybrid zones"
 ```
 
+### Manim 动画创建
+
+```
+/manim 绘制一个正弦函数图像
+/manim 创建一个圆变形成正方形的动画 --quality 4k
+/manim 展示 E=mc^2 公式动画
+```
+
 ### 高级选项
 
+#### Scispark 选项
 ```
 /scispark "关键词" --skip-slides       # 跳过幻灯片生成
 /scispark "关键词" --min-papers 20     # 设置最低文献阈值
 /scispark "关键词" --quick-mode        # 快速模式
 /scispark "关键词" --target 4          # 停留在阶段4
+```
+
+#### Manim 选项
+```
+/manim "描述" --quality high          # 1080p 高质量（默认）
+/manim "描述" --quality low           # 480p 快速预览
+/manim "描述" --format gif            # 导出 GIF 格式
+/manim "描述" --code-only             # 只生成代码不编译
 ```
 
 ## 🛠️ 开发指南
@@ -119,13 +146,19 @@ cc_plugins/
 ├── .claude-plugin/
 │   └── marketplace.json          # 插件市场配置
 ├── plugins/
-│   └── scispark/                 # Scispark 工作流插件
-│       ├── README.md             # 插件文档
-│       ├── commands/             # 命令接口
-│       ├── agents/               # 智能体
-│       ├── skills/               # 技能模块 (7个阶段)
-│       ├── templates/            # 输出模板
-│       └── tools/                # MCP 依赖配置
+│   ├── scispark/                 # Scispark 工作流插件
+│   │   ├── README.md
+│   │   ├── commands/
+│   │   ├── agents/
+│   │   ├── skills/
+│   │   ├── templates/
+│   │   └── tools/
+│   └── manim-creator/            # Manim 动画创建插件
+│       ├── README.md
+│       ├── commands/
+│       ├── agents/
+│       ├── skills/
+│       └── tools/
 ├── .pre-commit-config.yaml       # Pre-commit 配置
 └── README.md                     # 本文件
 ```

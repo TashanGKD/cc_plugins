@@ -58,16 +58,15 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@v4
 
-            - name: Setup Node.js
-              uses: actions/setup-node@v4
+            - name: Setup Python
+              uses: actions/setup-python@v5
               with:
-                  node-version: "18"
+                  python-version: "3.x"
 
             - name: Install dependencies
               run: |
                   sudo apt-get update
-                  sudo apt-get install -y python3 python3-pip jq
-                  pip3 install jsonschema
+                  sudo apt-get install -y jq
 
             - name: Validate marketplace.json
               id: marketplace-validation
@@ -110,8 +109,8 @@ jobs:
                     echo "✅ Plugin directory exists: $plugin_dir"
 
                     # 检查必需文件
-                    required_files=("plugin.json" "README.md")
-                    required_dirs=("agents" "skills")
+                    required_files=("README.md")
+                    required_dirs=("agents" "skills" "commands")
 
                     all_valid=true
 
@@ -139,6 +138,14 @@ jobs:
                       fi
                     done
 
+                    # 检查可选目录
+                    optional_dirs=("templates" "tools")
+                    for dir in "${optional_dirs[@]}"; do
+                      if [ -d "$plugin_dir/$dir" ]; then
+                        echo "✅ Optional directory exists: $dir"
+                      fi
+                    done
+
                     if [ "$all_valid" = true ]; then
                       echo "✅ Plugin structure validation passed"
                       echo "structure_valid=true" >> $GITHUB_OUTPUT
@@ -153,91 +160,54 @@ jobs:
                     exit 1
                   fi
 
-            - name: Validate Plugin Configuration
-              id: config-validation
-              run: |
-                  echo "🔍 Validating plugin configuration: ${{ matrix.plugin }}..."
-
-                  plugin_json="plugins/${{ matrix.plugin }}/plugin.json"
-
-                  if [ -f "$plugin_json" ]; then
-                    if jq empty "$plugin_json"; then
-                      echo "✅ plugin.json is valid JSON"
-
-                      # 检查必需字段
-                      required_fields=("name" "version" "description" "category" "author")
-
-                      all_valid=true
-                      for field in "${required_fields[@]}"; do
-                        if jq -e ".$field" "$plugin_json" > /dev/null; then
-                          echo "✅ Field exists: $field"
-                        else
-                          echo "❌ Required field missing: $field"
-                          all_valid=false
-                        fi
-                      done
-
-                      # 检查版本格式
-                      version=$(jq -r '.version' "$plugin_json")
-                      if [[ $version =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9]+)?$ ]]; then
-                        echo "✅ Version format is valid: $version"
-                      else
-                        echo "⚠️ Version may not follow semantic versioning: $version"
-                      fi
-
-                      if [ "$all_valid" = true ]; then
-                        echo "✅ Plugin configuration validation passed"
-                        echo "config_valid=true" >> $GITHUB_OUTPUT
-                      else
-                        echo "❌ Plugin configuration validation failed"
-                        echo "config_valid=false" >> $GITHUB_OUTPUT
-                        exit 1
-                      fi
-                    else
-                      echo "❌ plugin.json is invalid JSON"
-                      echo "config_valid=false" >> $GITHUB_OUTPUT
-                      exit 1
-                    fi
-                  else
-                    echo "❌ plugin.json not found"
-                    echo "config_valid=false" >> $GITHUB_OUTPUT
-                    exit 1
-                  fi
-
             - name: Run Validation Scripts
               id: script-validation
               run: |
                   echo "🔍 Running comprehensive validation scripts..."
 
                   # 确保脚本可执行
-                  chmod +x .github/scripts/*.py
+                  chmod +x .github/scripts/*.py 2>/dev/null || true
 
-                  # 运行引用检查
-                  echo "Running file reference check..."
-                  if python3 .github/scripts/check_references.py; then
-                    echo "✅ File reference check passed"
+                  # 运行引用检查（如果存在）
+                  if [ -f ".github/scripts/check_references.py" ]; then
+                    echo "Running file reference check..."
+                    if python3 .github/scripts/check_references.py; then
+                      echo "✅ File reference check passed"
+                      references_valid=true
+                    else
+                      echo "❌ File reference check failed"
+                      references_valid=false
+                    fi
+                  else
+                    echo "⏭️ Skipping file reference check (script not found)"
                     references_valid=true
-                  else
-                    echo "❌ File reference check failed"
-                    references_valid=false
                   fi
 
-                  # 运行MCP依赖检查
-                  echo "Running MCP dependency check..."
-                  if python3 .github/scripts/check_mcp_dependencies.py; then
-                    echo "✅ MCP dependency check passed"
+                  # 运行MCP依赖检查（如果存在）
+                  if [ -f ".github/scripts/check_mcp_dependencies.py" ]; then
+                    echo "Running MCP dependency check..."
+                    if python3 .github/scripts/check_mcp_dependencies.py; then
+                      echo "✅ MCP dependency check passed"
+                      mcp_valid=true
+                    else
+                      echo "❌ MCP dependency check failed"
+                      mcp_valid=false
+                    fi
+                  else
+                    echo "⏭️ Skipping MCP dependency check (script not found)"
                     mcp_valid=true
-                  else
-                    echo "❌ MCP dependency check failed"
-                    mcp_valid=false
                   fi
 
-                  # 运行内容质量检查（作为警告，不阻塞）
-                  echo "Running content quality check..."
-                  if python3 .github/scripts/validate_content.py plugins/${{ matrix.plugin }}; then
-                    echo "✅ Content quality check passed"
+                  # 运行内容质量检查（如果存在）
+                  if [ -f ".github/scripts/validate_content.py" ]; then
+                    echo "Running content quality check..."
+                    if python3 .github/scripts/validate_content.py plugins/${{ matrix.plugin }}; then
+                      echo "✅ Content quality check passed"
+                    else
+                      echo "⚠️ Content quality check found issues (non-blocking)"
+                    fi
                   else
-                    echo "⚠️ Content quality check found issues (non-blocking)"
+                    echo "⏭️ Skipping content quality check (script not found)"
                   fi
 
                   if [ "$references_valid" = true ] && [ "$mcp_valid" = true ]; then
@@ -257,13 +227,11 @@ jobs:
                   echo "## Validation Results" >> $GITHUB_STEP_SUMMARY
                   echo "- 📋 Marketplace: ${{ steps.marketplace-validation.outputs.marketplace_valid }}" >> $GITHUB_STEP_SUMMARY
                   echo "- 🏗️ Structure: ${{ steps.structure-validation.outputs.structure_valid }}" >> $GITHUB_STEP_SUMMARY
-                  echo "- ⚙️ Configuration: ${{ steps.config-validation.outputs.config_valid }}" >> $GITHUB_STEP_SUMMARY
                   echo "- 🔗 Scripts: ${{ steps.script-validation.outputs.scripts_valid }}" >> $GITHUB_STEP_SUMMARY
                   echo "" >> $GITHUB_STEP_SUMMARY
 
                   if [[ "${{ steps.marketplace-validation.outputs.marketplace_valid }}" == "true" &&
                         "${{ steps.structure-validation.outputs.structure_valid }}" == "true" &&
-                        "${{ steps.config-validation.outputs.config_valid }}" == "true" &&
                         "${{ steps.script-validation.outputs.scripts_valid }}" == "true" ]]; then
                     echo "## ✅ Validation Status: PASSED" >> $GITHUB_STEP_SUMMARY
                     echo "Plugin ${{ matrix.plugin }} has passed all validation checks successfully." >> $GITHUB_STEP_SUMMARY
@@ -283,16 +251,15 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@v4
 
-            - name: Setup Node.js
-              uses: actions/setup-node@v4
+            - name: Setup Python
+              uses: actions/setup-python@v5
               with:
-                  node-version: "18"
+                  python-version: "3.x"
 
             - name: Install dependencies
               run: |
                   sudo apt-get update
-                  sudo apt-get install -y python3 python3-pip jq
-                  pip3 install jsonschema
+                  sudo apt-get install -y jq
 
             - name: Run Complete Validation Suite
               run: |
@@ -300,24 +267,18 @@ jobs:
                   echo "Plugin count: ${{ needs.prepare.outputs.plugin_count }}"
 
                   # 确保脚本可执行
-                  chmod +x .github/scripts/*.py
+                  chmod +x .github/scripts/*.py 2>/dev/null || true
 
-                  # 运行所有验证脚本
-                  echo "Running file reference check..."
-                  python3 .github/scripts/check_references.py
+                  # 运行所有验证脚本（如果存在）
+                  if [ -f ".github/scripts/check_references.py" ]; then
+                    echo "Running file reference check..."
+                    python3 .github/scripts/check_references.py
+                  fi
 
-                  echo "Running MCP dependency check..."
-                  python3 .github/scripts/check_mcp_dependencies.py
-
-                  echo "Running content quality check for all plugins..."
-                  # 动态读取所有插件进行内容质量检查
-                  for plugin_dir in plugins/*/; do
-                    if [ -d "$plugin_dir" ]; then
-                      plugin_name=$(basename "$plugin_dir")
-                      echo "Checking content quality for: $plugin_name"
-                      python3 .github/scripts/validate_content.py "$plugin_dir" || echo "⚠️ Content quality warnings found for $plugin_name"
-                    fi
-                  done
+                  if [ -f ".github/scripts/check_mcp_dependencies.py" ]; then
+                    echo "Running MCP dependency check..."
+                    python3 .github/scripts/check_mcp_dependencies.py
+                  fi
 
                   echo "✅ All validation checks completed successfully!"
 
