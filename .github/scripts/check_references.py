@@ -40,13 +40,22 @@ def check_references():
         if plugin_path.exists():
             print(f"  ✅ 插件目录存在: {plugin_source}")
 
-            # 检查是否包含 plugin.json
-            plugin_json = plugin_path / "plugin.json"
-            if plugin_json.exists():
-                print(f"  ✅ plugin.json 存在")
+            # 检查必需的子目录
+            required_dirs = ["agents", "skills", "commands"]
+            for required_dir in required_dirs:
+                dir_path = plugin_path / required_dir
+                if dir_path.exists() and dir_path.is_dir():
+                    print(f"  ✅ {required_dir}/ 存在")
+                else:
+                    print(f"  ❌ {required_dir}/ 不存在或不是目录")
+                    all_valid = False
+
+            # 检查 README.md
+            readme_path = plugin_path / "README.md"
+            if readme_path.exists():
+                print(f"  ✅ README.md 存在")
             else:
-                print(f"  ⚠️  plugin.json 不存在")
-                all_valid = False
+                print(f"  ⚠️  README.md 不存在")
 
         else:
             print(f"  ❌ 插件源目录不存在: {plugin_source}")
