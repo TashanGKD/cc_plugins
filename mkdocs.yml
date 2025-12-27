@@ -1,0 +1,88 @@
+site_name: 他山团队 Claude Code 插件集合
+site_description: 为学术研究提供专业的工作流支持
+site_author: 他山团队 (Tashan)
+
+# 仓库配置
+repo_url: https://github.com/TashanGKD/cc_plugins
+repo_name: TashanGKD/cc_plugins
+
+# 版权信息
+copyright: Copyright &copy; 2025 他山团队
+
+# 主题配置
+theme:
+  name: material
+  language: zh
+  palette:
+    # 自动切换亮/暗模式
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: 切换到暗色模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: 切换到亮色模式
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+
+# 插件
+plugins:
+  - search:
+      lang:
+        - zh
+        - en
+  - git-revision-date-localized:
+      enable_creation_date: true
+
+# Markdown 扩展
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+
+# 额外 CSS
+extra_css:
+  - stylesheets/extra.css
+
+# 额外 JS
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6,Array.prototype.includes,Promise,Object.assign,Object.entries
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+# 导航结构
+nav:
+  - 首页: index.md
+  - 插件文档:
+      - scispark: scispark.md
+      - manim-creator: manim-creator.md
