@@ -1,3 +1,16 @@
+---
+name: manim
+description: Manim 一键动画生成命令，输入自然语言描述，自动输出 1080p 高清数学动画视频
+version: 0.1.0
+tags:
+  - visualization
+  - animation
+  - math
+  - video
+dependencies:
+  manim: ">=0.18.0"
+---
+
 # /manim 命令
 
 Manim 一键动画生成命令 - 输入描述，自动输出 1080p 高清视频。

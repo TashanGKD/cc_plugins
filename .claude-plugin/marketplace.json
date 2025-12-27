@@ -14,12 +14,14 @@
     "plugins": [
         {
             "name": "scispark",
+            "version": "0.1.0",
             "description": "Scispark 结构化研究想法生成工作流，通过7阶段流程将关键词转化为高质量、可验证的研究想法，包含 Review 评审机制和专家系统整合。",
             "source": "./plugins/scispark",
             "category": "workflow"
         },
         {
             "name": "manim-creator",
+            "version": "0.1.0",
             "description": "Manim 数学动画创建插件，提供代码生成、工具函数库和编译渲染功能。支持函数可视化、几何图形、动画变换和数学公式。",
             "source": "./plugins/manim-creator",
             "category": "visualization"

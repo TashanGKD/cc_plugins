@@ -61,6 +61,14 @@ repos:
         language: system
         files: '^plugins/[^/]*/plugin\.json$'
 
+      # 自动更新 README 表格
+      - id: update-readme-tables
+        name: Update README tables
+        entry: bash -c 'python scripts/generate_readme_tables.py && git add README.md'
+        language: system
+        files: '(\.claude-plugin/marketplace\.json|\.claude/commands/.*\.md|plugins/[^/]*/commands/.*\.md)'
+        pass_filenames: false
+
   # 通用检查
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0

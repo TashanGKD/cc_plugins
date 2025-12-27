@@ -1,3 +1,17 @@
+---
+name: scispark
+description: Execute the 7-stage Scispark workflow to generate a high-quality, verifiable research idea from a keyword
+version: 0.1.0
+tags:
+  - research
+  - workflow
+  - academic
+  - literature
+dependencies:
+  article-mcp: ">=0.1.0"
+  sequentialthinking: ">=0.1.0"
+---
+
 # Scispark Research Idea Generation
 
 Execute the 7-stage Scispark workflow to generate a high-quality, verifiable research idea from a keyword.
