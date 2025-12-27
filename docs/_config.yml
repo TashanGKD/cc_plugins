@@ -3,9 +3,10 @@
 title: 他山团队 Claude Code 插件集合
 description: 为学术研究提供专业的工作流支持
 
-# Markdown 设置
+# Markdown 设置 - 使用 GFM 解析器
 markdown: kramdown
 kramdown:
+  input: GFM
   syntax_highlighter_opts:
     disable: true
 
