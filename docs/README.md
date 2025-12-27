@@ -3,83 +3,18 @@
 他山团队 (Tashan) 开发的 Claude Code 插件集合，为学术研究提供专业的工作流支持。
 
 ## 📦 已包含插件
-
-<!-- AUTO_START:PLUGINS -->
 | 插件名称 | 版本 | 类别 | 描述 |
 |---------|------|------|------|
 | [scispark](./plugins/scispark/) | 0.1.0 | workflow | Scispark 结构化研究想法生成工作流，通过7阶段流程将关键词转化为高质量、可验证的研究想法，包... |
 | [manim-creator](./plugins/manim-creator/) | 0.1.0 | visualization | Manim 数学动画创建插件，提供代码生成、工具函数库和编译渲染功能。支持函数可视化、几何图形、动画... |
-<!-- AUTO_END:PLUGINS -->
 
 ## 📋 可用命令
-
-<!-- AUTO_START:COMMANDS -->
 | 命令 | 版本 | 类型 | 标签 | 描述 |
 |------|------|------|------|------|
 | `/tdd` | 0.0.1 | 项目命令 | testing, tdd, workflow... | 测试驱动开发（TDD）流程助手，包含 Git 提交规范 |
 | `/gh` | 0.0.1 | 项目命令 | git, github, cli... | GitHub CLI 专家助手，提供 gh 命令的场景化指导 |
 | `/scispark` | 0.1.0 | 插件 (scispark) | research, workflow, academic... | Execute the 7-stage Scispark workflow to... |
 | `/manim` | 0.1.0 | 插件 (manim-creator) | visualization, animation, math... | Manim 一键动画生成命令，输入自然语言描述，自动输出 1080p 高清数学动... |
-<!-- AUTO_END:COMMANDS -->
-
-> 💡 **提示**: 运行 `python scripts/generate_readme_tables.py` 可自动更新上述表格
-
-## 🚀 快速开始
-
-### 1. 安装 Claude Code CLI
-
-```bash
-curl -fsSL https://claude.ai/install.sh | sh
-```
-
-### 2. 克隆并安装插件
-
-```bash
-# 克隆项目
-git clone https://github.com/TashanGKD/cc_plugins.git
-cd cc_plugins
-
-# 添加本地 marketplace
-claude plugin marketplace add .
-
-# 安装插件（交互式选择）
-claude plugin
-```
-
-或直接安装：
-
-```bash
-# 安装所有插件
-claude plugin install --all --scope user
-
-# 或安装单个插件
-claude plugin install scispark@cc_plugins
-claude plugin install manim-creator@cc_plugins
-```
-
-### 3. 安装 MCP 依赖
-
-```bash
-# 必需依赖（根据使用的插件安装）
-claude mcp add article-mcp uvx article-mcp server
-pip install manim  # manim-creator 插件需要
-```
-
-### 4. 验证安装
-
-```bash
-# 验证 marketplace 配置
-claude plugin validate .claude-plugin/marketplace.json
-
-# 查看已安装插件（交互式）
-claude
-> /plugin  # 然后切换到 Installed 标签
-```
-
-**Sources:**
-- [Claude Code 官方文档 - Discover and Install Plugins](https://code.claude.com/docs/en/discover-plugins)
-- [Claude Code CLI Cheatsheet](https://shipyard.build/blog/claude-code-cheat-sheet/)
-- [GitHub Issue #13778 - plugin list command](https://github.com/anthropics/claude-code/issues/13778)
 
 ## 📖 命令使用
 
