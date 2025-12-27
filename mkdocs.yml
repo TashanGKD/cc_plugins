@@ -47,7 +47,7 @@ theme:
     code: Roboto Mono
   # 内容宽度配置
   content:
-    width: 900px # 增加内容区宽度（默认约760px）
+    width: 1000px # 进一步增加内容区宽度
 
 # 插件
 plugins:

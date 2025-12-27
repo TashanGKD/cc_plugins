@@ -1,13 +1,37 @@
 /* 自定义样式 */
 
+/* === 全局字体调整 === */
+/* 调小全局字体大小（默认 1rem → 0.9rem） */
+.md-typeset {
+  font-size: 0.9rem;
+}
+
+/* 相应调整标题大小 */
+.md-typeset h1 {
+  font-size: 1.8rem; /* 默认 2rem */
+}
+
+.md-typeset h2 {
+  font-size: 1.5rem; /* 默认 1.6rem */
+}
+
+.md-typeset h3 {
+  font-size: 1.25rem; /* 默认 1.3rem */
+}
+
+.md-typeset h4 {
+  font-size: 1.1rem; /* 默认 1.15rem */
+}
+
 /* 调整表格样式 */
 .md-typeset table:not([class]) {
-  font-size: 0.9rem;
+  font-size: 0.85rem; /* 从 0.9rem 调小 */
 }
 
 /* 调整代码块样式 */
 .md-typeset pre {
-  padding: 1rem;
+  padding: 0.875rem;
+  font-size: 0.85rem;
 }
 
 /* 标签页优化 */
@@ -20,22 +44,22 @@
 /* 优化侧边栏宽度 */
 @media screen and (min-width: 76.25em) {
   .md-sidebar--primary {
-    width: 240px; /* 从默认 266px 减少到 240px */
+    width: 220px; /* 从 240px 再减少到 220px */
   }
   .md-sidebar--secondary {
-    width: 240px; /* 从默认 266px 减少到 240px */
+    width: 220px; /* 从 240px 再减少到 220px */
   }
 }
 
 /* 调整内容区域最大宽度 */
 .md-content__inner {
-  max-width: 900px;
+  max-width: 1000px; /* 从 900px 增加到 1000px */
 }
 
 /* 优化大屏幕下的留白 */
 @media screen and (min-width: 1250px) {
   .md-container {
-    max-width: 1600px; /* 限制整体容器宽度 */
+    max-width: 1480px; /* 从 1600px 减少到 1480px */
     margin: 0 auto; /* 居中显示 */
   }
 }
@@ -43,6 +67,6 @@
 /* 改善移动端阅读体验 */
 @media screen and (max-width: 76.1875em) {
   .md-content__inner {
-    padding: 0 1rem; /* 移动端增加边距 */
+    padding: 0 1rem;
   }
 }
