@@ -16,8 +16,15 @@
     window.$docsify = {
       name: 'Tashan CC Plugins',
       repo: 'TashanGKD/cc_plugins',
+      homepage: 'README.md',
       loadSidebar: true,
+      sidebarDisplayLevel: 1, // 展开第一级导航
       subMaxLevel: 3,
+      alias: {
+        '/': 'README.md',
+        '/scispark': 'scispark.md',
+        '/manim-creator': 'manim-creator.md'
+      },
       search: {
         maxAge: 86400000,
         paths: 'auto',
