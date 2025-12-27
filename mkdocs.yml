@@ -41,6 +41,14 @@ theme:
     - content.code.copy
     - content.tabs.link
 
+# 布局配置
+  font:
+    text: Roboto
+    code: Roboto Mono
+  # 内容宽度配置
+  content:
+    width: 900px # 增加内容区宽度（默认约760px）
+
 # 插件
 plugins:
   - search:

@@ -14,3 +14,35 @@
 .md-typeset .tabbed-labels {
   margin-bottom: 0.5rem;
 }
+
+/* === 布局优化 === */
+
+/* 优化侧边栏宽度 */
+@media screen and (min-width: 76.25em) {
+  .md-sidebar--primary {
+    width: 240px; /* 从默认 266px 减少到 240px */
+  }
+  .md-sidebar--secondary {
+    width: 240px; /* 从默认 266px 减少到 240px */
+  }
+}
+
+/* 调整内容区域最大宽度 */
+.md-content__inner {
+  max-width: 900px;
+}
+
+/* 优化大屏幕下的留白 */
+@media screen and (min-width: 1250px) {
+  .md-container {
+    max-width: 1600px; /* 限制整体容器宽度 */
+    margin: 0 auto; /* 居中显示 */
+  }
+}
+
+/* 改善移动端阅读体验 */
+@media screen and (max-width: 76.1875em) {
+  .md-content__inner {
+    padding: 0 1rem; /* 移动端增加边距 */
+  }
+}
