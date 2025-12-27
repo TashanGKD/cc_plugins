@@ -1,0 +1,16 @@
+/* 自定义样式 */
+
+/* 调整表格样式 */
+.md-typeset table:not([class]) {
+  font-size: 0.9rem;
+}
+
+/* 调整代码块样式 */
+.md-typeset pre {
+  padding: 1rem;
+}
+
+/* 标签页优化 */
+.md-typeset .tabbed-labels {
+  margin-bottom: 0.5rem;
+}
