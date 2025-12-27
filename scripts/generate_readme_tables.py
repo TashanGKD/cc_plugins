@@ -180,18 +180,18 @@ def update_readme():
     plugins_table = generate_plugins_table(plugins)
     commands_table = generate_commands_table(commands)
 
-    # 替换插件表格
+    # 替换插件表格（从标题到下一个标题之间）
     content = re.sub(
-        r'<!-- AUTO_START:PLUGINS -->.*?<!-- AUTO_END:PLUGINS -->',
-        f'<!-- AUTO_START:PLUGINS -->\n{plugins_table}\n<!-- AUTO_END:PLUGINS -->',
+        r'(## 📦 已包含插件.*?\n)(.*?)(\n## 📋)',
+        rf'\1{plugins_table}\n\3',
         content,
         flags=re.DOTALL
     )
 
-    # 替换命令表格
+    # 替换命令表格（从标题到下一个标题之间）
     content = re.sub(
-        r'<!-- AUTO_START:COMMANDS -->.*?<!-- AUTO_END:COMMANDS -->',
-        f'<!-- AUTO_START:COMMANDS -->\n{commands_table}\n<!-- AUTO_END:COMMANDS -->',
+        r'(## 📋 可用命令.*?\n)(.*?)(\n## 📖)',
+        rf'\1{commands_table}\n\3',
         content,
         flags=re.DOTALL
     )
