@@ -1,0 +1,47 @@
+# Jekyll 配置文件 (GitHub Pages)
+
+theme: just-the-docs
+title: 他山团队 Claude Code 插件集合
+description: 为学术研究提供专业的工作流支持
+
+# 启用相对链接
+relative_links:
+  enabled: true
+  collections: true
+
+# Markdown 设置
+markdown: kramdown
+kramdown:
+  syntax_highlighter_opts:
+    disable: true
+
+# 插件
+plugins:
+  - jekyll-relative-links
+  - jekyll-default-layout
+  - jekyll-titles-from-headings
+
+# 排除的文件
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - .gitignore
+
+# 导航
+nav:
+  - title: 首页
+    url: /
+  - title: Scispark
+    url: scispark.md
+  - title: Manim Creator
+    url: manim-creator.md
+
+# GitHub 信息
+github:
+  repository: TashanGKD/cc_plugins
+  owner: TashanGKD
