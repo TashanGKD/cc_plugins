@@ -26,17 +26,60 @@
 
 ## 🚀 快速开始
 
-### 安装 Claude Code CLI
+### 1. 安装 Claude Code CLI
 
 ```bash
 curl -fsSL https://claude.ai/install.sh | sh
 ```
 
-### 验证安装
+### 2. 克隆并安装插件
 
 ```bash
-claude plugin validate .claude-plugin/marketplace.json
+# 克隆项目
+git clone https://github.com/TashanGKD/cc_plugins.git
+cd cc_plugins
+
+# 添加本地 marketplace
+claude plugin marketplace add .
+
+# 安装插件（交互式选择）
+claude plugin
 ```
+
+或直接安装：
+
+```bash
+# 安装所有插件
+claude plugin install --all --scope user
+
+# 或安装单个插件
+claude plugin install scispark@cc_plugins
+claude plugin install manim-creator@cc_plugins
+```
+
+### 3. 安装 MCP 依赖
+
+```bash
+# 必需依赖（根据使用的插件安装）
+claude mcp add article-mcp uvx article-mcp server
+pip install manim  # manim-creator 插件需要
+```
+
+### 4. 验证安装
+
+```bash
+# 验证 marketplace 配置
+claude plugin validate .claude-plugin/marketplace.json
+
+# 查看已安装插件（交互式）
+claude
+> /plugin  # 然后切换到 Installed 标签
+```
+
+**Sources:**
+- [Claude Code 官方文档 - Discover and Install Plugins](https://code.claude.com/docs/en/discover-plugins)
+- [Claude Code CLI Cheatsheet](https://shipyard.build/blog/claude-code-cheat-sheet/)
+- [GitHub Issue #13778 - plugin list command](https://github.com/anthropics/claude-code/issues/13778)
 
 ## 📖 命令使用
 
