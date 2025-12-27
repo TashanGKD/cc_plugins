@@ -69,6 +69,14 @@ repos:
         files: '(\.claude-plugin/marketplace\.json|\.claude/commands/.*\.md|plugins/[^/]*/commands/.*\.md)'
         pass_filenames: false
 
+      # 同步文档到 docs 目录（GitHub Pages）
+      - id: sync-docs
+        name: Sync docs for GitHub Pages
+        entry: bash scripts/sync-docs.sh
+        language: system
+        files: '(README\.md|plugins/[^/]+/README\.md)'
+        pass_filenames: false
+
   # 通用检查
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
