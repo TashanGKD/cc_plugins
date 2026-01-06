@@ -113,8 +113,13 @@ def discover_commands() -> List[Dict]:
     return commands
 
 
-def generate_plugins_table(plugins: List[Dict]) -> str:
-    """生成插件表格 Markdown"""
+def generate_plugins_table(plugins: List[Dict], docs_links: bool = False) -> str:
+    """生成插件表格 Markdown
+
+    Args:
+        plugins: 插件列表
+        docs_links: 是否使用文档链接格式（默认 False，使用 README 相对路径）
+    """
     if not plugins:
         return "| 暂无插件 |\n|----------|"
 
@@ -134,7 +139,13 @@ def generate_plugins_table(plugins: List[Dict]) -> str:
         category = info.get('category', '-')
         description = info.get('description', plugin.get('description', ''))[:50] + '...' if len(info.get('description', '')) > 50 else info.get('description', plugin.get('description', ''))
 
-        lines.append(f"| [{name}](./plugins/{name}/) | {version} | {category} | {description} |")
+        # docs 链接需要指向 scispark.md 等文档页面
+        if docs_links:
+            link_path = f"./{name}.md"
+        else:
+            link_path = f"./plugins/{name}/"
+
+        lines.append(f"| [{name}]({link_path}) | {version} | {category} | {description} |")
 
     return '\n'.join(lines)
 
@@ -204,5 +215,46 @@ def update_readme():
     return True
 
 
+def update_docs_index():
+    """更新 docs/index.md 中的表格"""
+    docs_index_path = Path(__file__).parent.parent / 'docs' / 'index.md'
+
+    if not docs_index_path.exists():
+        print("⚠️  docs/index.md 不存在，跳过")
+        return False
+
+    content = docs_index_path.read_text(encoding='utf-8')
+
+    # 获取数据
+    plugins = load_marketplace()
+    commands = discover_commands()
+
+    # 生成表格（使用文档链接格式）
+    plugins_table = generate_plugins_table(plugins, docs_links=True)
+    commands_table = generate_commands_table(commands)
+
+    # 替换插件表格（从标题到下一个标题之间）
+    content = re.sub(
+        r'(## 📦 已包含插件.*?\n)(.*?)(\n## 📋)',
+        rf'\1{plugins_table}\n\3',
+        content,
+        flags=re.DOTALL
+    )
+
+    # 替换命令表格（从标题到下一个标题之间）
+    content = re.sub(
+        r'(## 📋 可用命令.*?\n)(.*?)(\n## 📖)',
+        rf'\1{commands_table}\n\3',
+        content,
+        flags=re.DOTALL
+    )
+
+    docs_index_path.write_text(content, encoding='utf-8')
+
+    print(f"✅ docs/index.md 已更新")
+    return True
+
+
 if __name__ == '__main__':
     update_readme()
+    update_docs_index()

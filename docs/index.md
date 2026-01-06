@@ -5,14 +5,17 @@
 ## 📦 已包含插件
 | 插件名称 | 版本 | 类别 | 描述 |
 |---------|------|------|------|
-| [scispark](./plugins/scispark/) | 0.1.0 | workflow | Scispark 结构化研究想法生成工作流，通过7阶段流程将关键词转化为高质量、可验证的研究想法，包... |
-| [manim-creator](./plugins/manim-creator/) | 0.1.0 | visualization | Manim 数学动画创建插件，提供代码生成、工具函数库和编译渲染功能。支持函数可视化、几何图形、动画... |
+| [scispark](./scispark.md) | 0.1.0 | workflow | Scispark 结构化研究想法生成工作流，通过7阶段流程将关键词转化为高质量、可验证的研究想法，包... |
+| [manim-creator](./manim-creator.md) | 0.1.0 | visualization | Manim 数学动画创建插件，提供代码生成、工具函数库和编译渲染功能。支持函数可视化、几何图形、动画... |
 
 ## 📋 可用命令
 | 命令 | 版本 | 类型 | 标签 | 描述 |
 |------|------|------|------|------|
-| `/tdd` | 0.0.1 | 项目命令 | testing, tdd, workflow... | 测试驱动开发（TDD）流程助手，包含 Git 提交规范 |
-| `/gh` | 0.0.1 | 项目命令 | git, github, cli... | GitHub CLI 专家助手，提供 gh 命令的场景化指导 |
+| `/tdd` | 0.0.4 | 项目命令 | testing, tdd, workflow... | 测试驱动开发（TDD）流程助手 |
+| `/docs` | 0.0.4 | 项目命令 | documentation, maintenance, workflow | 活文档维护 |
+| `/bdd` | 0.0.2 | 项目命令 | bdd, testing, workflow... | 行为驱动开发（BDD）流程助手 |
+| `/gh` | 0.0.2 | 项目命令 | git, github, cli... | GitHub CLI 专家助手，提供 gh 命令的场景化指导 |
+| `/squash` | 0.0.2 | 项目命令 | git, rebase, commit... | Commit 历史整理与合并 |
 | `/scispark` | 0.1.0 | 插件 (scispark) | research, workflow, academic... | Execute the 7-stage Scispark workflow to... |
 | `/manim` | 0.1.0 | 插件 (manim-creator) | visualization, animation, math... | Manim 一键动画生成命令，输入自然语言描述，自动输出 1080p 高清数学动... |
 
