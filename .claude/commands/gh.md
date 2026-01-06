@@ -1,7 +1,7 @@
 ---
 name: gh
 description: GitHub CLI 专家助手，提供 gh 命令的场景化指导
-version: 0.0.1
+version: 0.0.2
 tags:
   - git
   - github
@@ -80,36 +80,21 @@ gh pr view <number> --json reviews --jq '.reviews[] | {author, state, body}'  # 
 
 ```bash
 # 创建 Issue
-gh issue create                                               # 交互式创建（推荐用于多行内容）
+gh issue create                                               # 交互式创建
 gh issue create --title "标题" --body "描述"                   # 简单单行
-gh issue create --web                                         # 在浏览器中创建（处理复杂格式）
-gh issue create -F issue.md                                  # 从文件读取 body
-gh issue create --title "标题" -F -                           # 从 stdin 读取 body（echo "..." | gh issue create ... -F -）
-gh issue create --title "Bug: 登录失败" --body "单行描述" --label "bug,high-priority" --assignee @me  # 带标签和指派
-gh issue create --title "功能请求" --body "单行描述" --milestone "v1.2.0"  # 指定 milestone
-
-# 多行 body 的安全方法
-cat <<EOF | gh issue create --title "多行 Issue" -F -
+gh issue create --web                                         # 浏览器创建
+gh issue create -F issue.md                                  # 从文件读取
+cat <<EOF | gh issue create --title "标题" -F -               # 多行 body
 ## 功能描述
 
 详细描述...
-
-- 要点 1
-- 要点 2
 EOF
+
 # 编辑 Issue
-gh issue edit <number> --title "新标题"                        # 修改标题
-gh issue edit <number> --body "新描述"                         # 修改描述
-gh issue edit <number> --add-label "bug,urgent"                # 添加标签
-gh issue edit <number> --remove-label "wontfix"                # 移除标签
-gh issue edit <number> --assignee @me                          # 指派给某人
-gh issue edit <number> --remove-assignee @me                   # 取消指派
-gh issue edit <number> --milestone "v2.0.0"                    # 设置 milestone
-gh issue comment <number> --body "评论内容"                    # 添加评论
-# 关闭/重新打开
-gh issue close <number>                                        # 关闭 issue
+gh issue edit <number> --title "新标题"                        # 修改标题/标签/指派
+gh issue edit <number> --add-label "bug,urgent"
+gh issue close <number>                                        # 关闭
 gh issue reopen <number>                                       # 重新打开
-# Sub-issues 需要通过 API 管理（GraphQL 或 Projects API）
 ```
 
 ---
@@ -118,56 +103,28 @@ gh issue reopen <number>                                       # 重新打开
 
 ```bash
 # 创建 PR
-gh pr create                                                   # 交互式创建（推荐用于多行内容）
-gh pr create --fill                                            # 自动填充描述模板
-gh pr create --web                                             # 在浏览器中创建（处理复杂格式）
-gh pr create -F pr.md                                          # 从文件读取 body
-gh pr create --title "功能" --body "单行描述"                   # 简单单行
-gh pr create --base develop --title "功能" --body "单行"        # 指定 base 分支
-gh pr create --draft --title "WIP: 功能开发中"                 # Draft PR
-gh pr create --title "功能" --reviewer user1,user2 --body "单行"  # 指定审查者
-gh pr create --title "功能" --label "enhancement" --body "单行"  # 指定标签
-
-# 多行 body 的安全方法
-cat <<EOF | gh pr create --title "功能标题" -F -
+gh pr create                                                   # 交互式创建
+gh pr create --base develop --title "功能" --body "描述"        # 指定 base
+gh pr create --draft                                          # Draft PR
+cat <<EOF | gh pr create --title "标题" -F -                   # 多行 body
 ## 变更说明
-
 详细描述...
-
-## 测试
-- 测试 1
-- 测试 2
 EOF
-# Checkout PR
-gh pr checkout 123                                             # PR 编号 checkout
-gh pr checkout https://github.com/owner/repo/pull/123          # URL checkout
+
 # 查看 PR
-gh pr list --state open --limit 20                             # 列出 PR
-gh pr list --author @me --state all                            # 我创建的 PR
-gh pr list --reviewer @me                                      # 需要我审查的 PR
-gh pr view 123                                                 # PR 详情
-gh pr view 123 --json title,body,state,headRefName,baseRefName,additions,deletions,changedFiles  # PR JSON 详情
-gh pr diff 123                                                 # PR 文件变更
-gh pr checks 123                                               # PR 状态检查
+gh pr list --state open                                       # 列出 PR
+gh pr view 123                                                 # 查看详情
+gh pr diff 123                                                 # 查看变更
+gh pr checks 123                                               # 检查状态
+
 # 更新 PR
-gh pr edit 123 --title "新标题"                                # 修改标题
-gh pr edit 123 --body "新描述"                                 # 修改描述
-gh pr edit 123 --add-reviewer user1,user2                      # 添加审查者
-gh pr edit 123 --add-label "ready-to-merge"                    # 添加标签
-gh pr edit 123 --add-label "draft"                             # 转为 draft
-gh pr edit 123 --remove-label "draft"                          # 标记为 ready
-gh pr update 123                                               # 更新为最新 base 分支
-# PR 审查
-gh pr comment 123 --body "这里有个问题"                        # 添加评论
-gh pr review 123 --comment --body "建议修改"                    # 审查评论
-gh pr review 123 --approve --body "LGTM"                       # 批准
-gh pr review 123 --request-changes --body "需要修改..."        # 请求更改
-gh pr review 123 --body "一些意见..."                          # 通用评论
-# 合并 PR
-gh pr merge 123                                                # 默认方式合并
-gh pr merge 123 --squash --message "合并信息"                   # Squash 合并
-gh pr merge 123 --rebase                                       # Rebase 合并
-gh pr merge 123 --delete-branch                                # 删除分支后合并
+gh pr edit 123 --title "新标题"                               # 修改标题/标签/审查者
+gh pr update 123                                               # 更新 base 分支
+
+# 审查与合并
+gh pr review 123 --approve                                     # 批准
+gh pr review 123 --request-changes                             # 请求更改
+gh pr merge 123 --squash                                       # 合并
 ```
 
 ---
@@ -177,25 +134,13 @@ gh pr merge 123 --delete-branch                                # 删除分支后
 ```bash
 # Labels
 gh label list                                                  # 列出标签
-gh label create "bug" --color "d73a4a" --description "Bug report"  # 创建标签
-gh label create "enhancement" --color "a2eeef" --description "New feature"  # 常用标签
-gh label create "documentation" --color "0075ca" --description "Documentation"
-gh label create "good first issue" --color "7057ff" --description "Good for newcomers"
-gh label create "help wanted" --color "008672" --description "Extra attention"
-gh label edit "bug" --color "ff0000" --description "Bug 问题"  # 编辑标签
-gh label delete "wontfix"                                       # 删除标签
+gh label create "bug" --color "d73a4a"                         # 创建标签
+
 # Milestones
-gh pr list --json milestoneNumber,title --jq '.[].milestone'   # 列出 PR 里程碑
-gh issue list --json milestoneNumber,title --jq '.[].milestone'  # 列出 Issue 里程碑
-gh api repos/:owner/:repo/milestones -f title="v1.0.0" -f state="open" -f description="第一个稳定版本"  # 创建里程碑
-gh api repos/:owner/:repo/milestones/:number -X PATCH -f state="closed"  # 关闭里程碑
-# Projects（需先执行：gh auth refresh -s project）
-gh project list --owner @me                                    # 列出项目
-gh project view <project_number> --owner @me                   # 查看项目详情
-gh project item-list <project_number> --owner @me              # 列出项目 items
-gh project item-add <project_number> --owner @me --url https://github.com/owner/repo/issues/<number>  # 添加 issue/PR
-gh project field-list <project_number> --owner @me             # 列出项目字段
-gh project item-create <project_number> --owner @me --title "标题" --body "内容"  # 创建项目 item
+gh api repos/:owner/:repo/milestones -f title="v1.0.0"        # 创建里程碑
+
+# Projects
+gh project list --owner @me                                   # 列出项目（需 gh auth refresh -s project）
 ```
 
 ---
@@ -205,21 +150,17 @@ gh project item-create <project_number> --owner @me --title "标题" --body "内
 ```bash
 # Workflows
 gh workflow list                                               # 列出 workflows
-gh workflow view <workflow_name>                               # 查看 workflow 详情
-gh workflow view <workflow_name> --yaml                        # 查看 workflow YAML
+gh workflow view <name> --yaml                                # 查看 workflow YAML
+
 # Runs
-gh run list --limit 20                                         # 列出运行记录
-gh run list --workflow=<workflow_name> --limit 10              # 指定 workflow
-gh run view <run_id>                                           # 查看运行详情
-gh run view <run_id> --log                                     # 查看运行日志
-gh run view <run_id> --log-failed                              # 查看失败日志
-gh run watch <run_id>                                          # 实时查看日志
-gh run rerun <run_id>                                          # 重新运行
-gh run cancel <run_id>                                         # 取消运行
+gh run list --limit 20                                        # 列出运行
+gh run view <run_id> --log                                   # 查看日志
+gh run watch <run_id>                                        # 实时查看
+gh run rerun <run_id>                                        # 重新运行
+
 # Caches
-gh cache list                                                  # 列出缓存
-gh cache delete <cache_key>                                    # 删除指定缓存
-gh cache delete --all                                          # 删除所有缓存
+gh cache list                                                 # 列出缓存
+gh cache delete --all                                         # 删除所有缓存
 ```
 
 ---
@@ -227,27 +168,18 @@ gh cache delete --all                                          # 删除所有缓
 ## 🔐 Secrets / Variables
 
 ```bash
-# 仓库 Secrets
+# Secrets
 gh secret list                                                 # 列出 secrets
-gh secret set MY_SECRET                                        # 设置 secret（交互式）
-echo -n "value" | gh secret set MY_SECRET                      # 从环境变量设置
-gh secret set MY_SECRET < secret_file.txt                      # 从文件设置
-gh secret delete MY_SECRET                                     # 删除 secret
-# 组织 Secrets
-gh secret list --org <organization>                            # 列出组织 secrets
-gh secret set ORG_SECRET --org <org>                           # 设置组织 secret
-gh secret set ORG_SECRET --org <org> --visibility "private"    # 设置可见性（private/all/selected）
-# 环境 Secrets
-gh secret list --env <environment_name>                        # 列出环境 secrets
-gh secret set ENV_SECRET --env <environment_name>              # 设置环境 secret
-# 用户 Secrets（Codespaces）
-gh secret list --user                                          # 列出用户 secrets
-gh secret set USER_SECRET --user                               # 设置用户 secret
-# Variables（Actions）
+gh secret set MY_SECRET                                        # 设置 secret
+echo -n "value" | gh secret set MY_SECRET                      # 从环境变量
+
+# 组织/环境 Secrets
+gh secret list --org <organization>                           # 组织 secrets
+gh secret set ENV_SECRET --env <environment_name>             # 环境秘密
+
+# Variables
 gh variable list                                               # 列出变量
 gh variable set MY_VAR --body "value"                          # 设置变量
-gh variable set MY_VAR < variable_file.txt                     # 从文件设置
-gh variable delete MY_VAR                                      # 删除变量
 ```
 
 ---
@@ -256,30 +188,14 @@ gh variable delete MY_VAR                                      # 删除变量
 
 ```bash
 # 创建
-gh codespace create                                            # 默认配置创建
-gh codespace create --repo owner/repo --branch main            # 指定仓库和分支
-gh codespace create --machine "premiumLinux"                   # 指定机器类型
-gh codespace create --repo owner/repo --display-machine        # 显示可用机器类型
-# 启动/停止
-gh codespace list                                              # 列出 codespaces
-gh codespace stop <codespace_name>                             # 停止
-gh codespace create                                            # 启动（如已存在则直接使用）
-# 连接
-gh codespace ssh <codespace_name>                              # SSH 连接
-gh codespace code <codespace_name>                             # 在 VS Code 中打开
-gh codespace jupyter <codespace_name>                          # 在 JupyterLab 中打开
-gh codespace view <codespace_name> --web                       # 在浏览器中打开
-# 文件操作
-gh codespace cp ./local-file.txt <cs_name>:/home/codespace/    # 本地→远程
-gh codespace cp <cs_name>:/home/codespace/file.txt ./          # 远程→本地
-# 日志/调试
-gh codespace logs <codespace_name>                             # 查看日志
-gh codespace view <codespace_name>                             # 查看详情
-gh codespace ports <codespace_name>                            # 查看端口
-# 重建/删除
-gh codespace rebuild <codespace_name>                          # 重建容器
-gh codespace delete <codespace_name>                           # 删除
-gh codespace delete --all                                      # 删除所有
+gh codespace create                                            # 创建
+gh codespace create --machine "premiumLinux"                   # 指定机器
+
+# 管理
+gh codespace list                                              # 列出
+gh codespace stop <name>                                       # 停止
+gh codespace ssh <name>                                        # SSH 连接
+gh codespace delete <name>                                     # 删除
 ```
 
 ---
@@ -287,21 +203,11 @@ gh codespace delete --all                                      # 删除所有
 ## 📦 Release 管理
 
 ```bash
-# 创建
-gh release create v1.0.0 --title "v1.0.0" --notes "第一个版本"  # 基础创建
-gh release create v1.0.0 --notes-file RELEASE_NOTES.md         # 从文件读取 notes
-gh release create v1.0.0 --generate-notes                      # 自动生成 notes
-gh release create v1.0.0 --draft --notes "..."                  # Draft release
-gh release create v1.0.0 --prerelease --notes "..."             # Pre-release
-gh release create v1.0.0 ./dist/app.zip ./dist/installer.pkg   # 上传资产
-# 查看/下载
-gh release list                                                # 列出 releases
-gh release view                                                # 查看最新 release
-gh release view v1.0.0                                         # 查看指定 release
-gh release download v1.0.0                                     # 下载资产
-gh release download v1.0.0 --pattern "*.zip" --dist ./downloads/  # 按模式下载
-# 删除
-gh release delete v1.0.0 --yes                                 # 删除 release
+gh release create v1.0.0 --notes "第一个版本"                    # 创建
+gh release create v1.0.0 --notes-file RELEASE_NOTES.md            # 从文件
+gh release create v1.0.0 --draft                               # Draft
+gh release list                                                # 列出
+gh release download v1.0.0                                     # 下载
 ```
 
 ---
@@ -309,32 +215,12 @@ gh release delete v1.0.0 --yes                                 # 删除 release
 ## 🏠 仓库管理
 
 ```bash
-# 创建
-gh repo create my-new-repo --public                            # 创建公开仓库
-gh repo create my-new-repo --private                           # 创建私有仓库
-gh repo create my-repo --public --clone --description "描述" --source=. --push  # 创建并初始化
-gh repo create my-repo --public --description "描述" --homepage "https://example.com" --clone  # 完整选项
-# Fork/克隆
-gh repo fork owner/repo                                        # Fork 到个人账户
-gh repo fork owner/repo --org organization                     # Fork 到组织
-gh repo fork owner/repo --clone                                # Fork 后克隆
-gh repo clone owner/repo                                       # 克隆仓库
-gh repo clone owner/repo my-directory                          # 克隆到指定目录
-# 查看信息
-gh repo view                                                   # 基础信息
-gh repo view --json name,description,visibility,defaultBranchRef,licenseInfo,homepageUrl,issues,pullRequests  # JSON 格式（使用 issues.totalCount 和 pullRequests.totalCount 获取统计）
-gh ruleset list                                                # 列出规则集
-gh ruleset view <ruleset_id>                                   # 查看规则集详情
-# 修改设置
-gh repo edit --description "新描述" --homepage "https://..."    # 修改描述和主页
-gh repo edit --visibility private                              # 修改可见性（private/public/internal）
-gh repo edit --add-topic "python,api,rest"                     # 添加 topics
-gh repo edit --remove-topic "deprecated"                       # 移除 topic
-gh api repos/:owner/:repo -X PATCH -f has_wiki=true -f has_projects=true -f has_issues=false  # 启用/禁用功能
-# 归档/删除
-gh repo edit --archived true                                   # 归档（只读）
-gh repo edit --archived false                                  # 取消归档
-gh repo delete --yes                                           # 删除仓库（危险）
+gh repo create my-repo --public                                # 创建
+gh repo fork owner/repo                                       # Fork
+gh repo clone owner/repo                                       # 克隆
+gh repo view                                                   # 查看
+gh repo edit --description "描述"                              # 编辑
+gh repo delete --yes                                           # 删除
 ```
 
 ---
@@ -546,11 +432,15 @@ gh repo view --json issues,pullRequests,watchers,stargazerCount --jq '
 
 ---
 
-## 使用指南
+## GitHub MCP vs gh CLI
 
-当用户执行 `/gh` 时：
-1. **检测上下文**：确认 git 仓库和 gh 登录状态
-2. **理解需求**：询问用户想执行的操作类型
-3. **提供命令**：给出对应命令，必要时解释参数
-4. **确认执行**：危险操作先询问确认
-5. **处理结果**：根据输出提供下一步建议
+| 维度 | gh CLI | GitHub MCP |
+|------|--------|------------|
+| **速度** | ~1.0s | ~0.8-1.2s（接近） |
+| **输出格式** | JSON 字符串（需 jq 解析） | 结构化对象（直接可用） |
+| **稳定性** | 中（API 变化需升级 gh） | 高（工具接口稳定） |
+| **学习曲线** | 陡峭（记忆 `--json`/`--jq` 参数） | 平缓（LLM 友好） |
+
+**使用建议**：
+- **批量操作**、**脚本自动化** → gh CLI
+- **单次查询**、**LLM 协同** → GitHub MCP

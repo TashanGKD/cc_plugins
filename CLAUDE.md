@@ -8,6 +8,23 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 开发命令
 
+### 工作流命令
+
+项目提供多个开发工作流命令，通过 `/命令名` 调用：
+
+| 命令 | 用途 | 触发时机 |
+|------|------|----------|
+| `/tdd` | 测试驱动开发 | 功能开发 |
+| `/bdd` | 行为驱动开发 | 验收测试 |
+| `/squash` | Commit 历史整理 | TDD 循环完成后 |
+| `/docs` | 活文档维护 | 代码变更后 |
+| `/gh` | GitHub CLI 指南 | Git/GitHub 操作 |
+
+**特点**：
+- 支持会话状态管理（如 TDD 会话恢复）
+- 智能分析代码变更（如 `/docs` 自动更新文档）
+- 集成 Git 工作流（如 `/squash` 安全检查）
+
 ### Pre-commit 验证
 ```bash
 # 安装 pre-commit hooks
@@ -108,4 +125,8 @@ Co-authored-by: Claude <noreply@anthropic.com>
 ```
 
 类型: feat / fix / docs / style / refactor / test / chore
-作用域: agent / skill / command / template / config / docs
+作用域: agent / skill / command / template / config / docs / workflow
+
+**工作流命令相关作用域**：
+- `workflow`: 修改 `/tdd`、`/bdd`、`/squash`、`/docs` 等工作流命令
+- `command`: 修改项目级命令文件（`.claude/commands/*.md`）

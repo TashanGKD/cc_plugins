@@ -11,8 +11,11 @@
 ## 📋 可用命令
 | 命令 | 版本 | 类型 | 标签 | 描述 |
 |------|------|------|------|------|
-| `/tdd` | 0.0.1 | 项目命令 | testing, tdd, workflow... | 测试驱动开发（TDD）流程助手，包含 Git 提交规范 |
-| `/gh` | 0.0.1 | 项目命令 | git, github, cli... | GitHub CLI 专家助手，提供 gh 命令的场景化指导 |
+| `/tdd` | 0.0.4 | 项目命令 | testing, tdd, workflow... | 测试驱动开发（TDD）流程助手，支持会话状态管理 |
+| `/gh` | 0.0.2 | 项目命令 | git, github, cli... | GitHub CLI 专家助手，提供 gh 命令的场景化指导 |
+| `/bdd` | 0.0.2 | 项目命令 | bdd, testing, acceptance... | 行为驱动开发（BDD）流程助手，支持 Gherkin 语法 |
+| `/docs` | 0.0.4 | 项目命令 | documentation, maintenance... | 活文档维护，智能分析代码更新文档 |
+| `/squash` | 0.0.2 | 项目命令 | git, rebase, commit... | Commit 历史整理与合并，TDD 后清理提交 |
 | `/scispark` | 0.1.0 | 插件 (scispark) | research, workflow, academic... | Execute the 7-stage Scispark workflow to... |
 | `/manim` | 0.1.0 | 插件 (manim-creator) | visualization, animation, math... | Manim 一键动画生成命令，输入自然语言描述，自动输出 1080p 高清数学动... |
 
@@ -43,6 +46,12 @@ dependencies:
 ### 命令示例
 
 ```bash
+# 工作流命令
+/tdd               # 测试驱动开发
+/bdd               # 行为驱动开发
+/squash            # 整理 commit 历史
+/docs              # 维护文档
+
 # 插件命令：研究工作流
 /scispark "杂交物种形成"
 
@@ -82,8 +91,11 @@ cc_plugins/
 ├── .claude-plugin/
 │   └── marketplace.json          # 插件市场配置
 ├── .claude/commands/              # 项目级命令
-│   ├── tdd.md
-│   └── gh.md
+│   ├── tdd.md                    # 测试驱动开发
+│   ├── gh.md                     # GitHub CLI 指南
+│   ├── bdd.md                    # 行为驱动开发
+│   ├── docs.md                   # 活文档维护
+│   └── squash.md                 # Commit 整理
 ├── plugins/
 │   ├── scispark/                 # 研究工作流插件
 │   │   ├── commands/             # /scispark 命令
