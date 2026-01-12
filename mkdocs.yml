@@ -1,15 +1,14 @@
-site_name: 他山团队 Claude Code 插件集合
-site_description: 为学术研究提供专业的工作流支持
+site_name: 他山团队 Claude Code 研究工作流
+site_description: 用 AI 助手重塑学术研究流程，从文献综述到论文发表
 site_author: 他山团队 (Tashan)
+copyright: Copyright &copy; 2026 他山团队 (Tashan)
 
 # 站点配置
 site_url: https://tashangkd.github.io/cc_plugins/
+
 # 仓库配置
 repo_url: https://github.com/TashanGKD/cc_plugins
 repo_name: TashanGKD/cc_plugins
-
-# 版权信息
-copyright: Copyright &copy; 2026 他山团队 (Tashan)
 
 # 主题配置
 theme:
@@ -19,15 +18,15 @@ theme:
     # 自动切换亮/暗模式
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: green
-      accent: green
+      primary: indigo
+      accent: indigo
       toggle:
         icon: material/brightness-7
         name: 切换到暗色模式
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: green
-      accent: green
+      primary: indigo
+      accent: indigo
       toggle:
         icon: material/brightness-4
         name: 切换到亮色模式
@@ -50,21 +49,20 @@ theme:
     - content.tabs.link
     - content.tooltips
     # 目录功能
-    - toc.integrate
     - toc.follow
-    # 其他
+    # 其他功能
     - announce.dismiss
-  # 布局配置
+  # 字体配置
   font:
     text: Roboto
     code: Roboto Mono
-  # 内容与图标配置
-  favicon: assets/favicon.png
-  logo: assets/logo.png
+  # 图标配置
   icon:
     logo: material/book-open-variant
     repo: fontawesome/brands/github
-  # 内容宽度配置
+    previous: fontawesome/solid/arrow-left
+    next: fontawesome/solid/arrow-right
+  # 内容宽度
   content:
     width: 900px
 
@@ -74,15 +72,44 @@ plugins:
       lang:
         - zh
         - en
+      separator: '[\s\-\.]+'
   - git-revision-date-localized:
+      type: datetime
+      timezone: Asia/Shanghai
+      locale: zh
       enable_creation_date: true
 
 # Markdown 扩展
 markdown_extensions:
+  # Python Markdown
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+      toc_depth: 3
+
+  # PyMdown Extensions
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.highlight:
       anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
   - pymdownx.inlinehilite
-  - pymdownx.snippets
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
@@ -90,22 +117,47 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
       alternate_style: true
-  - admonition
-  - pymdownx.details
-  - attr_list
-  - md_in_html
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+  # 其他
   - tables
-  - toc:
-      permalink: true
 
 # 额外 CSS
 extra_css:
   - stylesheets/extra.css
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css
 
 # 额外 JS
 extra_javascript:
-  - https://polyfill.io/v3/polyfill.min.js?features=es6,Array.prototype.includes,Promise,Object.assign,Object.entries
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - javascripts/katex.js
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js
+
+# 额外配置
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/TashanGKD/cc_plugins
+    - icon: fontawesome/solid/envelope
+      link: mailto:qingyuge@foxmail.com
+  analytics:
+    feedback:
+      title: 这份文档对您有帮助吗？
+      ratings:
+        - icon: material/emoticon-happy-outline
+          name: 有帮助
+          data: 1
+          note: 感谢您的反馈！
+        - icon: material/emoticon-neutral-outline
+          name: 还可以
+          data: 2
+          note: 感谢您的反馈！
+        - icon: material/emoticon-sad-outline
+          name: 需要改进
+          data: 3
+          note: 感谢您的反馈！我们会继续改进。
 
 # 导航结构
 nav:
