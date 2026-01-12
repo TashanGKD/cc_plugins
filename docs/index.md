@@ -5,8 +5,8 @@
 ## 📦 已包含插件
 | 插件名称 | 版本 | 类别 | 描述 |
 |---------|------|------|------|
-| [scispark](./scispark.md) | 0.1.0 | workflow | Scispark 结构化研究想法生成工作流，通过7阶段流程将关键词转化为高质量、可验证的研究想法，包... |
-| [manim-creator](./manim-creator.md) | 0.1.0 | visualization | Manim 数学动画创建插件，提供代码生成、工具函数库和编译渲染功能。支持函数可视化、几何图形、动画... |
+| [scispark](./plugins/scispark.md) | 0.1.0 | workflow | Scispark 结构化研究想法生成工作流，通过7阶段流程将关键词转化为高质量、可验证的研究想法，包... |
+| [manim-creator](./plugins/manim-creator.md) | 0.1.0 | visualization | Manim 数学动画创建插件，提供代码生成、工具函数库和编译渲染功能。支持函数可视化、几何图形、动画... |
 
 ## 📋 可用命令
 | 命令 | 版本 | 类型 | 标签 | 描述 |

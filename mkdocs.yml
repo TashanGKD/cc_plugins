@@ -2,12 +2,14 @@ site_name: 他山团队 Claude Code 插件集合
 site_description: 为学术研究提供专业的工作流支持
 site_author: 他山团队 (Tashan)
 
+# 站点配置
+site_url: https://tashangkd.github.io/cc_plugins/
 # 仓库配置
 repo_url: https://github.com/TashanGKD/cc_plugins
 repo_name: TashanGKD/cc_plugins
 
 # 版权信息
-copyright: Copyright &copy; 2025 他山团队
+copyright: Copyright &copy; 2026 他山团队 (Tashan)
 
 # 主题配置
 theme:
@@ -30,24 +32,41 @@ theme:
         icon: material/brightness-4
         name: 切换到亮色模式
   features:
+    # 导航功能
     - navigation.instant
     - navigation.tracking
     - navigation.tabs
     - navigation.sections
     - navigation.expand
     - navigation.indexes
+    - navigation.top
+    - navigation.prune
+    # 搜索功能
     - search.suggest
     - search.highlight
+    - search.share
+    # 内容功能
     - content.code.copy
     - content.tabs.link
-
-# 布局配置
+    - content.tooltips
+    # 目录功能
+    - toc.integrate
+    - toc.follow
+    # 其他
+    - announce.dismiss
+  # 布局配置
   font:
     text: Roboto
     code: Roboto Mono
+  # 内容与图标配置
+  favicon: assets/favicon.png
+  logo: assets/logo.png
+  icon:
+    logo: material/book-open-variant
+    repo: fontawesome/brands/github
   # 内容宽度配置
   content:
-    width: 1000px # 进一步增加内容区宽度
+    width: 900px
 
 # 插件
 plugins:
@@ -91,6 +110,13 @@ extra_javascript:
 # 导航结构
 nav:
   - 首页: index.md
+  - 快速开始:
+      - Claude Code 环境搭建: tutorial/01-basics/01-getting-started.md
+      - Claude Code 基础教程: tutorial/01-basics/02-basic-usage.md
   - 插件文档:
-      - scispark: scispark.md
-      - manim-creator: manim-creator.md
+      - 插件概览: plugins/index.md
+      - Scispark: plugins/scispark.md
+      - Manim Creator: plugins/manim-creator.md
+  - 开发指南:
+      - 开发总览: development/index.md
+      - 贡献指南: development/contributing.md
