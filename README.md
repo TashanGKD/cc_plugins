@@ -1,125 +1,129 @@
-# 他山团队 (Tashan) Claude Code 插件集合
+# 他山团队 (Tashan) Claude Code 研究工作流
 
-他山团队 (Tashan) 开发的 Claude Code 插件集合，为学术研究提供专业的工作流支持。
+> 用 AI 助手重塑学术研究流程，从文献综述到论文发表
 
-## 📦 已包含插件
-| 插件名称 | 版本 | 类别 | 描述 |
-|---------|------|------|------|
-| [scispark](./plugins/scispark/) | 0.1.0 | workflow | Scispark 结构化研究想法生成工作流，通过7阶段流程将关键词转化为高质量、可验证的研究想法，包... |
-| [manim-creator](./plugins/manim-creator/) | 0.1.0 | visualization | Manim 数学动画创建插件，提供代码生成、工具函数库和编译渲染功能。支持函数可视化、几何图形、动画... |
+## 🎯 我们做什么
 
-## 📋 可用命令
-| 命令 | 版本 | 类型 | 标签 | 描述 |
-|------|------|------|------|------|
-| `/tdd` | 0.0.4 | 项目命令 | testing, tdd, workflow... | 测试驱动开发（TDD）流程助手 |
-| `/docs` | 0.0.4 | 项目命令 | documentation, maintenance, workflow | 活文档维护 |
-| `/bdd` | 0.0.2 | 项目命令 | bdd, testing, workflow... | 行为驱动开发（BDD）流程助手 |
-| `/gh` | 0.0.2 | 项目命令 | git, github, cli... | GitHub CLI 专家助手，提供 gh 命令的场景化指导 |
-| `/squash` | 0.0.2 | 项目命令 | git, rebase, commit... | Commit 历史整理与合并 |
-| `/scispark` | 0.1.0 | 插件 (scispark) | research, workflow, academic... | Execute the 7-stage Scispark workflow to... |
-| `/manim` | 0.1.0 | 插件 (manim-creator) | visualization, animation, math... | Manim 一键动画生成命令，输入自然语言描述，自动输出 1080p 高清数学动... |
+帮助学术研究者**掌握 Claude Code**，建立**高效的 AI 辅助研究工作流**。
 
-## 📖 命令使用
+- 📚 **教程体系** - 从零开始学会 Claude Code
+- 🔄 **工作流模板** - 开箱即用的研究流程
+- 🛠️ **实用工具** - 文献分析、数学可视化等插件
+- 🌱 **成长社区** - 分享经验、共同进步
 
-### 命令系统工作原理
+## 🚀 快速开始
 
-```
-用户输入 /command → 读取 .md 定义 → 解析 YAML frontmatter → 执行工作流 → 返回结果
-```
-
-### 命令文件结构
-
-```markdown
----
-name: command-name
-description: 命令描述
-version: 0.0.1
-tags: [tag1, tag2]
-dependencies:
-  tool: "version"
----
-
-# 命令说明
-详细内容...
-```
-
-### 命令示例
+### 第一次使用 Claude Code？
 
 ```bash
-# 工作流命令
-/tdd               # 测试驱动开发
-/bdd               # 行为驱动开发
-/squash            # 整理 commit 历史
-/docs              # 维护文档
+# 1. 安装（1 分钟）
+curl -fsSL https://claude.ai/install.sh | bash
 
-# 插件命令：研究工作流
+# 2. 配置 GLM 模型（2 分钟）
+# 访问 https://open.bigmodel.cn/ 获取 API Key
+npx @z_ai/coding-helper
+
+# 3. 开始使用
+claude
+```
+
+### 想直接体验研究工作流？
+
+```bash
+# 7 阶段结构化研究想法生成
 /scispark "杂交物种形成"
 
-# 项目命令：GitHub 操作
-/gh
+# 数学可视化
+/manim "绘制函数 f(x) = sin(x)/x 的图像"
 ```
 
-### 命令选项速查
-
-| 命令 | 选项 | 说明 |
-|------|------|------|
-| `/scispark` | `--skip-slides` | 跳过幻灯片生成 |
-| `/scispark` | `--min-papers <n>` | 设置最低文献阈值 |
-| `/scispark` | `--quick-mode` | 快速模式 |
-| `/scispark` | `--target <stage>` | 停留在指定阶段 (1-6) |
-| `/manim` | `--quality low/medium/high/4k` | 设置视频质量 |
-| `/manim` | `--format mp4/gif/png` | 设置输出格式 |
-| `/manim` | `--code-only` | 只生成代码不编译 |
-
-## 🛠️ 开发指南
-
-```bash
-# 安装 pre-commit（自动验证和更新 README）
-pip install pre-commit && pre-commit install
-```
-
-### 添加插件/命令
-
-**插件**: 在 `plugins/` 创建目录 → 在 `marketplace.json` 添加条目 → README 自动更新
-
-**命令**: 在 `.claude/commands/` 或 `plugins/*/commands/` 创建 `.md` 文件（需包含 YAML frontmatter）
-
-## 📁 项目结构
+## 📚 学习路径
 
 ```
-cc_plugins/
-├── .claude-plugin/
-│   └── marketplace.json          # 插件市场配置
-├── .claude/commands/              # 项目级命令
-│   ├── tdd.md                    # 测试驱动开发
-│   ├── gh.md                     # GitHub CLI 指南
-│   ├── bdd.md                    # 行为驱动开发
-│   ├── docs.md                   # 活文档维护
-│   └── squash.md                 # Commit 整理
-├── plugins/
-│   ├── scispark/                 # 研究工作流插件
-│   │   ├── commands/             # /scispark 命令
-│   │   ├── agents/ skills/ templates/
-│   │   └── tools/.mcp.json       # MCP 依赖
-│   └── manim-creator/            # 数学动画插件
-│       ├── commands/             # /manim 命令
-│       └── agents/ skills/
-├── scripts/
-│   └── generate_readme_tables.py # README 表格生成器
-├── .pre-commit-config.yaml
-└── README.md
+基础 → 工作流 → 进阶
+  ↓       ↓        ↓
+安装配置  研究流程  开发插件
+基础操作  文献管理  贡献社区
 ```
 
-## 📋 许可证
+### 第一步：掌握基础
 
-MIT License - 详见 [LICENSE](LICENSE)
+阅读 **[Claude Code 环境搭建](./docs/tutorial/01-basics/01-getting-started.md)**
 
-## 👤 作者
+### 第二步：使用工作流
+
+| 研究场景 | 工作流工具 | 说明 |
+|----------|-----------|------|
+| **文献综述** | [Scispark](./docs/plugins/scispark.md) | 7 阶段生成研究想法 |
+| **数学可视化** | [Manim Creator](./docs/plugins/manim-creator.md) | 一键生成学术动画 |
+| **代码开发** | `/tdd` | 测试驱动开发 |
+| **文档维护** | `/docs` | 自动同步文档 |
+
+### 第三步：深度定制
+
+- **[开发指南](./docs/development/)** - 开发自己的工作流插件
+- **[贡献指南](./docs/development/contributing.md)** - 加入项目共建
+
+## 🌟 为什么选择我们
+
+| 方面 | 说明 |
+|------|------|
+| **零门槛** | 详细教程，无需编程基础 |
+| **开箱即用** | 预配置的研究工作流 |
+| **开源免费** | MIT 许可，完全开放 |
+| **中文支持** | 面向中文研究社区 |
+
+## 📦 可用工作流
+
+### 研究工作流
+
+| 命令 | 功能 | 适用场景 |
+|------|------|----------|
+| `/scispark` | 7 阶段研究想法生成 | 文献综述、研究设计 |
+| `/manim` | 数学动画生成 | 教学视频、学术展示 |
+
+### 开发工作流
+
+| 命令 | 功能 | 适用场景 |
+|------|------|----------|
+| `/tdd` | 测试驱动开发 | 功能开发 |
+| `/bdd` | 行为驱动开发 | 验收测试 |
+| `/docs` | 活文档维护 | 文档同步 |
+| `/gh` | GitHub CLI 指南 | Git/GitHub 操作 |
+| `/squash` | Commit 历史整理 | 版本管理 |
+
+> 💡 工作流命令支持会话状态管理和智能分析，详见 [完整文档](./docs/)
+
+## 🔗 相关资源
+
+- **[完整教程](./docs/)** - Claude Code 入门到进阶
+- **[插件文档](./docs/plugins/)** - 各工作流详细说明
+- **[常见问题](./docs/tutorial/01-basics/01-getting-started.md#四常见问题)** - 安装配置问题解答
+- **[在线文档](https://tashangkd.github.io/cc_plugins/)** - GitHub Pages 部署版本
+
+## 🤝 参与贡献
+
+我们欢迎各种形式的贡献：
+
+- 💡 提出研究工作流的改进建议
+- 📖 完善教程文档
+- 🛠️ 开发新的工作流插件
+- 🐛 报告问题、修复 Bug
+
+详见 [贡献指南](./docs/development/contributing.md)
+
+## 📄 许可证
+
+MIT License - 详见 [LICENSE](./LICENSE)
+
+## 👤 团队
 
 **他山团队 (Tashan)** - 科研工具开发团队
 
+> "他山之石，可以攻玉" - 用 AI 工具提升科研效率
+
 - 📧 Email: qingyuge@foxmail.com
-- 🔗 GitHub: [@gqy20](https://github.com/gqy20)
+- 🔗 GitHub: [@TashanGKD](https://github.com/TashanGKD)
 
 ---
 
