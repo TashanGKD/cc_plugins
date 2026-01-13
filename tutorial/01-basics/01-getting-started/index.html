@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://tashangkd.github.io/cc_plugins/tutorial/01-basics/01-getting-started/">
       
       
-        <link rel="prev" href="../../..">
+        <link rel="prev" href="../../">
       
       
         <link rel="next" href="../02-basic-usage/">
@@ -50,10 +50,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Plus+Jakarta+Sans:300,300i,400,400i,700,700i%7CCascadia+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Plus Jakarta Sans";--md-code-font:"Cascadia Code"}</style>
       
     
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
     
       <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
@@ -77,7 +79,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="cyan">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -133,7 +135,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到暗色模式"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="cyan"  aria-label="切换到暗色模式"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="切换到暗色模式" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
@@ -143,7 +145,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到亮色模式"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="cyan"  aria-label="切换到亮色模式"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="切换到亮色模式" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
@@ -261,7 +263,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+        <a href="../../" class="md-tabs__link">
           
   
   
@@ -283,7 +285,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../plugins/scispark/" class="md-tabs__link">
+        <a href="../../../plugins/" class="md-tabs__link">
           
   
   
@@ -400,6 +402,10 @@
     
       
         
+          
+        
+      
+        
       
         
       
@@ -424,8 +430,9 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -439,8 +446,14 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
@@ -452,6 +465,8 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
             
               
                 
@@ -726,7 +741,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-linux" class="md-nav__link">
+  <a href="#no-linux" class="md-nav__link">
     <span class="md-ellipsis">
       
         5. 没有 Linux 设备怎么办？
@@ -806,6 +821,10 @@
     
       
         
+          
+        
+      
+        
       
         
       
@@ -829,7 +848,7 @@
   
   
   
-    <a href="../../../plugins/scispark/" class="md-nav__link">
+    <a href="../../../plugins/" class="md-nav__link">
       
   
   
@@ -1115,7 +1134,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-linux" class="md-nav__link">
+  <a href="#no-linux" class="md-nav__link">
     <span class="md-ellipsis">
       
         5. 没有 Linux 设备怎么办？
@@ -1164,9 +1183,10 @@
 <h1 id="claude-code">Claude Code 环境搭建<a class="headerlink" href="#claude-code" title="Permanent link">&para;</a></h1>
 <p>本指南带你完成 Claude Code 的安装与 GLM 密钥配置。</p>
 <h2 id="claude-code_1">一、安装 Claude Code<a class="headerlink" href="#claude-code_1" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p>**推荐使用 Linux 系统**以获得最佳体验。如果没有 Linux 设备，请查看「<a href="#没有-linux-设备怎么办">常见问题 &gt; 没有Linux 设备怎么办？</a>」</p>
-</blockquote>
+<div class="admonition tip">
+<p class="admonition-title">推荐使用 Linux 系统</p>
+<p>我们的强烈推荐在 Linux 环境下运行以获得最佳体验。如果没有 Linux 设备，请查看「<a href="#no-linux">常见问题 &gt; 没有Linux 设备怎么办？</a>」。</p>
+</div>
 <h3 id="macos">macOS 安装<a class="headerlink" href="#macos" title="Permanent link">&para;</a></h3>
 <p><strong>方式一：官方脚本（推荐）</strong>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://claude.ai/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
@@ -1177,9 +1197,10 @@
 <p><strong>方式三：NPM</strong>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>@anthropic-ai/claude-code
 </span></code></pre></div></p>
-<blockquote>
-<p>注意：NPM 安装需要 Node.js 18+</p>
-</blockquote>
+<div class="admonition warning">
+<p class="admonition-title">环境要求</p>
+<p>NPM 安装需要 Node.js 18+</p>
+</div>
 <h3 id="linux">Linux 安装<a class="headerlink" href="#linux" title="Permanent link">&para;</a></h3>
 <p><strong>官方脚本（推荐）</strong>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://claude.ai/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
@@ -1254,9 +1275,11 @@
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>claude
 </span></code></pre></div>
 <h3 id="2_1">2. 首次启动<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h3>
-<p>启动后：
-- 选择信任 Claude Code 访问项目文件夹
-- 如遇到「Do you want to use this API key」提示，选择 <strong>Yes</strong></p>
+<p>启动后：</p>
+<ul>
+<li>选择信任 Claude Code 访问项目文件夹</li>
+<li>如遇到「Do you want to use this API key」提示，选择 <strong>Yes</strong></li>
+</ul>
 <h3 id="3">3. 验证模型状态<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
 <p>在 Claude Code 中输入：</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>/status
@@ -1316,7 +1339,7 @@
 - 魔搭需要绑定阿里云账号
 - 在魔搭平台选择模型时，请选择支持 <strong>推理 API-Inference</strong> 的模型</p>
 </blockquote>
-<h3 id="5-linux">5. 没有 Linux 设备怎么办？<a class="headerlink" href="#5-linux" title="Permanent link">&para;</a></h3>
+<h3 id="no-linux">5. 没有 Linux 设备怎么办？<a class="headerlink" href="#no-linux" title="Permanent link">&para;</a></h3>
 <p>可以使用以下云端 Linux 环境：</p>
 <p><strong>方案一：GitHub Codespaces</strong></p>
 <ol>
@@ -1411,7 +1434,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月12日 21:48:17 CST">2026年1月12日 21:48:17</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月13日 11:19:43 CST">2026年1月13日 11:19:43</span>
   </span>
 
     
