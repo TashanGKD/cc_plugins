@@ -18,8 +18,6 @@
         <link rel="prev" href="../plugins/manim-creator/">
       
       
-        <link rel="next" href="contributing/">
-      
       
         
       
@@ -29,7 +27,7 @@
     
     
       
-        <title>开发总览 - 他山团队 Claude Code 研究工作流</title>
+        <title>开发指南 - 他山团队 Claude Code 研究工作流</title>
       
     
     
@@ -120,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              开发总览
+              开发指南
             
           </span>
         </div>
@@ -281,7 +279,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../plugins/" class="md-tabs__link">
+        <a href="../plugins/scispark/" class="md-tabs__link">
           
   
   
@@ -302,20 +300,17 @@
     
   
   
-    
-    
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
-          
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
   
   
     
   
   开发指南
 
-        </a>
-      </li>
-    
+      </a>
+    </li>
   
 
       
@@ -460,10 +455,6 @@
     
       
         
-          
-        
-      
-        
       
         
       
@@ -487,7 +478,7 @@
   
   
   
-    <a href="../plugins/" class="md-nav__link">
+    <a href="../plugins/scispark/" class="md-nav__link">
       
   
   
@@ -521,39 +512,16 @@
   
   
   
-    
-    
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
       
         
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
           
-        
-      
-        
-      
-    
-    
-    
-      
-        
-        
-      
-      
-        
-      
-    
-    
-      
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="./" class="md-nav__link md-nav__link--active">
-              
   
   
   <span class="md-ellipsis">
@@ -567,43 +535,17 @@
   
   
 
-            </a>
-            
-              
-              <label class="md-nav__link md-nav__link--active" for="__nav_4" id="__nav_4_label" tabindex="">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_4">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    开发指南
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="contributing/" class="md-nav__link">
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
     
   
-    贡献指南
+    开发指南
   
 
     
@@ -612,13 +554,158 @@
   
 
       </a>
-    </li>
-  
+      
+        
 
-              
-            
-          </ul>
-        </nav>
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        贡献方式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="贡献方式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        报告问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        提交代码
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        改进文档
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        开发流程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="开发流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        环境准备
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        分支命名
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        提交规范
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pull-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pull Request
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-commit 验证
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        行为准则
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -654,29 +741,118 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        目录
+        贡献方式
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="贡献方式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        快速贡献
+        报告问题
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        代码规范
+        提交代码
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        改进文档
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        开发流程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="开发流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        环境准备
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        分支命名
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        提交规范
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pull-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pull Request
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-commit 验证
       
     </span>
   </a>
@@ -684,10 +860,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        许可证
+        行为准则
       
     </span>
   </a>
@@ -714,40 +890,93 @@
   
 
 
-<h1 id="_1">开发指南<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<p>本章节面向希望贡献代码、开发新插件或深入了解项目架构的开发者。</p>
-<h2 id="_2">目录<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="contributing/">贡献指南</a> - 如何参与项目贡献</li>
-</ul>
-<blockquote>
-<p>更多开发文档正在补充中...</p>
-</blockquote>
-<h2 id="_3">快速贡献<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 1. Fork 并克隆仓库</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/YOUR-USERNAME/cc_plugins.git
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># 2. 安装开发依赖</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>pip<span class="w"> </span>install<span class="w"> </span>pre-commit
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>pre-commit<span class="w"> </span>install
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1"># 3. 创建功能分支</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>feat/your-feature
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1"># 4. 提交变更（遵循 .gitmessage 格式）</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>git<span class="w"> </span>commit<span class="w"> </span>-a
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="c1"># 5. 推送并创建 Pull Request</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>feat/your-feature
+<h1 id="_1">贡献指南<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>感谢你对 cc_plugins 项目的关注！我们欢迎任何形式的贡献。</p>
+<h2 id="_2">贡献方式<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="_3">报告问题<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>在 <a href="https://github.com/TashanGKD/cc_plugins/issues">GitHub Issues</a> 中报告 Bug 或提出功能请求。</p>
+<h3 id="_4">提交代码<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<ol>
+<li>**Fork 仓库**并创建功能分支</li>
+<li>**编写代码**并确保通过测试</li>
+<li><strong>提交 Pull Request</strong> 并详细描述变更内容</li>
+</ol>
+<h3 id="_5">改进文档<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>修正错别字、补充示例、完善说明都是宝贵的贡献。</p>
+<h2 id="_6">开发流程<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h3 id="_7">环境准备<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 克隆仓库</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/TashanGKD/cc_plugins.git
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">cd</span><span class="w"> </span>cc_plugins
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># 安装 pre-commit hooks</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>pip<span class="w"> </span>install<span class="w"> </span>pre-commit
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>pre-commit<span class="w"> </span>install
 </span></code></pre></div>
-<h2 id="_4">代码规范<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="_8">分支命名<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>遵循以下命名规范：</p>
 <ul>
-<li>提交信息遵循 <a href="https://www.conventionalcommits.org/">Conventional Commits</a></li>
-<li>代码变更需通过 pre-commit 验证</li>
-<li>插件配置需符合 marketplace.json 规范</li>
+<li><code>feat/</code> - 新功能</li>
+<li><code>fix/</code> - Bug 修复</li>
+<li><code>docs/</code> - 文档更新</li>
+<li><code>refactor/</code> - 代码重构</li>
+<li><code>test/</code> - 测试相关</li>
+<li><code>chore/</code> - 构建/工具相关</li>
 </ul>
-<h2 id="_5">许可证<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p>本项目采用 MIT 许可证。</p>
+<h3 id="_9">提交规范<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>使用项目的 <code>.gitmessage</code> 模板：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>## Summary
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>&lt;简要描述&gt;
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>## Changes Made
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>### &lt;Component&gt; Updates
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>&lt;具体变更&gt;
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>## Impact
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>&lt;影响说明&gt;
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>Co-authored-by: Claude &lt;noreply@anthropic.com&gt;
+</span></code></pre></div>
+<p><strong>类型 (type):</strong>
+- <code>feat</code> - 新功能
+- <code>fix</code> - Bug 修复
+- <code>docs</code> - 文档变更
+- <code>style</code> - 代码格式
+- <code>refactor</code> - 重构
+- <code>test</code> - 测试
+- <code>chore</code> - 构建/工具</p>
+<p><strong>作用域 (scope):</strong>
+- <code>agent</code> - 智能体
+- <code>skill</code> - 技能
+- <code>command</code> - 命令
+- <code>template</code> - 模板
+- <code>config</code> - 配置
+- <code>workflow</code> - 工作流命令</p>
+<h3 id="pull-request">Pull Request<a class="headerlink" href="#pull-request" title="Permanent link">&para;</a></h3>
+<p>PR 标题应遵循相同的提交规范。描述中需包含：</p>
+<ul>
+<li>变更目的</li>
+<li>实现方式</li>
+<li>测试情况</li>
+<li>相关 Issue</li>
+</ul>
+<h2 id="pre-commit">Pre-commit 验证<a class="headerlink" href="#pre-commit" title="Permanent link">&para;</a></h2>
+<p>项目使用 pre-commit 确保代码质量：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 手动运行验证</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>pre-commit<span class="w"> </span>run<span class="w"> </span>--all-files
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># 跳过 hooks（不推荐）</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>git<span class="w"> </span>commit<span class="w"> </span>--no-verify
+</span></code></pre></div>
+<h2 id="_10">行为准则<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<ul>
+<li>尊重不同观点和经验</li>
+<li>优雅地接受建设性批评</li>
+<li>关注对社区最有利的事情</li>
+<li>对其他社区成员表示同理心</li>
+</ul>
 
 
 
@@ -770,7 +999,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月12日 21:46:14 CST">2026年1月12日 21:46:14</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月13日 09:59:46 CST">2026年1月13日 09:59:46</span>
   </span>
 
     
