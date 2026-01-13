@@ -1,7 +1,25 @@
 /* ============================================
    他山团队 (Tashan) - Design System 2.0
-   Theme: Cyberpunk x Modern SaaS (Inter/JetBrains)
+   Theme: Cyberpunk x Modern SaaS (Plus Jakarta/Cascadia)
    ============================================ */
+
+/* === 0. 字体加载 (Font Loading) === */
+/* Cascadia Code from jsDelivr CDN */
+@font-face {
+  font-family: 'Cascadia Code';
+  src: url('https://cdn.jsdelivr.net/gh/microsoft/cascadia-code@main/ttf/CascadiaCode.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cascadia Code';
+  src: url('https://cdn.jsdelivr.net/gh/microsoft/cascadia-code@main/ttf/CascadiaCodeBold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* === 1. 全局设计变量与重置 === */
 :root {
@@ -35,6 +53,7 @@
 .md-typeset code, .md-typeset pre {
   font-family: "Cascadia Code", "Consolas", "Monaco", "Courier New", monospace;
   font-variant-ligatures: normal;
+  /* 优先使用 CDN 字体，确保 GitHub Pages 显示一致 */
 }
 
 /* 标题渐变增强 */
