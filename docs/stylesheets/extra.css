@@ -266,6 +266,11 @@
   display: block;
 }
 
+/* 表格字体大小 */
+.md-typeset table {
+  font-size: 0.95rem; /* 约 16.2px，略小于正文 19.1px */
+}
+
 /* 亮色模式头部修正 (保留) */
 [data-md-color-scheme="default"] .md-header {
   background-color: rgba(255, 255, 255, 0.9); /* 略微透明 */
@@ -387,15 +392,15 @@ html {
 
 /* 导航栏字体 */
 .md-header {
-  font-size: 1.05rem;
+  font-size: 1.1rem; /* 约 18.7px，更清晰 */
 }
 .md-tabs {
-  font-size: 1rem;
+  font-size: 1.05rem; /* 约 17.9px */
 }
 
 /* 侧边栏导航字体 */
 .md-sidebar .md-nav {
-  font-size: 0.9rem;
+  font-size: 0.95rem; /* 约 16.2px，更易读 */
 }
 
 /* === 9. Admonition (提示框) 样式重构 === */

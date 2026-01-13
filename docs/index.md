@@ -4,12 +4,14 @@ hide:
   - toc
 ---
 
-<div class="hero" markdown="1">
+<!-- Hero Section -->
+<section class="hero">
 
 # 欢迎使用 Claude Code 插件集合
 
 <p class="hero-subtitle">
-用 AI 助手重塑学术研究流程 <br> 从文献综述到论文发表
+用 AI 助手重塑学术研究流程<br>
+从文献综述到论文发表
 </p>
 
 <div class="hero-actions">
@@ -19,7 +21,7 @@ hide:
 
 </div>
 
-</div>
+</section>
 
 ## :sparkles: 核心插件
 
