@@ -236,7 +236,7 @@
 .md-typeset blockquote {
   max-width: 85ch; /* 使用字符宽度控制阅读体验 */
   margin-bottom: 1.1em;
-  font-size: 0.95rem; /* 调小基础字号 */
+  font-size: 0.875rem; /* 14px，更紧凑的阅读体验 */
 }
 
 .md-typeset table,
