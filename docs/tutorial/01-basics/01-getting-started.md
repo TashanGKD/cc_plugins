@@ -5,7 +5,7 @@
 ## 一、安装 Claude Code
 
 !!! tip "推荐使用 Linux 系统"
-    我们的强烈推荐在 Linux 环境下运行以获得最佳体验。如果没有 Linux 设备，请查看「[常见问题 > 没有Linux 设备怎么办？](#no-linux)」。
+    我们强烈推荐在 Linux 环境下运行以获得最佳体验。如果没有 Linux 设备，请查看 [常见问题：没有 Linux 设备怎么办](#no-linux)。
 
 ### macOS 安装
 
@@ -33,11 +33,13 @@ npm install -g @anthropic-ai/claude-code
 curl -fsSL https://claude.ai/install.sh | bash
 ```
 
-**NPM 安装**
+**方式二：NPM**
 ```bash
 npm install -g @anthropic-ai/claude-code
 ```
-> 注意：NPM 安装需要 Node.js 18+
+
+!!! warning "环境要求"
+    NPM 安装需要 Node.js 18+
 
 ### Windows 安装
 
@@ -46,11 +48,13 @@ npm install -g @anthropic-ai/claude-code
 irm https://claude.ai/install.ps1 | iex
 ```
 
-**NPM 安装**
+**方式二：NPM**
 ```bash
 npm install -g @anthropic-ai/claude-code
 ```
-> 注意：NPM 安装需要 Node.js 18+ 和 Git for Windows
+
+!!! warning "环境要求"
+    NPM 安装需要 Node.js 18+ 和 Git for Windows
 
 ### 验证安装
 
@@ -68,21 +72,14 @@ claude update
 
 ## 二、配置模型服务
 
-> **原理说明**：Claude Code 通过 Anthropic API 协议连接模型服务。**任何支持 Anthropic API 兼容的服务都可以接入**，包括智谱 GLM、魔搭 ModelScope、阿里云百炼等。
+!!! info "原理说明"
+    Claude Code 通过 Anthropic API 协议连接模型服务。**任何支持 Anthropic API 兼容的服务都可以接入**，包括智谱 GLM、魔搭 ModelScope、阿里云百炼等。
 
-### 配置 GLM Coding Plan（推荐）
-
-> **官方文档**：[GLM Coding Plan 快速开始](https://docs.bigmodel.cn/cn/coding-plan/quick-start)
+### [配置 GLM Coding Plan（推荐）](https://docs.bigmodel.cn/cn/coding-plan/quick-start)
 
 #### 1. 获取 API Key
 
-访问 [智谱开放平台](https://open.bigmodel.cn/)，注册/登录后进入 **API Keys 管理页面**：
-
-```
-https://open.bigmodel.cn/usercenter/proj-mgmt/apikeys
-```
-
-点击「创建新的 API Key」并保存。
+访问 [智谱开放平台](https://open.bigmodel.cn/)，注册/登录后进入 [**API Keys** 管理页面](https://open.bigmodel.cn/usercenter/proj-mgmt/apikeys)，点击「创建新的 API Key」并保存。
 
 #### 2. 配置方式（三选一）
 
@@ -94,9 +91,12 @@ https://open.bigmodel.cn/usercenter/proj-mgmt/apikeys
 npx @z_ai/coding-helper
 ```
 
-**前提条件**：需要先安装 Node.js 18+
+**前提条件**：
+
+需要先安装 Node.js 18+
 
 **功能**：
+
 - 自动安装 Claude Code
 - 自动配置 GLM API Key
 - 自动管理 MCP 服务器
@@ -124,7 +124,7 @@ curl -O "https://cdn.bigmodel.cn/install/claude_code_env.sh" && bash ./claude_co
 }
 ```
 
-> 将 `your_zhipu_api_key` 替换为你的 API Key。配置后需重启终端生效。
+> 将 `your_zhipu_api_key` 替换为你的 API Key，配置后需重启终端生效。
 
 ## 三、开始使用
 
@@ -155,7 +155,7 @@ claude
 
 ### 1. 安装时网络连接失败？
 
-**官方脚本**安装需要稳定的网络连接访问 Anthropic 服务器。如果连接失败，推荐使用 **NPM 安装方式**：
+官方脚本安装需要稳定的网络连接访问 Anthropic 服务器。如果连接失败，推荐使用以下 **NPM 安装方式**：
 
 ```bash
 # 使用国内镜像加速（可选）
@@ -220,12 +220,13 @@ Windows 以管理员身份运行 PowerShell。
 ```
 
 **可用模型**：
+
 - `deepseek-ai/DeepSeek-V3.2` - DeepSeek V3 模型
 - `Qwen/Qwen3-Coder-480B-A35B-Instruct` - 通义千问代码模型
 
-> **注意**：
-> - 魔搭需要绑定阿里云账号
-> - 在魔搭平台选择模型时，请选择支持 **推理 API-Inference** 的模型
+!!! warning "注意"
+    - 魔搭需要绑定阿里云账号
+    - 在魔搭平台选择模型时，请选择支持 **推理 API-Inference** 的模型
 
 ### 5. 没有 Linux 设备怎么办？ {: #no-linux }
 
@@ -239,9 +240,13 @@ Windows 以管理员身份运行 PowerShell。
 4. 启动后即可在浏览器中使用 Linux 终端
 5. 按照本指南安装配置 Claude Code
 
-**学生福利**：通过 [GitHub Student Developer Pack](https://education.github.com/pack) 验证的学生可获得每月 **180 小时**的免费 Codespaces 使用时间，以及 GitHub Pro、GitHub Actions 等其他福利。
+**学生福利**：
 
-**GitHub Codespaces 教程**：[GitHub Codespaces 文档](https://docs.github.com/en/codespaces)
+通过 [GitHub Student Developer Pack](https://education.github.com/pack) 验证的学生可获得每月 **180 小时**的免费 Codespaces 使用时间，以及 GitHub Pro、GitHub Actions 等其他福利。
+
+**GitHub Codespaces 教程**：
+
+[GitHub Codespaces 文档](https://docs.github.com/en/codespaces)
 
 **方案二：魔搭 Notebook**
 
@@ -250,6 +255,7 @@ Windows 以管理员身份运行 PowerShell。
 3. 在终端中按照本指南安装配置 Claude Code
 
 **魔搭 Notebook 优势**：
+
 - **完全免费**，无时间限制
 - 提供 **100G 存储**空间
 - 国内访问稳定，无需翻墙
@@ -258,13 +264,13 @@ Windows 以管理员身份运行 PowerShell。
 
 | 名称 | 链接 |
 |------|------|
-| Claude Code GitHub | https://github.com/anthropics/claude-code |
-| GLM Coding Plan 快速开始 | https://docs.bigmodel.cn/cn/coding-plan/quick-start |
-| Claude Code 接入文档 | https://docs.bigmodel.cn/cn/guide/develop/claude |
-| 智谱 AI 开放平台 | https://open.bigmodel.cn/ |
-| API Keys 管理页面 | https://open.bigmodel.cn/usercenter/proj-mgmt/apikeys |
-| 魔搭 ModelScope | https://www.modelscope.cn/ |
-| 魔搭 Access Token | https://www.modelscope.cn/my/myaccesstoken |
-| 魔搭 Notebook | https://www.modelscope.cn/my/mynotebook |
-| GitHub Codespaces | https://github.com/features/codespaces |
-| GitHub Codespaces 文档 | https://docs.github.com/en/codespaces |
+| Claude Code GitHub | <https://github.com/anthropics/claude-code> |
+| GLM Coding Plan 快速开始 | <https://docs.bigmodel.cn/cn/coding-plan/quick-start> |
+| Claude Code 接入文档 | <https://docs.bigmodel.cn/cn/guide/develop/claude> |
+| 智谱 AI 开放平台 | <https://open.bigmodel.cn/> |
+| API Keys 管理页面 | <https://open.bigmodel.cn/usercenter/proj-mgmt/apikeys> |
+| 魔搭 ModelScope | <https://www.modelscope.cn/> |
+| 魔搭 Access Token | <https://www.modelscope.cn/my/myaccesstoken> |
+| 魔搭 Notebook | <https://www.modelscope.cn/my/mynotebook> |
+| GitHub Codespaces | <https://github.com/features/codespaces> |
+| GitHub Codespaces 文档 | <https://docs.github.com/en/codespaces> |

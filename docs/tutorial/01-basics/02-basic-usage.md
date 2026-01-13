@@ -8,15 +8,12 @@ Claude Code 有四种工作模式，通过 `Shift+Tab` 快捷键循环切换：
 
 | 模式 | 切换方式 | 状态栏显示 | 特点 | 适用场景 |
 |------|----------|------------|------|----------|
-| **Normal** | 默认 | — | 每次操作需确认，安全可控 | 日常开发 |
-| **Auto-Accept** | `Shift+Tab` 1次 | `⏵⏵ accept edits on` | 自动执行所有操作，按 `Esc` 停止 | 简单重复任务 |
-| **Plan** | `Shift+Tab` 2次 | `⏸ plan mode on` | 只读模式，仅分析规划，阻止所有修改操作 | 复杂任务规划 |
+| **Normal** | 默认 | - | 每次操作需确认，安全可控 | 日常开发 |
+| **Auto-Accept** | `Shift+Tab` 1 次 | `⏵⏵ accept edits on` | 自动执行所有操作，按 `Esc` 停止 | 简单重复任务 |
+| **Plan** | `Shift+Tab` 2 次 | `⏸ plan mode on` | 只读模式，仅分析规划，阻止所有修改操作 | 复杂任务规划 |
 | **Bypass** | 命令参数 | `⚠ bypass permissions on` | 完全跳过所有权限确认，可直接删除文件 | ⚠️ 不推荐初学者 |
 
-> **Bypass 模式进入方式**：
-> ```bash
-> claude --dangerously-skip-permissions
-> ```
+> **Bypass 模式**：`claude --dangerously-skip-permissions`
 >
 > ⚠️ **危险**：此模式无任何确认提示，仅适用于完全可控的环境或有版本控制保护的项目。
 
@@ -32,7 +29,9 @@ Claude Code 有四种工作模式，通过 `Shift+Tab` 快捷键循环切换：
 | `@path/to/directory/` | 引用目录，显示文件列表 | `@src/components/` |
 | `@file1.js @file2.js` | 同时引用多个文件 | `@config.json @.env` |
 
-**优势**：无需等待搜索，支持 Tab 补全，可直接拖放文件
+**优势**：
+
+无需等待搜索，支持 Tab 补全，可直接拖放文件
 
 ### 常见操作类型
 
@@ -47,7 +46,8 @@ Claude Code 有四种工作模式，通过 `Shift+Tab` 快捷键循环切换：
 
 ## 三、基础命令
 
-> **重要提示**：Claude Code 的核心是**自然语言对话**，不需要记忆命令。直接用自然语言描述你的需求即可完成绝大多数任务。
+!!! info "重要提示"
+    Claude Code 的核心是**自然语言对话**，不需要记忆命令。直接用自然语言描述你的需求即可完成绝大多数任务。
 
 ### 初学者必备命令
 
@@ -59,14 +59,16 @@ Claude Code 有四种工作模式，通过 `Shift+Tab` 快捷键循环切换：
 
 ### 其他内置命令（按需使用）
 
-以下命令在特定场景下有用，但**初学者不需要记忆**：
+以下命令在特定场景下有用，但**初学者**不需要记忆：
 
 | 类别 | 命令 | 功能 |
 |------|------|------|
 | IDE 集成 | `/ide` | 管理 IDE 集成并显示状态（如连接 VS Code） |
 | 配置管理 | `/config` | 查看/修改配置 |
 
-**查看完整命令列表**：输入 `/help` 即可查看所有内置命令及其说明。
+**查看完整命令列表**：
+
+输入 `/help` 即可查看所有内置命令及其说明。
 
 ### 使用示例
 
@@ -91,11 +93,13 @@ Claude Code 提供两种方式在 VS Code 中使用：**图形界面扩展**和*
 ### 方式一：VS Code 扩展（推荐，图形界面）
 
 **安装扩展**：
+
 1. 打开 VS Code，按 `Cmd+Shift+X`（Mac）或 `Ctrl+Shift+X`（Windows/Linux）
 2. 搜索 "Claude Code"
 3. 点击安装
 
 **特点**：
+
 - 原生图形界面，侧边栏显示对话
 - 支持多标签页、多窗口同时对话
 - 内联差异视图，直观显示代码修改
@@ -109,6 +113,7 @@ claude
 ```
 
 **优势**：
+
 - 完整的 CLI 功能（所有斜杠命令）
 - 自动集成到 VS Code（diff 查看、诊断共享）
 - 与扩展共享对话历史（可通过 `claude --resume` 继续）
@@ -122,7 +127,7 @@ claude
 | 外部终端连接 VS Code | `/ide` | 将外部运行的 Claude Code 连接到 VS Code（用于 diff 显示） |
 | 查看集成状态 | `/ide` | 显示当前 IDE 连接状态 |
 
-> **注意**：如果在 VS Code 集成终端中运行 `claude`，会自动连接 IDE，无需手动执行 `/ide`。
+> 如果在 VS Code 集成终端中运行 `claude`，会自动连接 IDE，无需手动执行 `/ide`。
 
 ### 选择哪种方式？
 
@@ -136,7 +141,9 @@ claude
 
 ### 场景一：修复一个 Bug
 
-**问题**：用户报告登录功能返回 500 错误
+**问题**：
+
+用户报告登录功能返回 500 错误
 
 ```
 你：@logs/error.log 查看最后 20 行
@@ -151,7 +158,9 @@ Claude：[分析问题并修复代码]
 
 ### 场景二：添加一个新功能
 
-**需求**：为 API 添加速率限制
+**需求**：
+
+为 API 添加速率限制
 
 ```
 你：当前项目使用什么框架？
@@ -166,7 +175,9 @@ Claude：[创建测试文件]
 
 ### 场景三：重构代码
 
-**目标**：改进代码质量
+**目标**：
+
+改进代码质量
 
 ```
 你：分析 @src/utils.py 的代码质量
@@ -187,12 +198,12 @@ Claude：[执行测试并修复问题]
 | **利用上下文** | Claude Code 记住对话内容，可基于之前的回答继续提问 |
 | **分步处理** | 复杂任务拆分成小步骤，每步确认后再继续 |
 | **验证结果** | 让 Claude 运行测试或检查结果，确保修改正确 |
-| **使用 `@` 引用** | 与其说"看看 src/auth.py"，不如直接输入 `@src/auth.py` |
+| **使用 @ 引用** | 与其说"看看 src/auth.py"，不如直接输入 `@src/auth.py` |
 | **学习建议** | Claude 常会提供最佳实践建议，留意这些提示 |
 
 ## 参考链接
 
 | 名称 | 链接 |
 |------|------|
-| Claude Code 官方文档 | https://docs.anthropic.com/en/docs/claude-code/overview |
-| Claude Code GitHub | https://github.com/anthropics/claude-code |
+| Claude Code 官方文档 | <https://docs.anthropic.com/en/docs/claude-code/overview> |
+| Claude Code GitHub | <https://github.com/anthropics/claude-code> |

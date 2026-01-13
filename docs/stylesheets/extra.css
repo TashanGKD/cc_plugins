@@ -117,7 +117,7 @@
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
-/* “红黄绿”三个点 */
+/* "红黄绿"三个点 */
 .md-typeset pre > code::before {
   content: "";
   position: absolute;
@@ -129,6 +129,66 @@
   background: #ff5f56;
   box-shadow: 18px 0 0 #ffbd2e, 36px 0 0 #27c93f;
   z-index: 2;
+}
+
+/* === 代码高亮增强 (Pygments) === */
+/* 注释斜体 */
+.md-typeset .c,
+.md-typeset .cm,
+.md-typeset .c1,
+.md-typeset .cs,
+.md-typeset .si {
+  font-style: italic !important;
+}
+
+/* 亮色模式代码高亮 */
+[data-md-color-scheme="default"] .md-typeset .c,
+[data-md-color-scheme="default"] .md-typeset .cm,
+[data-md-color-scheme="default"] .md-typeset .c1,
+[data-md-color-scheme="default"] .md-typeset .cs {
+  color: #6a9955; /* 注释颜色 */
+}
+[data-md-color-scheme="default"] .md-typeset .k,
+[data-md-color-scheme="default"] .md-typeset .kd,
+[data-md-color-scheme="default"] .md-typeset .kn {
+  color: #0000ff; /* 关键字 */
+}
+[data-md-color-scheme="default"] .md-typeset .s,
+[data-md-color-scheme="default"] .md-typeset .s1,
+[data-md-color-scheme="default"] .md-typeset .s2 {
+  color: #a31515; /* 字符串 */
+}
+[data-md-color-scheme="default"] .md-typeset .mi,
+[data-md-color-scheme="default"] .md-typeset .mf {
+  color: #098658; /* 数字 */
+}
+[data-md-color-scheme="default"] .md-typeset .n {
+  color: #001080; /* 变量/函数名 */
+}
+
+/* 深色模式代码高亮 */
+[data-md-color-scheme="slate"] .md-typeset .c,
+[data-md-color-scheme="slate"] .md-typeset .cm,
+[data-md-color-scheme="slate"] .md-typeset .c1,
+[data-md-color-scheme="slate"] .md-typeset .cs {
+  color: #6a9955; /* 注释颜色 */
+}
+[data-md-color-scheme="slate"] .md-typeset .k,
+[data-md-color-scheme="slate"] .md-typeset .kd,
+[data-md-color-scheme="slate"] .md-typeset .kn {
+  color: #569cd6; /* 关键字 */
+}
+[data-md-color-scheme="slate"] .md-typeset .s,
+[data-md-color-scheme="slate"] .md-typeset .s1,
+[data-md-color-scheme="slate"] .md-typeset .s2 {
+  color: #ce9178; /* 字符串 */
+}
+[data-md-color-scheme="slate"] .md-typeset .mi,
+[data-md-color-scheme="slate"] .md-typeset .mf {
+  color: #b5cea8; /* 数字 */
+}
+[data-md-color-scheme="slate"] .md-typeset .n {
+  color: #9cdcfe; /* 变量/函数名 */
 }
 
 /* === 5. Hero & Grid 布局 (保持并优化) === */
@@ -318,14 +378,30 @@
 
 /* === 7. 细节微调 === */
 /* 链接微交互 */
-.md-typeset a { 
-  color: var(--md-accent-fg-color); 
+.md-typeset a {
+  color: var(--md-accent-fg-color);
   transition: all 0.2s;
   text-decoration-thickness: 1px;
 }
-.md-typeset a:hover { 
+.md-typeset a:hover {
   color: var(--md-primary-fg-color--light);
   text-shadow: 0 0 8px rgba(34, 211, 238, 0.4);
+}
+/* 访问过的链接 - 保持清晰可见 */
+.md-typeset a:visited {
+  color: var(--md-accent-fg-color);
+  opacity: 0.85;
+}
+/* 点击时的链接 */
+.md-typeset a:active {
+  color: var(--md-primary-fg-color--dark);
+  transform: scale(0.98);
+}
+/* 键盘聚焦时的链接 */
+.md-typeset a:focus {
+  outline: 2px solid var(--md-primary-fg-color);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 .md-button {
