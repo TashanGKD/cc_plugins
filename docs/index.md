@@ -2,7 +2,6 @@
 hide:
   - navigation
   - toc
-template: home.html
 ---
 
 # 欢迎使用 Claude Code 插件集合
