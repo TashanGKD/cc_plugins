@@ -28,13 +28,13 @@
 
 /* === 2. 字体排印 (Typography) === */
 .md-typeset, .md-nav {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
-  letter-spacing: -0.01em; /* 微调间距，更紧凑现代 */
+  font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Inter", Helvetica, Arial, sans-serif;
+  letter-spacing: -0.01em;
 }
 
 .md-typeset code, .md-typeset pre {
-  font-family: "JetBrains Mono", SFMono-Regular, Consolas, Menlo, monospace;
-  font-feature-settings: "liga" 1; /* 开启连字 */
+  font-family: "Cascadia Code", "Consolas", "Monaco", "Courier New", monospace;
+  font-variant-ligatures: normal;
 }
 
 /* 标题渐变增强 */
@@ -136,7 +136,7 @@
 }
 
 .hero h1 {
-  font-size: 2.8rem !important;
+  font-size: 3.2rem !important;
   font-weight: 700;
   line-height: 1.15;
   margin-bottom: 1.2rem;
@@ -152,7 +152,7 @@
 }
 
 .hero-subtitle {
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   color: var(--md-default-fg-color--light);
   max-width: 600px;
   margin: 0 auto 2.5rem;
@@ -207,7 +207,7 @@
 
 .card h3 {
   margin-top: 0 !important;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -236,7 +236,7 @@
 .md-typeset blockquote {
   max-width: 85ch; /* 使用字符宽度控制阅读体验 */
   margin-bottom: 1.1em;
-  font-size: 0.875rem; /* 14px，更紧凑的阅读体验 */
+  font-size: 1rem; /* 16px，标准阅读体验 */
 }
 
 .md-typeset table,
@@ -288,9 +288,10 @@
 
 .md-button {
   font-weight: 600;
-  letter-spacing: 0.02em;
-  border-radius: 8px; /* 更现代的圆角 */
-  padding: 0.6em 1.4em;
+  letter-spacing: 0; /* 正常间距 */
+  border-radius: 8px;
+  padding: 0.65em 1.5em;
+  font-size: 1rem;
 }
 
 .md-button--primary {
@@ -306,6 +307,139 @@
 }
 
 .md-button--large {
-  padding: 0.7rem 1.8rem;
+  padding: 0.8rem 2rem;
+  font-size: 1.05rem;
+}
+
+/* === 8. 修复亮色模式下 H1 标题可见性 & 全局字体微调 === */
+
+/* 修复 Light Mode 下 H1 渐变色看不清的问题 */
+[data-md-color-scheme="default"] .md-typeset h1, 
+[data-md-color-scheme="default"] .hero h1 {
+  /* 使用纯色替代浅色渐变，或使用深色渐变 */
+  background: linear-gradient(120deg, #0f172a, #0891b2); 
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* 确保有回退颜色 */
+  color: #0f172a; 
+}
+
+
+
+/* === 8. 修复亮色模式下 H1 标题可见性 & 全局字体微调 === */
+
+/* 修复 Light Mode 下 H1 渐变色看不清的问题 */
+[data-md-color-scheme="default"] .md-typeset h1, 
+[data-md-color-scheme="default"] .hero h1 {
+  /* 使用强对比的深色渐变 (Slate 900 -> Cyan 700) */
+  background: linear-gradient(120deg, #0f172a, #0e7490); 
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #0f172a; 
+}
+
+/* 即使没有 webkit 支持，也保证颜色可见 */
+[data-md-color-scheme="default"] .md-typeset h1,
+[data-md-color-scheme="default"] .hero h1 {
+    color: #0f172a;
+}
+
+/* 全局字体大小适度调大 (Overall Font Size Adjustment) */
+html {
+  font-size: 17px; /* 基础字体调大 */
+}
+
+/* 针对正文段落微调 */
+.md-typeset p {
+  font-size: 1.125rem; /* 约 18px，更易读 */
+  line-height: 1.75; /* 舒适的行高 */
+}
+
+/* 标题字号 - 全部使用 rem 确保一致性 */
+.md-typeset h1 { font-size: 2.2rem; line-height: 1.2; }
+.md-typeset h2 { font-size: 1.75rem; line-height: 1.3; }
+.md-typeset h3 { font-size: 1.4rem; line-height: 1.35; }
+.md-typeset h4 { font-size: 1.25rem; line-height: 1.4; }
+
+/* 代码块字号 - 使用 rem 单位确保一致性 */
+.md-typeset code {
+  font-size: 0.9rem; /* 约 15.3px，固定大小 */
+}
+
+/* 导航栏字体 */
+.md-header {
+  font-size: 1.05rem;
+}
+.md-tabs {
   font-size: 1rem;
+}
+
+/* 侧边栏导航字体 */
+.md-sidebar .md-nav {
+  font-size: 0.9rem;
+}
+
+/* === 9. Admonition (提示框) 样式重构 === */
+/* 解决背景色与边框不协调、标题背景断层、右侧空白等问题 */
+
+.md-typeset .admonition,
+.md-typeset details {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  /* 修复：移除 overflow: hidden，改用 overflow-x: visible 防止右侧被裁剪 */
+  overflow-x: visible;
+  margin-bottom: 1.5em;
+  background-color: var(--md-default-bg-color);
+}
+
+/* 标题栏重设计 */
+.md-typeset .admonition__title,
+.md-typeset summary {
+  padding: 12px 16px;
+  font-size: 0.95rem; /* 约 16.2px，更紧凑 */
+  font-weight: 600;
+  line-height: 1.4;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  /* 修复：恢复背景色以解决右上侧留白问题，并添加圆角防止溢出 */
+  /* background-color: transparent !important; */ 
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+/* tip 内容字体缩小及宽度自适应 */
+.md-typeset .admonition p,
+.md-typeset .admonition ul,
+.md-typeset .admonition ol,
+.md-typeset .admonition blockquote,
+.md-typeset details p,
+.md-typeset details ul,
+.md-typeset details ol,
+.md-typeset details blockquote {
+  font-size: 0.95rem; /* 约 16.2px，与标题协调 */
+  line-height: 1.65;
+  max-width: none; /* 核心修复：移除 85ch 宽度限制，让内容自动填满提示框 */
+}
+
+/* 修正图标颜色 */
+.md-typeset .admonition__title::before,
+.md-typeset summary::before {
+  color: inherit; /* 跟随文字颜色 */
+  opacity: 1; /* 提高图标可见度 */
+}
+
+/* === Dark Mode Admonition Fix === */
+[data-md-color-scheme="slate"] .md-typeset .admonition,
+[data-md-color-scheme="slate"] .md-typeset details {
+  background-color: rgba(255, 255, 255, 0.02); /* 极淡的背景 */
+  border-top-color: rgba(255,255,255,0.05);
+  border-right-color: rgba(255,255,255,0.05);
+  border-bottom-color: rgba(255,255,255,0.05);
+  box-shadow: none; /* 深色模式不需要阴影 */
+}
+
+[data-md-color-scheme="slate"] .md-typeset .admonition__title,
+[data-md-color-scheme="slate"] .md-typeset summary {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border-bottom-color: rgba(255,255,255,0.05);
 }

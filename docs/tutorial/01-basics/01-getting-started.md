@@ -137,6 +137,7 @@ claude
 ### 2. 首次启动
 
 启动后：
+
 - 选择信任 Claude Code 访问项目文件夹
 - 如遇到「Do you want to use this API key」提示，选择 **Yes**
 
