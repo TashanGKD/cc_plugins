@@ -181,9 +181,9 @@ with pdfplumber.open("doc.pdf") as pdf:
 
 ## 更多资源
 
-- 表单填充：参见 [FORMS.md](FORMS.md)
-- API 参考：参见 [REFERENCE.md](REFERENCE.md)
-- 使用示例：参见 [EXAMPLES.md](EXAMPLES.md)
+- 表单填充：参见 `FORMS.md`
+- API 参考：参见 `REFERENCE.md`
+- 使用示例：参见 `EXAMPLES.md`
 
 ## 环境要求
 

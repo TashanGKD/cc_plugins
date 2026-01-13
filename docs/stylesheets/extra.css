@@ -358,7 +358,7 @@
   border-bottom: 1px solid #e2e8f0;
 }
 [data-md-color-scheme="default"] .md-header__title {
-  color: #0f172a; 
+  color: #0f172a;
   font-weight: 700;
 }
 [data-md-color-scheme="default"] .md-tabs {
@@ -370,9 +370,22 @@
   color: #64748b; /* Slate 500 */
 }
 [data-md-color-scheme="default"] .md-tabs__link--active,
-[data-md-color-scheme="default"] .md-tabs__link:hover {
-  color: var(--md-primary-fg-color);
+[data-md-color-scheme="default"] .md-tabs__link:hover,
+[data-md-color-scheme="default"] .md-tabs__link:focus {
+  color: #0891b2 !important; /* Cyan 600 - 强制使用深青色，避免白色 */
   font-weight: 600;
+}
+
+/* 侧边栏导航修复 */
+[data-md-color-scheme="default"] .md-nav__link {
+  color: #475569; /* Slate 600 */
+}
+[data-md-color-scheme="default"] .md-nav__link:hover,
+[data-md-color-scheme="default"] .md-nav__link--active {
+  color: #0891b2 !important; /* 避免变成白色 */
+}
+[data-md-color-scheme="default"] .md-nav__link:focus {
+  color: #0891b2 !important;
 }
 [data-md-color-scheme="default"] .md-search__inner {
   background-color: rgba(241, 245, 249, 0.8); /* Slate 100 */
@@ -418,12 +431,49 @@
   box-shadow: 0 4px 14px 0 rgba(6, 182, 212, 0.39); /* 强烈的投影 */
   transition: all 0.2s ease;
   border: none; /* 移除可能的边框 */
+  color: #ffffff !important; /* 确保文字始终为白色 */
+  background-color: var(--md-primary-fg-color) !important;
 }
 
 .md-button--primary:hover {
   transform: translateY(-1px);
   box-shadow: 0 6px 20px rgba(6, 182, 212, 0.23);
   background-color: var(--md-primary-fg-color--light) !important;
+  color: #ffffff !important; /* hover 状态保持白色 */
+}
+
+/* 修复 focus 和 active 状态 */
+.md-button--primary:focus,
+.md-button--primary:active {
+  color: #ffffff !important;
+  background-color: var(--md-primary-fg-color--light) !important;
+  outline: 2px solid var(--md-primary-fg-color);
+  outline-offset: 2px;
+}
+
+/* 针对 elegant-cover 内的按钮强化样式 */
+.elegant-cover .md-button--primary,
+.elegant-cover a.md-button--primary {
+  color: #ffffff !important;
+  background-color: #06b6d4 !important;
+}
+
+.elegant-cover .md-button--primary:hover,
+.elegant-cover .md-button--primary:focus,
+.elegant-cover .md-button--primary:active,
+.elegant-cover a.md-button--primary:hover,
+.elegant-cover a.md-button--primary:focus,
+.elegant-cover a.md-button--primary:active {
+  color: #ffffff !important;
+  background-color: #22d3ee !important;
+}
+
+/* 防止链接样式覆盖按钮 */
+a.md-button,
+a.md-button:visited,
+a.md-button:link {
+  color: inherit !important;
+  text-decoration: none !important;
 }
 
 .md-button--large {
