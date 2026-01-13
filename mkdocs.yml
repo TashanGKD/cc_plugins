@@ -62,9 +62,9 @@ theme:
     repo: fontawesome/brands/github
     previous: fontawesome/solid/arrow-left
     next: fontawesome/solid/arrow-right
-  # 内容宽度
-  content:
-    width: 900px
+  # 内容宽度 (移除，使用主题默认)
+  # content:
+  #   width: 900px
 
 # 插件
 plugins:
@@ -161,6 +161,7 @@ extra:
 
 # 导航结构
 nav:
+  - 首页: index.md
   - 快速开始:
       - 教程目录: tutorial/README.md
       - Claude Code 环境搭建: tutorial/01-basics/01-getting-started.md
