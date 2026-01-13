@@ -1,34 +1,162 @@
 /* ============================================
-   他山团队 (Tashan) - 自定义样式
+   他山团队 (Tashan) - Design System 2.0
+   Theme: Cyberpunk x Modern SaaS (Inter/JetBrains)
    ============================================ */
 
-/* === 基础元素优化 === */
-.md-typeset a { color: var(--md-accent-fg-color); transition: color 0.2s; }
-.md-typeset a:hover { color: var(--md-accent-fg-color--light); }
-
-/* === Hero 区域 (首页) === */
-.hero {
-  text-align: center;
-  margin: 2rem 0 4rem;
-  padding-bottom: 3rem;
-  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+/* === 1. 全局设计变量与重置 === */
+:root {
+  /* 核心强调色 - Cyan 500 */
+  --md-primary-fg-color:        #06b6d4; 
+  --md-primary-fg-color--light: #22d3ee; 
+  --md-primary-fg-color--dark:  #0891b2;
+  --md-accent-fg-color:         #06b6d4; 
+  
+  /* 亮色模式高级灰 - Zinc/Slate Palette */
+  --brand-light-bg:             #ffffff;
+  --brand-light-header:         rgba(255, 255, 255, 0.85); /* 增加磨砂感 */
+  
+  /* 宽屏限制 */
+  --content-max-width:          1600px;
 }
 
-.hero h1 {
-  font-size: 2.5rem !important;
-  font-weight: 800 !important;
-  margin-bottom: 1rem !important;
-  background: linear-gradient(120deg, var(--md-primary-fg-color), var(--md-accent-fg-color));
+/* 深色模式高级黑 - Deep Space */
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color:        #0f172a; /* Slate 900 - 比纯黑更有质感 */
+  --md-code-bg-color:           #1e293b; /* Slate 800 */
+  --md-footer-bg-color:         #020617; /* Slate 950 */
+}
+
+/* === 2. 字体排印 (Typography) === */
+.md-typeset, .md-nav {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  letter-spacing: -0.01em; /* 微调间距，更紧凑现代 */
+}
+
+.md-typeset code, .md-typeset pre {
+  font-family: "JetBrains Mono", SFMono-Regular, Consolas, Menlo, monospace;
+  font-feature-settings: "liga" 1; /* 开启连字 */
+}
+
+/* 标题渐变增强 */
+.md-typeset h1 {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  background: linear-gradient(120deg, var(--md-default-fg-color), var(--md-primary-fg-color--light));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
+  margin-bottom: 1.5rem;
+}
+
+/* 全局选中文本样式 */
+::selection {
+  background: rgba(6, 182, 212, 0.25); /* Cyan 25% */
+  color: inherit;
+}
+
+/* === 3. 界面质感与光影 (UI & Textures) === */
+
+/* 顶部栏毛玻璃效果 */
+.md-header {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background-color: var(--brand-light-header);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+[data-md-color-scheme="slate"] .md-header {
+  background-color: rgba(15, 23, 42, 0.85); /* Slate 900 with opacity */
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+/* 侧边栏/目录栏背景虚化 */
+.md-sidebar {
+  background: transparent;
+}
+
+/* 滚动条美化 (Webkit) */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(150, 150, 150, 0.3);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--md-primary-fg-color);
+}
+
+/* === 4. 代码块 Mac 风格化 === */
+.md-typeset pre > code {
+  position: relative;
+  padding-top: 2rem; /* 给红绿灯腾位置 */
+  border-radius: 8px; /* 圆角增加 */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* “红黄绿”三个点 */
+.md-typeset pre > code::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff5f56;
+  box-shadow: 18px 0 0 #ffbd2e, 36px 0 0 #27c93f;
+  z-index: 2;
+}
+
+/* === 5. Hero & Grid 布局 (保持并优化) === */
+
+/* Hero 区域 */
+.hero {
+  text-align: center;
+  margin: 4rem 0 6rem;
+  position: relative;
+}
+
+/* 深色模式下的 Hero 辉光 */
+[data-md-color-scheme="slate"] .hero::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle, rgba(6,182,212,0.15) 0%, rgba(0,0,0,0) 70%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.hero h1 {
+  font-size: 2.8rem !important;
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 1.2rem;
+  background: linear-gradient(to right, #ffffff 20%, #22d3ee 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-md-color-scheme="default"] .hero h1 {
+  background: linear-gradient(to right, #0f172a 20%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .hero-subtitle {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   color: var(--md-default-fg-color--light);
-  line-height: 1.6;
-  margin-bottom: 2.5rem;
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.55;
 }
 
 .hero-actions {
@@ -38,57 +166,146 @@
   flex-wrap: wrap;
 }
 
-/* === 卡片网格布局 === */
+/* 卡片网格 */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-  margin: 2rem 0;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin: 2rem auto;
+  max-width: 1400px;
 }
 
 .card {
-  border: 1px solid var(--md-default-fg-color--lightest);
-  border-radius: 0.75rem;
-  padding: 1.5rem;
+  position: relative;
+  padding: 2rem;
+  border-radius: 12px;
   background: var(--md-default-bg-color);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 1px solid rgba(0,0,0,0.08); /* 亮色模式微边框 */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1);
-  border-color: var(--md-primary-fg-color);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+[data-md-color-scheme="slate"] .card {
+  background: rgba(30, 41, 59, 0.4); /* 半透明 */
+  border: 1px solid rgba(255,255,255,0.06);
+  backdrop-filter: blur(4px);
+}
+
+[data-md-color-scheme="slate"] .card:hover {
+  border-color: rgba(34, 211, 238, 0.4); /* Cyan 边框微亮 */
+  background: rgba(30, 41, 59, 0.6);
+  box-shadow: 0 0 30px rgba(6, 182, 212, 0.1);
 }
 
 .card h3 {
   margin-top: 0 !important;
+  font-size: 1.1rem;
+  font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.7rem;
   color: var(--md-primary-fg-color);
 }
 
-.card-actions {
-  margin-top: auto;
-  padding-top: 1.2rem;
+/* === 6. 宽屏补丁 (Refined) === */
+.md-grid {
+  max-width: 92% !important; /* 略微收窄一点点，避免完全贴边 */
+  margin: 0 auto;
 }
 
-/* === 深色模式适配 === */
-[data-md-color-scheme="slate"] .card {
-  background: var(--md-code-bg-color);
-  border-color: var(--md-default-fg-color--lighter);
-}
-[data-md-color-scheme="slate"] .hero {
-  border-bottom-color: var(--md-default-fg-color--lighter);
+.md-content {
+  max-width: none !important;
 }
 
-/* === 通用组件优化 === */
+.md-typeset {
+  max-width: 100% !important;
+}
+
+/* 限制正文阅读宽度，其余元素宽屏 */
+.md-typeset p,
+.md-typeset ul,
+.md-typeset ol,
+.md-typeset blockquote {
+  max-width: 85ch; /* 使用字符宽度控制阅读体验 */
+  margin-bottom: 1.1em;
+  font-size: 0.95rem; /* 调小基础字号 */
+}
+
+.md-typeset table,
+.md-typeset pre,
+.md-typeset img,
+.md-typeset .admonition {
+  width: 100%;
+  display: block;
+}
+
+/* 亮色模式头部修正 (保留) */
+[data-md-color-scheme="default"] .md-header {
+  background-color: rgba(255, 255, 255, 0.9); /* 略微透明 */
+  color: #000000;
+  border-bottom: 1px solid #e2e8f0;
+}
+[data-md-color-scheme="default"] .md-header__title {
+  color: #0f172a; 
+  font-weight: 700;
+}
+[data-md-color-scheme="default"] .md-tabs {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #000000;
+  border-bottom: 1px solid #e2e8f0;
+}
+[data-md-color-scheme="default"] .md-tabs__link {
+  color: #64748b; /* Slate 500 */
+}
+[data-md-color-scheme="default"] .md-tabs__link--active,
+[data-md-color-scheme="default"] .md-tabs__link:hover {
+  color: var(--md-primary-fg-color);
+  font-weight: 600;
+}
+[data-md-color-scheme="default"] .md-search__inner {
+  background-color: rgba(241, 245, 249, 0.8); /* Slate 100 */
+}
+
+/* === 7. 细节微调 === */
+/* 链接微交互 */
+.md-typeset a { 
+  color: var(--md-accent-fg-color); 
+  transition: all 0.2s;
+  text-decoration-thickness: 1px;
+}
+.md-typeset a:hover { 
+  color: var(--md-primary-fg-color--light);
+  text-shadow: 0 0 8px rgba(34, 211, 238, 0.4);
+}
+
+.md-button {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: 8px; /* 更现代的圆角 */
+  padding: 0.6em 1.4em;
+}
+
+.md-button--primary {
+  box-shadow: 0 4px 14px 0 rgba(6, 182, 212, 0.39); /* 强烈的投影 */
+  transition: all 0.2s ease;
+  border: none; /* 移除可能的边框 */
+}
+
+.md-button--primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(6, 182, 212, 0.23);
+  background-color: var(--md-primary-fg-color--light) !important;
+}
+
 .md-button--large {
-  padding: 0.8rem 2rem !important;
-  font-size: 1.1rem !important;
-  border-radius: 2rem !important;
+  padding: 0.7rem 1.8rem;
+  font-size: 1rem;
 }
-
-.md-social__link:hover { transform: translateY(-3px); }

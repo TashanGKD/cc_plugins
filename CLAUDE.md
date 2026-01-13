@@ -130,3 +130,9 @@ Co-authored-by: Claude <noreply@anthropic.com>
 **工作流命令相关作用域**：
 - `workflow`: 修改 `/tdd`、`/bdd`、`/squash`、`/docs` 等工作流命令
 - `command`: 修改项目级命令文件（`.claude/commands/*.md`）
+
+## 文档编写规范
+
+**Markdown 语法**：避免中文标点（：：）与行内语法（`**`）紧邻，用空格或换行分隔；**粗体后勿紧跟标点**，先写标点再粗体（`描述：**内容**` 非 `**描述**：`）。
+**MkDocs 兼容**：使用标准 CommonMarkdown 语法，避免嵌套过深；中文文档在标点与 Markdown 符号间留空格。
+**验证构建**：`mkdocs build --clean` 检查渲染，避免缓存导致的偶发问题。

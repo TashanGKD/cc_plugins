@@ -18,7 +18,7 @@ theme:
     # 自动切换亮/暗模式
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: black
+      primary: white
       accent: cyan
       toggle:
         icon: material/brightness-7
@@ -54,8 +54,8 @@ theme:
     - announce.dismiss
   # 字体配置
   font:
-    text: Roboto
-    code: Roboto Mono
+    text: Inter
+    code: JetBrains Mono
   # 图标配置
   icon:
     logo: material/book-open-variant
@@ -167,6 +167,7 @@ nav:
       - Claude Code 环境搭建: tutorial/01-basics/01-getting-started.md
       - Claude Code 基础教程: tutorial/01-basics/02-basic-usage.md
   - 插件文档:
+      - 插件列表: plugins/index.md
       - Scispark: plugins/scispark.md
       - Manim Creator: plugins/manim-creator.md
   - 开发指南: development/index.md
