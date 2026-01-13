@@ -168,6 +168,7 @@ nav:
       - 教程目录: tutorial/README.md
       - Claude Code 环境搭建: tutorial/01-basics/01-getting-started.md
       - Claude Code 基础教程: tutorial/01-basics/02-basic-usage.md
+      - MCP 使用教程: tutorial/01-basics/03-mcp-usage.md
   - 插件文档:
       - 插件列表: plugins/index.md
       - Scispark: plugins/scispark.md

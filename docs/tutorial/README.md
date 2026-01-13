@@ -16,23 +16,18 @@
    - 文件引用技巧
    - 常用操作
 
-## 快速开始
+3. **[MCP 使用教程](01-basics/03-mcp-usage.md)**
+   - MCP 配置方式（HTTP/SSE/stdio）
+   - 作用域管理（Local/User/Project）
+   - 实用服务器推荐
+   - 常见问题解决
 
-!!! info "快速安装"
-    推荐使用 [GLM Coding Plan](01-basics/01-getting-started.md) 作为模型服务。
-
-    ```bash
-    # 1. 安装 Claude Code
-    curl -fsSL https://claude.ai/install.sh | bash
-
-    # 2. 使用自动化配置脚本
-    npx @z_ai/coding-helper
-
-    # 3. 启动
-    claude
-    ```
-
-    详见：[环境搭建完整指南](01-basics/01-getting-started.md)
+4. **[Skills 使用教程](01-basics/04-skills-usage.md)**
+   - Skills 概念与特点
+   - Skills 创建与配置
+   - 多文件结构与渐进式披露
+   - Skills 最佳实践
+   - 常见问题排查
 
 ## 获取帮助
 
