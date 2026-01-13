@@ -4,7 +4,8 @@
 
 ## 一、安装 Claude Code
 
-> **推荐使用 Linux 系统**以获得最佳体验。如果没有 Linux 设备，请查看「[常见问题 > 没有Linux 设备怎么办？](#没有-linux-设备怎么办)」
+!!! tip "推荐使用 Linux 系统"
+    我们强烈推荐在 Linux 环境下运行以获得最佳体验。如果没有 Linux 设备，请查看「[常见问题 > 没有Linux 设备怎么办？](#没有-linux-设备怎么办)」。
 
 ### macOS 安装
 
@@ -22,7 +23,8 @@ brew install --cask claude-code
 ```bash
 npm install -g @anthropic-ai/claude-code
 ```
-> 注意：NPM 安装需要 Node.js 18+
+!!! warning "环境要求"
+    NPM 安装需要 Node.js 18+
 
 ### Linux 安装
 

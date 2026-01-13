@@ -4,20 +4,22 @@ hide:
   - toc
 ---
 
+<div class="hero" markdown="1">
+
 # 欢迎使用 Claude Code 插件集合
 
-<div align="center" style="margin-bottom: 2rem;">
-
-<p style="font-size: 1.2rem; color: var(--md-default-fg-color--light);">
-用 AI 助手重塑学术研究流程，从文献综述到论文发表
+<p class="hero-subtitle">
+用 AI 助手重塑学术研究流程 <br> 从文献综述到论文发表
 </p>
 
-[:rocket: 快速开始](tutorial/01-basics/01-getting-started.md){ .md-button .md-button--primary }
-[:book: 浏览文档](plugins/index.md){ .md-button }
+<div class="hero-actions">
+
+[:rocket: 快速开始](tutorial/01-basics/01-getting-started.md){ .md-button .md-button--primary .md-button--large }
+[:book: 浏览文档](plugins/index.md){ .md-button .md-button--large }
 
 </div>
 
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--md-default-fg-color--lightest);">
+</div>
 
 ## :sparkles: 核心插件
 
@@ -88,6 +90,6 @@ hide:
 
 </div>
 
-<div align="center" style="margin-top: 3rem;">
+<div align="center" style="margin-top: 4rem; opacity: 0.6;">
 <p>Copyright &copy; 2026 他山团队 (Tashan)</p>
 </div>
