@@ -24,11 +24,14 @@
 /* === 1. 全局设计变量与重置 === */
 :root {
   /* 核心强调色 - Cyan 500 */
-  --md-primary-fg-color:        #06b6d4; 
-  --md-primary-fg-color--light: #22d3ee; 
+  --md-primary-fg-color:        #06b6d4;
+  --md-primary-fg-color--light: #22d3ee;
   --md-primary-fg-color--dark:  #0891b2;
-  --md-accent-fg-color:         #06b6d4; 
-  
+  --md-accent-fg-color:         #06b6d4;
+
+  /* 代码字体 - Cascadia Code */
+  --md-code-font-family:        "Cascadia Code", "Consolas", "Monaco", "Courier New", monospace;
+
   /* 亮色模式高级灰 - Zinc/Slate Palette */
   --brand-light-bg:             #ffffff;
   --brand-light-header:         rgba(255, 255, 255, 0.85); /* 增加磨砂感 */
@@ -50,10 +53,9 @@
   letter-spacing: -0.01em;
 }
 
+/* 代码连字设置（字体由 --md-code-font-family 变量控制） */
 .md-typeset code, .md-typeset pre {
-  font-family: "Cascadia Code", "Consolas", "Monaco", "Courier New", monospace;
   font-variant-ligatures: normal;
-  /* 优先使用 CDN 字体，确保 GitHub Pages 显示一致 */
 }
 
 /* 标题渐变增强 */

@@ -55,7 +55,7 @@ theme:
   # 字体配置
   font:
     text: Plus Jakarta Sans
-    code: Cascadia Code
+    # 代码字体通过 CSS 变量 --md-code-font-family 在 extra.css 中配置
   # 图标配置
   icon:
     logo: material/book-open-variant
