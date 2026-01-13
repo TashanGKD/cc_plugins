@@ -527,6 +527,36 @@ claude --debug
 
 向 Claude 提出与 Skill 描述匹配的任务，观察它是否自动使用。
 
+## 十二、项目实战：cc_plugins 的 Skills 实现
+
+### 可用 Skills 列表
+
+| Skill | 触发方式 | 自动触发关键词 | 用途 |
+|-------|----------|----------------|------|
+| `tdd` | `/tdd` | TDD、测试先行、红绿重构 | 测试驱动开发流程 |
+| `bdd` | `/bdd` | BDD、验收测试、Gherkin | 行为驱动开发流程 |
+| `squash` | `/squash` | squash、整理 commit | Commit 历史整理 |
+| `docs` | `/docs` | 更新文档、同步文档 | 活文档维护 |
+| `gh` | `/gh` | gh、GitHub CLI | GitHub CLI 指南 |
+
+### 目录结构
+
+```
+.claude/
+└── skills/                # 项目 Skills
+    ├── bdd/SKILL.md
+    ├── docs/SKILL.md
+    ├── gh/SKILL.md
+    ├── squash/SKILL.md
+    └── tdd/SKILL.md
+```
+
+### 脚本支持
+
+`scripts/generate_readme_tables.py` 自动扫描并生成 Skills 表格。
+
+---
+
 ## 参考链接
 
 ### 官方文档

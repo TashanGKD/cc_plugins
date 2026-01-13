@@ -73,7 +73,7 @@ def load_marketplace() -> List[Dict]:
 
 
 def discover_commands() -> List[Dict]:
-    """扫描所有命令文件和 Skills"""
+    """扫描所有 Skills 和插件命令"""
     base_path = Path(__file__).parent.parent
     commands = []
 
@@ -94,21 +94,6 @@ def discover_commands() -> List[Dict]:
                             'type': '项目 Skill',
                             'location': f".claude/skills/{skill_dir.name}/"
                         })
-
-    # 扫描项目级命令 (.claude/commands/)
-    project_commands_path = base_path / '.claude' / 'commands'
-    if project_commands_path.exists():
-        for cmd_file in project_commands_path.glob('*.md'):
-            frontmatter = extract_frontmatter(cmd_file)
-            if frontmatter.get('name'):
-                commands.append({
-                    'name': f"/{frontmatter['name']}",
-                    'description': frontmatter.get('description', ''),
-                    'version': frontmatter.get('version', '-'),
-                    'tags': frontmatter.get('tags', []),
-                    'type': '项目命令',
-                    'location': f".claude/commands/{cmd_file.name}"
-                })
 
     # 扫描插件级命令 (plugins/*/commands/)
     plugins_path = base_path / 'plugins'
