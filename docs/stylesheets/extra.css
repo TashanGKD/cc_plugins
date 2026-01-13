@@ -49,7 +49,8 @@
 
 /* === 2. 字体排印 (Typography) === */
 .md-typeset, .md-nav {
-  font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Inter", Helvetica, Arial, sans-serif;
+  /* 中英文字体栈：Noto Sans SC (中文) → Plus Jakarta Sans (英文) → 系统回退 */
+  font-family: "Noto Sans SC", "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Inter", Helvetica, Arial, sans-serif;
   letter-spacing: -0.01em;
 }
 
@@ -63,10 +64,22 @@
   font-weight: 800;
   letter-spacing: -0.03em;
   background: linear-gradient(120deg, var(--md-default-fg-color), var(--md-primary-fg-color--light));
+  /* 标准语法（Firefox 等） */
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: var(--md-default-fg-color); /* 不支持渐变时的回退色 */
   display: inline-block;
   margin-bottom: 1.5rem;
+}
+
+/* 完全不支持 background-clip: text 的浏览器回退 */
+@supports not (background-clip: text) and (not (-webkit-background-clip: text)) {
+  .md-typeset h1 {
+    background: none;
+    color: var(--md-primary-fg-color) !important;
+    -webkit-text-fill-color: var(--md-primary-fg-color) !important;
+  }
 }
 
 /* 全局选中文本样式 */
@@ -222,14 +235,18 @@
   line-height: 1.15;
   margin-bottom: 1.2rem;
   background: linear-gradient(to right, #ffffff 20%, #22d3ee 100%);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: #ffffff; /* 不支持渐变时的回退色 */
 }
 
 [data-md-color-scheme="default"] .hero h1 {
   background: linear-gradient(to right, #0f172a 20%, #06b6d4 100%);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: #0f172a; /* 亮色模式回退色 */
 }
 
 .hero-subtitle {
@@ -486,21 +503,6 @@ a.md-button:link {
 /* 修复 Light Mode 下 H1 渐变色看不清的问题 */
 [data-md-color-scheme="default"] .md-typeset h1, 
 [data-md-color-scheme="default"] .hero h1 {
-  /* 使用纯色替代浅色渐变，或使用深色渐变 */
-  background: linear-gradient(120deg, #0f172a, #0891b2); 
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  /* 确保有回退颜色 */
-  color: #0f172a; 
-}
-
-
-
-/* === 8. 修复亮色模式下 H1 标题可见性 & 全局字体微调 === */
-
-/* 修复 Light Mode 下 H1 渐变色看不清的问题 */
-[data-md-color-scheme="default"] .md-typeset h1, 
-[data-md-color-scheme="default"] .hero h1 {
   /* 使用强对比的深色渐变 (Slate 900 -> Cyan 700) */
   background: linear-gradient(120deg, #0f172a, #0e7490); 
   -webkit-background-clip: text;
@@ -648,8 +650,10 @@ html {
   letter-spacing: -0.04em;
   margin-bottom: 1.5rem !important;
   background: linear-gradient(135deg, var(--md-default-fg-color), var(--md-primary-fg-color));
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: var(--md-default-fg-color); /* 回退色 */
   line-height: 1.1;
 }
 
