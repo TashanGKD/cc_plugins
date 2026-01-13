@@ -13,3 +13,6 @@ example
 
 # Manim 输出
 /manim_outputs/
+
+# 文档构建输出
+/site/
