@@ -18,7 +18,7 @@
         <link rel="prev" href="../02-basic-usage/">
       
       
-        <link rel="next" href="../../../plugins/">
+        <link rel="next" href="../04-skills-usage/">
       
       
         
@@ -403,6 +403,8 @@
       
         
           
+        
+      
         
       
         
@@ -1128,6 +1130,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-skills-usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skills 使用教程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1885,7 +1915,7 @@
 </span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>claude<span class="w"> </span>mcp<span class="w"> </span>add<span class="w"> </span>--transport<span class="w"> </span>sse<span class="w"> </span>private-api<span class="w"> </span>https://api.company.com/sse<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span>--header<span class="w"> </span><span class="s2">&quot;X-API-Key: your-key&quot;</span>
 </span></code></pre></div>
-<p><strong>对应的 JSON 配置</strong>：</p>
+<p>对应的 JSON 配置：</p>
 <div class="language-json highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">&quot;mcpServers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">&quot;asana&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -1913,7 +1943,7 @@
 </span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># 添加 Sequential Thinking（思维链推理）</span>
 </span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>claude<span class="w"> </span>mcp<span class="w"> </span>add<span class="w"> </span>sequentialthinking<span class="w"> </span>--<span class="w"> </span>npx<span class="w"> </span>-y<span class="w"> </span>@modelcontextprotocol/server-sequential-thinking
 </span></code></pre></div>
-<p><strong>对应的 JSON 配置</strong>：</p>
+<p>对应的 JSON 配置：</p>
 <div class="language-json highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">&quot;mcpServers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nt">&quot;article-mcp&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -1930,7 +1960,7 @@
 </span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="p">}</span>
 </span></code></pre></div>
 <blockquote>
-<p><strong>注意</strong>：
+<p>注意：
 1. stdio 服务器的命令部分使用 <code>--</code> 分隔，<code>--</code> 之后是服务器启动命令
 2. MCP 服务器配置**不**存储在 <code>settings.json</code> 中，而是在：
    - User/Local 作用域：<code>~/.claude.json</code>
@@ -1940,7 +1970,7 @@
 <h3 id="mcp_3">云端 MCP 部署平台<a class="headerlink" href="#mcp_3" title="Permanent link">&para;</a></h3>
 <h4 id="modelscope">魔搭 ModelScope（免费）<a class="headerlink" href="#modelscope" title="Permanent link">&para;</a></h4>
 <p>魔搭 MCP 广场提供 1500+ MCP 服务，支持云托管或本地部署。</p>
-<p><strong>使用步骤</strong>：</p>
+<p>使用步骤：</p>
 <ol>
 <li>访问 <a href="https://modelscope.cn/mcp">魔搭 MCP 广场</a></li>
 <li>选择需要的 MCP 服务（如高德地图、支付宝等）</li>
@@ -1951,11 +1981,11 @@
 </ol>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>claude<span class="w"> </span>mcp<span class="w"> </span>add<span class="w"> </span>--transport<span class="w"> </span>sse<span class="w"> </span>my-mcp<span class="w"> </span>https://modelscope.cn/api/mcp/sse/xxx
 </span></code></pre></div>
-<p><strong>自定义 MCP 托管</strong>：</p>
+<p>自定义 MCP 托管：</p>
 <p>对于自己开发的 MCP 服务，可选择"可托管部署"方式，上传代码后获得云端托管地址。</p>
 <h4 id="_1">阿里云百炼（收费）<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
 <p>企业级 MCP 部署服务，提供稳定性和技术支持。</p>
-<p><strong>使用步骤</strong>：</p>
+<p>使用步骤：</p>
 <ol>
 <li>访问 <a href="https://help.aliyun.com/zh/model-studio/mcp">阿里云百炼 MCP 文档</a></li>
 <li>开通服务并创建工作空间</li>
@@ -2089,15 +2119,15 @@
 <p>MCP <code>list_changed</code> 通知支持在 <strong>Claude Code 2.1</strong> 系列（2.1.0 及更高版本）中引入。</p>
 </div>
 <p>Claude Code 支持 MCP <code>list_changed</code> 通知，服务器可以动态更新其可用工具、提示和资源，无需断开重连。</p>
-<p><strong>工作原理</strong>：</p>
+<p>工作原理：</p>
 <p>当 MCP 服务器发送 <code>list_changed</code> 通知时，Claude Code 会自动刷新该服务器的可用功能。</p>
-<p><strong>适用场景</strong>：</p>
+<p>适用场景：</p>
 <ul>
 <li>MCP 服务器添加了新工具</li>
 <li>服务器更新了现有工具的行为</li>
 <li>资源列表发生变化</li>
 </ul>
-<p><strong>检查版本</strong>：</p>
+<p>检查版本：</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>claude<span class="w"> </span>--version
 </span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="c1"># 输出示例：claude-code version 2.1.4</span>
 </span></code></pre></div>
@@ -2150,14 +2180,14 @@
 </tbody>
 </table>
 <blockquote>
-<p><strong>前提条件</strong>：需要订阅 <a href="https://docs.bigmodel.cn/cn/coding-plan/overview">GLM Coding Plan</a> 并获取智谱 API Key。</p>
-<p><strong>使用额度</strong>：
-- <strong>Lite 套餐</strong>：联网搜索/网页读取/Zread 合计 100 次/月
-- <strong>Pro 套餐</strong>：联网搜索/网页读取/Zread 合计 1,000 次/月
-- <strong>Max 套餐</strong>：联网搜索/网页读取/Zread 合计 4,000 次/月
+<p>前提条件：需要订阅 <a href="https://docs.bigmodel.cn/cn/coding-plan/overview">GLM Coding Plan</a> 并获取智谱 API Key。</p>
+<p>使用额度：
+- Lite 套餐：联网搜索/网页读取/Zread 合计 100 次/月
+- Pro 套餐：联网搜索/网页读取/Zread 合计 1,000 次/月
+- Max 套餐：联网搜索/网页读取/Zread 合计 4,000 次/月
 - 视觉理解 MCP 共享套餐的 5 小时最大 prompt 资源池</p>
 </blockquote>
-<p><strong>详细文档</strong>：
+<p>详细文档：
 - <a href="https://docs.bigmodel.cn/cn/coding-plan/mcp/vision-mcp-server">视觉理解 MCP</a>
 - <a href="https://docs.bigmodel.cn/cn/coding-plan/mcp/search-mcp-server">联网搜索 MCP</a>
 - <a href="https://docs.bigmodel.cn/cn/coding-plan/mcp/reader-mcp-server">网页读取 MCP</a>
@@ -2208,8 +2238,8 @@
 </tbody>
 </table>
 <blockquote>
-<p><strong>说明</strong>：以上 MCP 服务器由他山团队开发维护，专为科研工作流设计。</p>
-<p><strong>TashanRAG 配置要求</strong>：
+<p>说明：以上 MCP 服务器由他山团队开发维护，专为科研工作流设计。</p>
+<p>TashanRAG 配置要求：
 - 需要配置 LLM API（如阿里云百炼 / Dashscope）
 - 在 <code>~/.claude.json</code> 或 <code>.mcp.json</code> 中添加环境变量：
 <div class="language-json highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="p">{</span>
@@ -2329,20 +2359,20 @@
 </span></code></pre></div>
 <h2 id="_8">七、常见问题<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <h3 id="1">问题 1：服务器名称验证失败<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
-<p><strong>错误信息</strong>：</p>
+<p>错误信息：</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>API Error 400: &quot;tools.11.custom.name: String should match pattern &#39;^[a-zA-Z0-9_-]{1,64}$&#39;&quot;
 </span></code></pre></div>
-<p><strong>解决方案</strong>：</p>
+<p>解决方案：</p>
 <ul>
 <li>名称只能包含字母、数字、下划线 <code>_</code> 和连字符 <code>-</code></li>
 <li>名称长度不超过 64 个字符</li>
 <li>不能使用特殊字符或空格</li>
 </ul>
 <h3 id="2-mcp">问题 2：找不到 MCP 服务器<a class="headerlink" href="#2-mcp" title="Permanent link">&para;</a></h3>
-<p><strong>错误信息</strong>：</p>
+<p>错误信息：</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>MCP server &#39;my-server&#39; not found
 </span></code></pre></div>
-<p><strong>解决方案</strong>：</p>
+<p>解决方案：</p>
 <ol>
 <li>检查作用域设置是否正确</li>
 <li>运行 <code>claude mcp list</code> 确认服务器已添加</li>
@@ -2350,10 +2380,10 @@
 <li>重启 Claude Code</li>
 </ol>
 <h3 id="3windows">问题 3：Windows 路径问题<a class="headerlink" href="#3windows" title="Permanent link">&para;</a></h3>
-<p><strong>错误信息</strong>：</p>
+<p>错误信息：</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>Error: Cannot find module &#39;C:UsersusernameDocuments&#39;
 </span></code></pre></div>
-<p><strong>解决方案</strong>：</p>
+<p>解决方案：</p>
 <p>Windows 路径需要使用正斜杠或双反斜杠：</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># 错误</span>
 </span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>claude<span class="w"> </span>mcp<span class="w"> </span>add<span class="w"> </span>fs<span class="w"> </span>--<span class="w"> </span>npx<span class="w"> </span>-y<span class="w"> </span>@modelcontextprotocol/server-filesystem<span class="w"> </span>C:<span class="se">\U</span>sers<span class="se">\u</span>sername<span class="se">\D</span>ocuments
@@ -2365,14 +2395,14 @@
 </span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>claude<span class="w"> </span>mcp<span class="w"> </span>add<span class="w"> </span>fs<span class="w"> </span>--<span class="w"> </span>npx<span class="w"> </span>-y<span class="w"> </span>@modelcontextprotocol/server-filesystem<span class="w"> </span>C:<span class="se">\\</span>Users<span class="se">\\</span>username<span class="se">\\</span>Documents
 </span></code></pre></div>
 <h3 id="4">问题 4：权限问题<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
-<p><strong>错误信息</strong>：</p>
+<p>错误信息：</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>Permission denied
 </span></code></pre></div>
-<p><strong>解决方案</strong>：</p>
+<p>解决方案：</p>
 <ol>
-<li><strong>macOS/Linux</strong>：修改文件权限或使用用户目录</li>
-<li><strong>Windows</strong>：以管理员身份运行</li>
-<li><strong>推荐</strong>：将 MCP 服务器安装在用户目录而非系统目录</li>
+<li>macOS/Linux：修改文件权限或使用用户目录</li>
+<li>Windows：以管理员身份运行</li>
+<li>推荐：将 MCP 服务器安装在用户目录而非系统目录</li>
 </ol>
 <h3 id="5">问题 5：中文路径问题<a class="headerlink" href="#5" title="Permanent link">&para;</a></h3>
 <p>避免在路径中使用中文字符：</p>
@@ -2402,14 +2432,14 @@
 <p>Prompts 是 MCP 协议的规范特性。服务器可以暴露提示模板，客户端将其作为斜杠命令提供。</p>
 </div>
 <p>MCP 服务器可以暴露 prompts（提示模板），在 Claude Code 中作为斜杠命令使用。</p>
-<p><strong>工作原理</strong>：</p>
+<p>工作原理：</p>
 <ol>
 <li>MCP 服务器在初始化时声明 <code>prompts</code> 能力</li>
 <li>客户端通过 <code>prompts/list</code> 获取可用的 prompts 列表</li>
 <li>用户通过斜杠命令调用 prompt</li>
 <li>服务器通过 <code>prompts/get</code> 返回结构化的消息内容</li>
 </ol>
-<p><strong>官方文档</strong>：
+<p>官方文档：
 - <a href="https://modelcontextprotocol.io/docs/concepts/prompts/">MCP Prompts 规范</a>
 - <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/prompts">MCP Server Specification - Prompts</a></p>
 <h3 id="settingsjson-mcp">settings.json 中的 MCP 配置<a class="headerlink" href="#settingsjson-mcp" title="Permanent link">&para;</a></h3>
@@ -2441,7 +2471,7 @@
 </tr>
 </tbody>
 </table>
-<p><strong>配置示例</strong>：</p>
+<p>配置示例：</p>
 <div class="language-json highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="p">{</span>
 </span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="w">  </span><span class="nt">&quot;enableAllProjectMcpServers&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
 </span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="w">  </span><span class="nt">&quot;enabledMcpjsonServers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;memory&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;github&quot;</span><span class="p">],</span>
@@ -2470,7 +2500,7 @@
 </tr>
 </tbody>
 </table>
-<p><strong>配置示例</strong>：</p>
+<p>配置示例：</p>
 <div class="language-json highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="p">{</span>
 </span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="w">  </span><span class="nt">&quot;allowedMcpServers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 </span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;serverName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;github&quot;</span><span class="w"> </span><span class="p">},</span>
@@ -2596,13 +2626,13 @@
 </tbody>
 </table>
 <blockquote>
-<p><strong>注意</strong>：修改插件 MCP 服务器配置后需要重启 Claude Code 才能生效。</p>
+<p>注意：修改插件 MCP 服务器配置后需要重启 Claude Code 才能生效。</p>
 </blockquote>
 <h3 id="mcp_15">插件 MCP 的优势<a class="headerlink" href="#mcp_15" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>捆绑分发</strong>：工具和服务器打包在一起</li>
-<li><strong>自动设置</strong>：无需手动 MCP 配置</li>
-<li><strong>团队一致性</strong>：所有团队成员安装插件后获得相同工具</li>
+<li>捆绑分发：工具和服务器打包在一起</li>
+<li>自动设置：无需手动 MCP 配置</li>
+<li>团队一致性：所有团队成员安装插件后获得相同工具</li>
 </ul>
 <h2 id="_10">十、最佳实践<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <table>
@@ -2692,7 +2722,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月13日 16:31:02 CST">2026年1月13日 16:31:02</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月13日 16:47:07 CST">2026年1月13日 16:47:07</span>
   </span>
 
     
