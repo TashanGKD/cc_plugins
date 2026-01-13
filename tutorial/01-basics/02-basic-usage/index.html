@@ -1198,20 +1198,20 @@
 <tr>
 <td><strong>Normal</strong></td>
 <td>默认</td>
-<td>—</td>
+<td>-</td>
 <td>每次操作需确认，安全可控</td>
 <td>日常开发</td>
 </tr>
 <tr>
 <td><strong>Auto-Accept</strong></td>
-<td><code>Shift+Tab</code> 1次</td>
+<td><code>Shift+Tab</code> 1 次</td>
 <td><code>⏵⏵ accept edits on</code></td>
 <td>自动执行所有操作，按 <code>Esc</code> 停止</td>
 <td>简单重复任务</td>
 </tr>
 <tr>
 <td><strong>Plan</strong></td>
-<td><code>Shift+Tab</code> 2次</td>
+<td><code>Shift+Tab</code> 2 次</td>
 <td><code>⏸ plan mode on</code></td>
 <td>只读模式，仅分析规划，阻止所有修改操作</td>
 <td>复杂任务规划</td>
@@ -1226,9 +1226,7 @@
 </tbody>
 </table>
 <blockquote>
-<p><strong>Bypass 模式进入方式</strong>：
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>claude<span class="w"> </span>--dangerously-skip-permissions
-</span></code></pre></div></p>
+<p><strong>Bypass 模式</strong>：<code>claude --dangerously-skip-permissions</code></p>
 <p>⚠️ <strong>危险</strong>：此模式无任何确认提示，仅适用于完全可控的环境或有版本控制保护的项目。</p>
 </blockquote>
 <h2 id="_2">二、基础操作<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
@@ -1260,7 +1258,8 @@
 </tr>
 </tbody>
 </table>
-<p><strong>优势</strong>：无需等待搜索，支持 Tab 补全，可直接拖放文件</p>
+<p><strong>优势</strong>：</p>
+<p>无需等待搜索，支持 Tab 补全，可直接拖放文件</p>
 <h3 id="_4">常见操作类型<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -1297,9 +1296,10 @@
 </tbody>
 </table>
 <h2 id="_5">三、基础命令<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p><strong>重要提示</strong>：Claude Code 的核心是**自然语言对话**，不需要记忆命令。直接用自然语言描述你的需求即可完成绝大多数任务。</p>
-</blockquote>
+<div class="admonition info">
+<p class="admonition-title">重要提示</p>
+<p>Claude Code 的核心是**自然语言对话**，不需要记忆命令。直接用自然语言描述你的需求即可完成绝大多数任务。</p>
+</div>
 <h3 id="_6">初学者必备命令<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -1324,7 +1324,7 @@
 </tbody>
 </table>
 <h3 id="_7">其他内置命令（按需使用）<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
-<p>以下命令在特定场景下有用，但**初学者不需要记忆**：</p>
+<p>以下命令在特定场景下有用，但**初学者**不需要记忆：</p>
 <table>
 <thead>
 <tr>
@@ -1346,40 +1346,47 @@
 </tr>
 </tbody>
 </table>
-<p><strong>查看完整命令列表</strong>：输入 <code>/help</code> 即可查看所有内置命令及其说明。</p>
+<p><strong>查看完整命令列表</strong>：</p>
+<p>输入 <code>/help</code> 即可查看所有内置命令及其说明。</p>
 <h3 id="_8">使用示例<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 获取帮助</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>/help
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># 输出：所有可用命令列表</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># 清除对话历史</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>/clear
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># 作用：重新开始对话，清除上下文</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="c1"># 查看当前状态</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>/status
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="c1"># 输出：当前模型、API 配置、版本信息等</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 获取帮助</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>/help
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># 输出：所有可用命令列表</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># 清除对话历史</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>/clear
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># 作用：重新开始对话，清除上下文</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c1"># 查看当前状态</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>/status
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1"># 输出：当前模型、API 配置、版本信息等</span>
 </span></code></pre></div>
 <h2 id="vs-code">四、在 VS Code 中使用<a class="headerlink" href="#vs-code" title="Permanent link">&para;</a></h2>
 <p>Claude Code 提供两种方式在 VS Code 中使用：<strong>图形界面扩展**和**集成终端 CLI</strong>。</p>
 <h3 id="vs-code_1">方式一：VS Code 扩展（推荐，图形界面）<a class="headerlink" href="#vs-code_1" title="Permanent link">&para;</a></h3>
-<p><strong>安装扩展</strong>：
-1. 打开 VS Code，按 <code>Cmd+Shift+X</code>（Mac）或 <code>Ctrl+Shift+X</code>（Windows/Linux）
-2. 搜索 "Claude Code"
-3. 点击安装</p>
-<p><strong>特点</strong>：
-- 原生图形界面，侧边栏显示对话
-- 支持多标签页、多窗口同时对话
-- 内联差异视图，直观显示代码修改
-- <code>@</code> 引用文件时自动包含选中的行号</p>
+<p><strong>安装扩展</strong>：</p>
+<ol>
+<li>打开 VS Code，按 <code>Cmd+Shift+X</code>（Mac）或 <code>Ctrl+Shift+X</code>（Windows/Linux）</li>
+<li>搜索 "Claude Code"</li>
+<li>点击安装</li>
+</ol>
+<p><strong>特点</strong>：</p>
+<ul>
+<li>原生图形界面，侧边栏显示对话</li>
+<li>支持多标签页、多窗口同时对话</li>
+<li>内联差异视图，直观显示代码修改</li>
+<li><code>@</code> 引用文件时自动包含选中的行号</li>
+</ul>
 <h3 id="cli">方式二：集成终端（CLI 模式）<a class="headerlink" href="#cli" title="Permanent link">&para;</a></h3>
 <p>在 VS Code 集成终端中运行：
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>claude
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>claude
 </span></code></pre></div></p>
-<p><strong>优势</strong>：
-- 完整的 CLI 功能（所有斜杠命令）
-- 自动集成到 VS Code（diff 查看、诊断共享）
-- 与扩展共享对话历史（可通过 <code>claude --resume</code> 继续）</p>
+<p><strong>优势</strong>：</p>
+<ul>
+<li>完整的 CLI 功能（所有斜杠命令）</li>
+<li>自动集成到 VS Code（diff 查看、诊断共享）</li>
+<li>与扩展共享对话历史（可通过 <code>claude --resume</code> 继续）</li>
+</ul>
 <h3 id="ide"><code>/ide</code> 命令的用途<a class="headerlink" href="#ide" title="Permanent link">&para;</a></h3>
 <p><code>/ide</code> 命令用于管理 IDE 集成：</p>
 <table>
@@ -1404,7 +1411,7 @@
 </tbody>
 </table>
 <blockquote>
-<p><strong>注意</strong>：如果在 VS Code 集成终端中运行 <code>claude</code>，会自动连接 IDE，无需手动执行 <code>/ide</code>。</p>
+<p>如果在 VS Code 集成终端中运行 <code>claude</code>，会自动连接 IDE，无需手动执行 <code>/ide</code>。</p>
 </blockquote>
 <h3 id="_9">选择哪种方式？<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
 <table>
@@ -1431,37 +1438,40 @@
 </table>
 <h2 id="_10">五、实战指南<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <h3 id="bug">场景一：修复一个 Bug<a class="headerlink" href="#bug" title="Permanent link">&para;</a></h3>
-<p><strong>问题</strong>：用户报告登录功能返回 500 错误</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>你：@logs/error.log 查看最后 20 行
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Claude：[显示错误日志]
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>你：这个错误指向哪个文件？
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>Claude：根据错误堆栈，问题在 @src/auth/login.py 第 42 行
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>你：修复这个问题
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>Claude：[分析问题并修复代码]
+<p><strong>问题</strong>：</p>
+<p>用户报告登录功能返回 500 错误</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>你：@logs/error.log 查看最后 20 行
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Claude：[显示错误日志]
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>你：这个错误指向哪个文件？
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>Claude：根据错误堆栈，问题在 @src/auth/login.py 第 42 行
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>你：修复这个问题
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>Claude：[分析问题并修复代码]
 </span></code></pre></div>
 <h3 id="_11">场景二：添加一个新功能<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
-<p><strong>需求</strong>：为 API 添加速率限制</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>你：当前项目使用什么框架？
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Claude：[分析项目结构]
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>你：添加一个速率限制中间件，每分钟最多 100 个请求
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>Claude：[创建中间件文件并配置]
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>你：写一个测试来验证速率限制
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>Claude：[创建测试文件]
+<p><strong>需求</strong>：</p>
+<p>为 API 添加速率限制</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>你：当前项目使用什么框架？
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Claude：[分析项目结构]
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>你：添加一个速率限制中间件，每分钟最多 100 个请求
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>Claude：[创建中间件文件并配置]
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>你：写一个测试来验证速率限制
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>Claude：[创建测试文件]
 </span></code></pre></div>
 <h3 id="_12">场景三：重构代码<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
-<p><strong>目标</strong>：改进代码质量</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>你：分析 @src/utils.py 的代码质量
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Claude：[指出可改进的地方]
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>你：按照你提到的建议重构这个文件
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>Claude：[执行重构]
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>你：运行测试确保重构没有破坏功能
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>Claude：[执行测试并修复问题]
+<p><strong>目标</strong>：</p>
+<p>改进代码质量</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>你：分析 @src/utils.py 的代码质量
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Claude：[指出可改进的地方]
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>你：按照你提到的建议重构这个文件
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>Claude：[执行重构]
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>你：运行测试确保重构没有破坏功能
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>Claude：[执行测试并修复问题]
 </span></code></pre></div>
 <h3 id="_13">最佳实践要点<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
 <table>
@@ -1489,7 +1499,7 @@
 <td>让 Claude 运行测试或检查结果，确保修改正确</td>
 </tr>
 <tr>
-<td><strong>使用 <code>@</code> 引用</strong></td>
+<td><strong>使用 @ 引用</strong></td>
 <td>与其说"看看 src/auth.py"，不如直接输入 <code>@src/auth.py</code></td>
 </tr>
 <tr>
@@ -1509,11 +1519,11 @@
 <tbody>
 <tr>
 <td>Claude Code 官方文档</td>
-<td>https://docs.anthropic.com/en/docs/claude-code/overview</td>
+<td><a href="https://docs.anthropic.com/en/docs/claude-code/overview">https://docs.anthropic.com/en/docs/claude-code/overview</a></td>
 </tr>
 <tr>
 <td>Claude Code GitHub</td>
-<td>https://github.com/anthropics/claude-code</td>
+<td><a href="https://github.com/anthropics/claude-code">https://github.com/anthropics/claude-code</a></td>
 </tr>
 </tbody>
 </table>
@@ -1539,7 +1549,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月12日 21:48:17 CST">2026年1月12日 21:48:17</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月13日 14:37:16 CST">2026年1月13日 14:37:16</span>
   </span>
 
     
