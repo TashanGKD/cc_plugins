@@ -183,6 +183,13 @@
   justify-content: center;
   gap: 1.2rem;
   flex-wrap: wrap;
+  margin-top: 2rem; /* 增加顶部间距 */
+}
+
+/* 按钮内图标修正 */
+.md-button .twemoji {
+  margin-right: 0.4em;
+  vertical-align: text-bottom;
 }
 
 /* 卡片网格 */
@@ -266,9 +273,20 @@
   display: block;
 }
 
-/* 表格字体大小 */
+/* 表格字体大小 - 强制覆盖主题默认样式 */
 .md-typeset table {
-  font-size: 0.95rem; /* 约 16.2px，略小于正文 19.1px */
+  font-size: 0.95rem !important; /* 约 16.2px，小于正文 19.1px */
+}
+
+/* 表头和单元格字体 - 强制继承 */
+.md-typeset th,
+.md-typeset td {
+  font-size: inherit !important;
+}
+
+/* 表格内代码字体 */
+.md-typeset table code {
+  font-size: 0.9em !important; /* 相对于表格字体缩小 */
 }
 
 /* 亮色模式头部修正 (保留) */
@@ -394,8 +412,24 @@ html {
 .md-header {
   font-size: 1.1rem; /* 约 18.7px，更清晰 */
 }
+
+/* 导航栏子元素字体继承 */
+.md-header__title,
+.md-header__topic,
+.md-header__button,
+.md-header__source,
+.md-header__option {
+  font-size: inherit;
+}
+
 .md-tabs {
   font-size: 1.05rem; /* 约 17.9px */
+}
+
+/* 标签栏子元素字体继承 */
+.md-tabs__item,
+.md-tabs__link {
+  font-size: inherit;
 }
 
 /* 侧边栏导航字体 */
@@ -466,4 +500,47 @@ html {
 [data-md-color-scheme="slate"] .md-typeset summary {
   background-color: rgba(255, 255, 255, 0.05) !important;
   border-bottom-color: rgba(255,255,255,0.05);
+}
+
+/* === 极简首页封面样式 === */
+.elegant-cover {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* 减去 header 高度，使其在大屏幕上垂直居中 */
+  min-height: calc(90vh - 6rem); 
+  text-align: center;
+  animation: fadeIn 1.2s ease-out;
+}
+
+.elegant-cover h1 {
+  font-size: 4rem !important; /* 超大标题 */
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin-bottom: 1.5rem !important;
+  background: linear-gradient(135deg, var(--md-default-fg-color), var(--md-primary-fg-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
+}
+
+.elegant-cover p {
+  font-size: 1.25rem !important;
+  font-weight: 400;
+  color: var(--md-default-fg-color--light);
+  max-width: 600px;
+  letter-spacing: 0.05em;
+  opacity: 0.8;
+}
+
+/* 简单的淡入动画 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 移动端适配 */
+@media screen and (max-width: 768px) {
+  .elegant-cover h1 { font-size: 2.5rem !important; }
 }
