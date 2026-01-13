@@ -5,7 +5,7 @@
 ## 一、安装 Claude Code
 
 !!! tip "推荐使用 Linux 系统"
-    我们强烈推荐在 Linux 环境下运行以获得最佳体验。如果没有 Linux 设备，请查看「[常见问题 > 没有Linux 设备怎么办？](#没有-linux-设备怎么办)」。
+    我们的强烈推荐在 Linux 环境下运行以获得最佳体验。如果没有 Linux 设备，请查看「[常见问题 > 没有Linux 设备怎么办？](#no-linux)」。
 
 ### macOS 安装
 
@@ -226,7 +226,7 @@ Windows 以管理员身份运行 PowerShell。
 > - 魔搭需要绑定阿里云账号
 > - 在魔搭平台选择模型时，请选择支持 **推理 API-Inference** 的模型
 
-### 5. 没有 Linux 设备怎么办？
+### 5. 没有 Linux 设备怎么办？ {: #no-linux }
 
 可以使用以下云端 Linux 环境：
 

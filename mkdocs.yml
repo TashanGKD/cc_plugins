@@ -162,6 +162,7 @@ extra:
 # 导航结构
 nav:
   - 快速开始:
+      - 教程目录: tutorial/README.md
       - Claude Code 环境搭建: tutorial/01-basics/01-getting-started.md
       - Claude Code 基础教程: tutorial/01-basics/02-basic-usage.md
   - 插件文档:

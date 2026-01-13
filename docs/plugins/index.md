@@ -39,4 +39,4 @@
 
 ## 开发指南
 
-插件开发相关文档请参阅 [开发指南](../development/contributing.md)。
+插件开发相关文档请参阅 [开发指南](../development/index.md)。
