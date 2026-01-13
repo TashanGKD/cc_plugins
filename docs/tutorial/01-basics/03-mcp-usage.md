@@ -70,7 +70,7 @@ claude mcp add --transport sse private-api https://api.company.com/sse \
   --header "X-API-Key: your-key"
 ```
 
-**对应的 JSON 配置**：
+对应的 JSON 配置：
 
 ```json
 {
@@ -105,7 +105,7 @@ claude mcp add article-mcp -- uvx article-mcp server
 claude mcp add sequentialthinking -- npx -y @modelcontextprotocol/server-sequential-thinking
 ```
 
-**对应的 JSON 配置**：
+对应的 JSON 配置：
 
 ```json
 {
@@ -124,7 +124,7 @@ claude mcp add sequentialthinking -- npx -y @modelcontextprotocol/server-sequent
 }
 ```
 
-> **注意**：
+> 注意：
 > 1. stdio 服务器的命令部分使用 `--` 分隔，`--` 之后是服务器启动命令
 > 2. MCP 服务器配置**不**存储在 `settings.json` 中，而是在：
 >    - User/Local 作用域：`~/.claude.json`
@@ -137,7 +137,7 @@ claude mcp add sequentialthinking -- npx -y @modelcontextprotocol/server-sequent
 
 魔搭 MCP 广场提供 1500+ MCP 服务，支持云托管或本地部署。
 
-**使用步骤**：
+使用步骤：
 
 1. 访问 [魔搭 MCP 广场](https://modelscope.cn/mcp)
 2. 选择需要的 MCP 服务（如高德地图、支付宝等）
@@ -150,7 +150,7 @@ claude mcp add sequentialthinking -- npx -y @modelcontextprotocol/server-sequent
 claude mcp add --transport sse my-mcp https://modelscope.cn/api/mcp/sse/xxx
 ```
 
-**自定义 MCP 托管**：
+自定义 MCP 托管：
 
 对于自己开发的 MCP 服务，可选择"可托管部署"方式，上传代码后获得云端托管地址。
 
@@ -158,7 +158,7 @@ claude mcp add --transport sse my-mcp https://modelscope.cn/api/mcp/sse/xxx
 
 企业级 MCP 部署服务，提供稳定性和技术支持。
 
-**使用步骤**：
+使用步骤：
 
 1. 访问 [阿里云百炼 MCP 文档](https://help.aliyun.com/zh/model-studio/mcp)
 2. 开通服务并创建工作空间
@@ -274,17 +274,17 @@ claude mcp remove github
 
 Claude Code 支持 MCP `list_changed` 通知，服务器可以动态更新其可用工具、提示和资源，无需断开重连。
 
-**工作原理**：
+工作原理：
 
 当 MCP 服务器发送 `list_changed` 通知时，Claude Code 会自动刷新该服务器的可用功能。
 
-**适用场景**：
+适用场景：
 
 - MCP 服务器添加了新工具
 - 服务器更新了现有工具的行为
 - 资源列表发生变化
 
-**检查版本**：
+检查版本：
 
 ```bash
 claude --version
@@ -322,15 +322,15 @@ claude mcp import-from-desktop
 | **web-reader** | 网页读取，抓取网页内容和结构化数据 | HTTP | `claude mcp add -s user -t http web-reader https://open.bigmodel.cn/api/mcp/web_reader/mcp --header "Authorization: Bearer your_api_key"` |
 | **zread** | 开源仓库，搜索文档、获取仓库结构、读取代码 | HTTP | `claude mcp add -s user -t http zread https://api.z.ai/api/mcp/zread/mcp --header "Authorization: Bearer your_api_key"` |
 
-> **前提条件**：需要订阅 [GLM Coding Plan](https://docs.bigmodel.cn/cn/coding-plan/overview) 并获取智谱 API Key。
+> 前提条件：需要订阅 [GLM Coding Plan](https://docs.bigmodel.cn/cn/coding-plan/overview) 并获取智谱 API Key。
 >
-> **使用额度**：
-> - **Lite 套餐**：联网搜索/网页读取/Zread 合计 100 次/月
-> - **Pro 套餐**：联网搜索/网页读取/Zread 合计 1,000 次/月
-> - **Max 套餐**：联网搜索/网页读取/Zread 合计 4,000 次/月
+> 使用额度：
+> - Lite 套餐：联网搜索/网页读取/Zread 合计 100 次/月
+> - Pro 套餐：联网搜索/网页读取/Zread 合计 1,000 次/月
+> - Max 套餐：联网搜索/网页读取/Zread 合计 4,000 次/月
 > - 视觉理解 MCP 共享套餐的 5 小时最大 prompt 资源池
 
-**详细文档**：
+详细文档：
 - [视觉理解 MCP](https://docs.bigmodel.cn/cn/coding-plan/mcp/vision-mcp-server)
 - [联网搜索 MCP](https://docs.bigmodel.cn/cn/coding-plan/mcp/search-mcp-server)
 - [网页读取 MCP](https://docs.bigmodel.cn/cn/coding-plan/mcp/reader-mcp-server)
@@ -350,9 +350,9 @@ claude mcp import-from-desktop
 | **crawl-mcp** | 网页内容爬取和批量处理，基于 crawl4ai 和 FastMCP，支持 AI 分析 | <https://github.com/gqy20/crawl-mcp> | `claude mcp add crawl-mcp uvx crawl-mcp` |
 | **TashanRAG** | 多论文 RAG 问答系统，从本地论文库检索相关论文并生成带引用的综合答案 | <https://github.com/TashanGKD/TashanRAG> | `claude mcp add TashanRAG uvx ts-rag` |
 
-> **说明**：以上 MCP 服务器由他山团队开发维护，专为科研工作流设计。
+> 说明：以上 MCP 服务器由他山团队开发维护，专为科研工作流设计。
 >
-> **TashanRAG 配置要求**：
+> TashanRAG 配置要求：
 > - 需要配置 LLM API（如阿里云百炼 / Dashscope）
 > - 在 `~/.claude.json` 或 `.mcp.json` 中添加环境变量：
 > ```json
@@ -456,13 +456,13 @@ claude mcp add article-mcp uvx article-mcp server
 
 ### 问题 1：服务器名称验证失败
 
-**错误信息**：
+错误信息：
 
 ```
 API Error 400: "tools.11.custom.name: String should match pattern '^[a-zA-Z0-9_-]{1,64}$'"
 ```
 
-**解决方案**：
+解决方案：
 
 - 名称只能包含字母、数字、下划线 `_` 和连字符 `-`
 - 名称长度不超过 64 个字符
@@ -470,13 +470,13 @@ API Error 400: "tools.11.custom.name: String should match pattern '^[a-zA-Z0-9_-
 
 ### 问题 2：找不到 MCP 服务器
 
-**错误信息**：
+错误信息：
 
 ```
 MCP server 'my-server' not found
 ```
 
-**解决方案**：
+解决方案：
 
 1. 检查作用域设置是否正确
 2. 运行 `claude mcp list` 确认服务器已添加
@@ -485,13 +485,13 @@ MCP server 'my-server' not found
 
 ### 问题 3：Windows 路径问题
 
-**错误信息**：
+错误信息：
 
 ```
 Error: Cannot find module 'C:UsersusernameDocuments'
 ```
 
-**解决方案**：
+解决方案：
 
 Windows 路径需要使用正斜杠或双反斜杠：
 
@@ -508,17 +508,17 @@ claude mcp add fs -- npx -y @modelcontextprotocol/server-filesystem C:\\Users\\u
 
 ### 问题 4：权限问题
 
-**错误信息**：
+错误信息：
 
 ```
 Permission denied
 ```
 
-**解决方案**：
+解决方案：
 
-1. **macOS/Linux**：修改文件权限或使用用户目录
-2. **Windows**：以管理员身份运行
-3. **推荐**：将 MCP 服务器安装在用户目录而非系统目录
+1. macOS/Linux：修改文件权限或使用用户目录
+2. Windows：以管理员身份运行
+3. 推荐：将 MCP 服务器安装在用户目录而非系统目录
 
 ### 问题 5：中文路径问题
 
@@ -562,14 +562,15 @@ MCP 服务器可以暴露资源，使用 `@` 符号引用，类似引用文件�
 
 MCP 服务器可以暴露 prompts（提示模板），在 Claude Code 中作为斜杠命令使用。
 
-**工作原理**：
+工作原理：
 
 1. MCP 服务器在初始化时声明 `prompts` 能力
 2. 客户端通过 `prompts/list` 获取可用的 prompts 列表
 3. 用户通过斜杠命令调用 prompt
 4. 服务器通过 `prompts/get` 返回结构化的消息内容
 
-**官方文档**：
+
+官方文档：
 - [MCP Prompts 规范](https://modelcontextprotocol.io/docs/concepts/prompts/)
 - [MCP Server Specification - Prompts](https://modelcontextprotocol.io/specification/2025-11-25/server/prompts)
 
@@ -585,7 +586,7 @@ MCP 服务器可以暴露 prompts（提示模板），在 Claude Code 中作为�
 | `enabledMcpjsonServers` | array | 特定批准的 MCP 服务器列表 |
 | `disabledMcpjsonServers` | array | 特定拒绝的 MCP 服务器列表 |
 
-**配置示例**：
+配置示例：
 
 ```json
 {
@@ -602,7 +603,7 @@ MCP 服务器可以暴露 prompts（提示模板），在 Claude Code 中作为�
 | `allowedMcpServers` | array | 允许的 MCP 服务器白名单 |
 | `deniedMcpServers` | array | 拒绝的 MCP 服务器黑名单（优先级高于白名单） |
 
-**配置示例**：
+配置示例：
 
 ```json
 {
@@ -722,13 +723,14 @@ claude mcp serve
 | **多种传输类型** | 支持 stdio、SSE 和 HTTP 传输 |
 | **查看状态** | 在 Claude Code 中使用 `/mcp` 查看 |
 
-> **注意**：修改插件 MCP 服务器配置后需要重启 Claude Code 才能生效。
+> 注意：修改插件 MCP 服务器配置后需要重启 Claude Code 才能生效。
 
 ### 插件 MCP 的优势
 
-- **捆绑分发**：工具和服务器打包在一起
-- **自动设置**：无需手动 MCP 配置
-- **团队一致性**：所有团队成员安装插件后获得相同工具
+- 捆绑分发：工具和服务器打包在一起
+- 自动设置：无需手动 MCP 配置
+- 团队一致性：所有团队成员安装插件后获得相同工具
+
 
 ## 十、最佳实践
 
