@@ -350,7 +350,7 @@ claude mcp import-from-desktop
 > - Max 套餐：联网搜索/网页读取/Zread 合计 4,000 次/月
 > - 视觉理解 MCP 共享套餐的 5 小时最大 prompt 资源池
 
-详细文档：
+**详细文档**：
 - [视觉理解 MCP](https://docs.bigmodel.cn/cn/coding-plan/mcp/vision-mcp-server)
 - [联网搜索 MCP](https://docs.bigmodel.cn/cn/coding-plan/mcp/search-mcp-server)
 - [网页读取 MCP](https://docs.bigmodel.cn/cn/coding-plan/mcp/reader-mcp-server)
@@ -407,6 +407,71 @@ claude mcp import-from-desktop
 | 服务器 | 功能 | GitHub | 安装命令 |
 |--------|------|--------|----------|
 | **sequential-thinking** | 结构化思维链推理，将复杂问题分解为可管理步骤，支持思考修订、分支推理和假设验证 | <https://github.com/modelcontextprotocol/servers> | `claude mcp add sequentialthinking npx -y @modelcontextprotocol/server-sequential-thinking` |
+
+### 生产力工具类
+
+| 服务器 | 功能 | GitHub | 安装命令 |
+|--------|------|--------|----------|
+| **Notion** | Notion 工作区集成，支持页面搜索、创建、编辑、评论、数据库查询等 21 个工具 | <https://github.com/makenotion/notion-mcp-server> | 见下方配置说明 |
+
+#### Notion MCP 配置
+
+**安装命令**：
+
+```bash
+# User 作用域（推荐）
+claude mcp add notionApi -s user -- npx -y @notionhq/notion-mcp-server
+```
+
+**环境变量配置**：
+
+在 `~/.claude.json` 中配置 Notion Token：
+
+```json
+{
+  "mcpServers": {
+    "notionApi": {
+      "command": "npx",
+      "args": ["-y", "@notionhq/notion-mcp-server"],
+      "env": {
+        "NOTION_TOKEN": "ntn_your_token_here"
+      }
+    }
+  }
+}
+```
+
+**获取 Notion Token**：
+
+1. 访问 [Notion Integrations](https://www.notion.so/profile/integrations)
+2. 创建新的内部集成
+3. 复制 "Internal Integration Token"（格式：`ntn_****`）
+4. 在需要访问的页面中连接该集成
+
+**功能特性**：
+
+- 21 个工具，包括页面搜索、创建、编辑、评论
+- 数据库查询和数据源操作
+- 支持子页面移动和批量操作
+- 适配 Notion API 2025-09-03 版本
+
+**使用示例**：
+
+```bash
+# 搜索页面
+"在 Notion 中搜索包含 '项目计划' 的页面"
+
+# 创建页面
+"在 '工作区' 页面下创建一个名为 '本周任务' 的子页面"
+
+# 添加评论
+"在 '会议记录' 页面添加评论：已审阅，同意执行"
+
+# 查询数据库
+"从 '任务跟踪' 数据库查询所有未完成的任务"
+```
+
+> **注意**：Notion 官方也提供远程 MCP 服务（OAuth 认证），适合生产环境使用。本地部署适合开发和测试。
 
 ## 六、实战示例
 
