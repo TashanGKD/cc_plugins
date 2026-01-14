@@ -53,9 +53,20 @@ user-invocable: true
 2. 解析输入：提取内容、手动标签（`tags:xxx,yyy` 格式）
 3. 自动分类：根据关键词匹配 category
 4. 自动打标签：根据内容关键词匹配标签
-5. 生成 ID：读取本月目录，取最大序号+1，格式 `YYYY-MM-DD_XXX`
-6. 保存文件：写入 `~/.note/notes/YYYY-MM/YYYY-MM-DD_XXX.json`
-7. 更新索引：追加到 `index.json` 的 `notes` 数组，更新 `total_notes` 和 `last_updated`
+5. 生成时间戳：使用**本地时间**（非 UTC），格式 `YYYY-MM-DDTHH:mm:ss+08:00`
+6. 生成 ID：读取本月目录，取最大序号+1，格式 `YYYY-MM-DD_XXX`
+7. 保存文件：写入 `~/.note/notes/YYYY-MM/YYYY-MM-DD_XXX.json`
+8. 更新索引：追加到 `index.json` 的 `notes` 数组，更新 `total_notes` 和 `last_updated`
+
+## 时间格式
+
+```bash
+# 使用 date 命令获取正确的本地时间戳
+date "+%Y-%m-%dT%H:%M:%S%z"
+# 输出示例：2026-01-14T18:44:24+0800
+```
+
+**重要**：必须使用本地时间，而非 UTC 时间。
 
 ## 使用方式
 
