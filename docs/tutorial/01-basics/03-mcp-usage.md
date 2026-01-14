@@ -126,10 +126,11 @@ claude mcp add sequentialthinking -- npx -y @modelcontextprotocol/server-sequent
 
 > 注意：
 > 1. stdio 服务器的命令部分使用 `--` 分隔，`--` 之后是服务器启动命令
-> 2. MCP 服务器配置**不**存储在 `settings.json` 中，而是在：
->    - User/Local 作用域：`~/.claude.json`
->    - Project 作用域：项目根目录的 `.mcp.json`
-> 3. `settings.json` 仅包含 MCP 相关的控制设置（如 `enabledMcpjsonServers`），而非服务器配置本身
+> 2. MCP 服务器配置存储位置：
+>    - **User/Local 作用域**：`~/.claude.json`（**没有** `~/.mcp.json`）
+>    - **Project 作用域**：项目根目录的 `.mcp.json`
+> 3. 项目层面需要额外创建 `.claude/settings.json` 来启用 MCP 服务器（详见后文）
+> 4. `settings.json` 仅包含 MCP 相关的控制设置，而非服务器配置本身
 
 ### 云端 MCP 部署平台
 
@@ -181,11 +182,15 @@ claude mcp add --transport sse my-mcp https://your-bailian-endpoint
 
 MCP 服务器可以在三个不同作用域级别配置：
 
-| 作用域 | 配置文件位置 | 可用范围 | 添加命令 | 适用场景 |
+| 作用域 | MCP 配置位置 | 启用控制 | 可用范围 | 适用场景 |
 |--------|--------------|----------|----------|----------|
-| **Local** | `~/.claude.json` | 当前项目 | 默认或 `--scope local` | 个人项目特定工具 |
-| **User** | `~/.claude.json` | 所有项目 | `--scope user` | 常用全局工具 |
-| **Project** | `.mcp.json` | 团队共享 | `--scope project` | 团队协作工具 |
+| **User** | `~/.claude.json` | 自动启用 | 所有项目 | 常用全局工具 |
+| **Local** | `~/.claude.json` | 自动启用 | 当前项目 | 个人项目特定工具 |
+| **Project** | `.mcp.json` | 需要创建 `.claude/settings.json` | 团队共享 | 团队协作工具 |
+
+> **重要**：
+> - 用户层面**没有** `~/.mcp.json`，所有 User/Local 配置都在 `~/.claude.json` 中
+> - 项目层面的 `.mcp.json` **默认不启用**，需要创建 `.claude/settings.json`（详见后文"settings.json 中的 MCP 配置"章节）
 
 ### Local 作用域
 
@@ -211,8 +216,16 @@ claude mcp add --transport http hubspot --scope user https://mcp.hubspot.com/ant
 claude mcp add --transport http paypal --scope project https://mcp.paypal.com/mcp
 ```
 
-Project 作用域会在项目根目录创建 `.mcp.json` 文件：
+Project 作用域会在项目根目录创建两个文件：
 
+```
+your-project/
+├── .mcp.json           ← MCP 服务器配置
+└── .claude/
+    └── settings.json   ← 需要手动创建，启用项目 MCP
+```
+
+**`.mcp.json`**（自动创建）：
 ```json
 {
   "mcpServers": {
@@ -221,6 +234,13 @@ Project 作用域会在项目根目录创建 `.mcp.json` 文件：
       "url": "https://mcp.example.com/mcp"
     }
   }
+}
+```
+
+**`.claude/settings.json`**（需要手动创建）：
+```json
+{
+  "enableAllProjectMcpServers": true
 }
 ```
 
@@ -580,21 +600,43 @@ MCP 服务器可以暴露 prompts（提示模板），在 Claude Code 中作为�
 
 #### 项目 MCP 服务器控制
 
+!!! warning "重要：项目层面需要单独配置"
+    项目 `.mcp.json` 中的 MCP 服务器**默认不会自动启用**，出于安全考虑。
+
+    你需要在项目中创建 **`.claude/settings.json`** 文件来启用项目层面 MCP：
+
+    ```bash
+    # 项目目录结构
+    your-project/
+    ├── .claude/
+    │   └── settings.json    ← 创建此文件启用项目 MCP
+    └── .mcp.json            ← MCP 服务器配置
+    ```
+
+    **`.claude/settings.json`** 内容：
+
+    ```json
+    {
+      "enableAllProjectMcpServers": true
+    }
+    ```
+
+    或者使用白名单方式（更安全）：
+
+    ```json
+    {
+      "enableAllProjectMcpServers": false,
+      "enabledMcpjsonServers": ["memory", "github"]
+    }
+    ```
+
 | 设置 | 类型 | 说明 |
 |------|------|------|
 | `enableAllProjectMcpServers` | boolean | 自动批准所有项目 `.mcp.json` 中的 MCP 服务器 |
 | `enabledMcpjsonServers` | array | 特定批准的 MCP 服务器列表 |
 | `disabledMcpjsonServers` | array | 特定拒绝的 MCP 服务器列表 |
 
-配置示例：
-
-```json
-{
-  "enableAllProjectMcpServers": false,
-  "enabledMcpjsonServers": ["memory", "github"],
-  "disabledMcpjsonServers": ["filesystem"]
-}
-```
+> **注意**：这些设置应该放在 **项目的 `.claude/settings.json`** 中，而不是全局的 `~/.claude/settings.json`。
 
 #### Managed 环境控制（仅 managed-settings.json）
 
