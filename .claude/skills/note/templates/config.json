@@ -1,0 +1,28 @@
+{
+  "version": "1.0",
+  "editor": "vim",
+  "default_category": "other",
+  "auto_tags": true,
+  "index_enabled": true,
+  "max_note_per_month": 1000,
+  "categories": [
+    "development",
+    "idea",
+    "meeting",
+    "bugfix",
+    "learning",
+    "other"
+  ],
+  "auto_tag_keywords": {
+    "git": ["git", "commit", "push", "pull", "merge", "rebase", "branch"],
+    "python": ["python", "pip", "uv", "pytest"],
+    "docker": ["docker", "container", "image", "compose"],
+    "auth": ["auth", "login", "token", "jwt", "oauth"],
+    "api": ["api", "rest", "endpoint", "http"],
+    "frontend": ["frontend", "react", "vue", "css", "html"],
+    "backend": ["backend", "server", "database"],
+    "refactor": ["refactor", "重构", "优化"],
+    "debug": ["debug", "bug", "fix", "修复"],
+    "research": ["research", "研究", "调研"]
+  }
+}

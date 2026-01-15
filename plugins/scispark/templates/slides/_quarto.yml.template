@@ -1,0 +1,66 @@
+# Quarto 幻灯片配置模板 (Enhanced)
+# 文件位置: slides/_quarto.yml
+
+project:
+  type: default
+  output-dir: _output
+
+format:
+  revealjs:
+    # 主题配置
+    theme: [default, custom.scss]
+    highlight-style: github
+    
+    # 字体配置 (配合 custom.scss 使用)
+    mainfont: 'Lato'
+    monofont: 'Fira Code'
+
+    # 导航配置
+    slide-number: true
+    show-slide-number: all
+    number-start-at: 1
+    toc: true
+    toc-depth: 1
+    toc-title: 目录
+
+    # 页面配置
+    logo: figures/logo.png
+    footer: "{研究关键词} | Scispark"
+    transition: slide
+    background-transition: fade
+    center: false # 内容默认左对齐，更符合学术规范
+
+    # 尺寸配置 (16:9)
+    width: 1280
+    height: 720
+    margin: 0.1
+    min-scale: 0.2
+    max-scale: 2.0
+
+    # 控制配置
+    controls: true
+    controls-layout: edges
+    controls-tutorial: true
+
+    # 预览链接
+    preview-links: auto
+    
+    # 插件配置
+    menu:
+      side: left
+      width: normal
+
+# 执行配置
+execute:
+  echo: false
+  warning: false
+  message: false
+  cache: true
+
+# 参考文献配置
+bibliography: references.bib
+csl: academic.csl
+
+# 元数据
+metadata:
+  image: ""

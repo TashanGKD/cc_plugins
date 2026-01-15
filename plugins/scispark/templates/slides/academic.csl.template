@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="never">
+  <info>
+    <title>Academic - Numbered</title>
+    <id>http://www.zotero.org/styles/academic-numbered</id>
+    <updated>2023-01-01T00:00:00+00:00</updated>
+  </info>
+
+  <citation collapse="citation-number">
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+    <layout prefix="[" suffix="]" delimiter=",">
+      <text variable="citation-number"/>
+    </layout>
+  </citation>
+
+  <bibliography entry-spacing="0" second-field-align="flush">
+    <layout>
+      <text variable="citation-number" prefix="[" suffix="]"/>
+      <text variable="title" suffix="."/>
+      <names variable="author">
+        <name delimiter=", " initialize-with=". "/>
+      </names>
+      <text variable="container-title" form="short" suffix="."/>
+      <text variable="volume" suffix=":"/>
+      <text variable="page" suffix="."/>
+      <date variable="issued" suffix=";">
+        <date-part name="year"/>
+      </date>
+      <text variable="DOI" prefix="doi:"/>
+    </layout>
+  </bibliography>
+</style>

@@ -1,0 +1,12 @@
+{
+  "version": "1.0",
+  "note_template": {
+    "id": "{{id}}",
+    "timestamp": "{{timestamp}}",
+    "created_at": "{{created_at}}",
+    "tags": {{tags}},
+    "category": "{{category}}",
+    "title": "{{title}}",
+    "content": "{{content}}"
+  }
+}
